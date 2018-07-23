@@ -15,6 +15,14 @@
 		CF6DD0A0210656E700B3D83B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF6DD09E210656E700B3D83B /* LaunchScreen.storyboard */; };
 		CF6DD0A82106637300B3D83B /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0A72106637300B3D83B /* RegisterVC.swift */; };
 		CF6DD0AA2106664F00B3D83B /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0A92106664F00B3D83B /* HomeVC.swift */; };
+		CF6DD0AC210676DA00B3D83B /* DriveNoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0AB210676DA00B3D83B /* DriveNoneVC.swift */; };
+		CF6DD0AE2106799900B3D83B /* DriveQueueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0AD2106799900B3D83B /* DriveQueueVC.swift */; };
+		CF6DD0B021067D6800B3D83B /* PickupMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0AF21067D6800B3D83B /* PickupMapVC.swift */; };
+		CF6DD0B221067E3700B3D83B /* DriveQueueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0B121067E3700B3D83B /* DriveQueueCell.swift */; };
+		CF6DD0B42106816700B3D83B /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0B32106816700B3D83B /* OrganizationCell.swift */; };
+		CF6DD0B62106850300B3D83B /* OrganizationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0B52106850300B3D83B /* OrganizationVC.swift */; };
+		CF6DD0B8210685C300B3D83B /* DriverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0B7210685C300B3D83B /* DriverCell.swift */; };
+		CF6DD0BA2106892E00B3D83B /* ClientQueueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0B92106892E00B3D83B /* ClientQueueVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +36,14 @@
 		CF6DD0A1210656E700B3D83B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF6DD0A72106637300B3D83B /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		CF6DD0A92106664F00B3D83B /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		CF6DD0AB210676DA00B3D83B /* DriveNoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveNoneVC.swift; sourceTree = "<group>"; };
+		CF6DD0AD2106799900B3D83B /* DriveQueueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveQueueVC.swift; sourceTree = "<group>"; };
+		CF6DD0AF21067D6800B3D83B /* PickupMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupMapVC.swift; sourceTree = "<group>"; };
+		CF6DD0B121067E3700B3D83B /* DriveQueueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveQueueCell.swift; sourceTree = "<group>"; };
+		CF6DD0B32106816700B3D83B /* OrganizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
+		CF6DD0B52106850300B3D83B /* OrganizationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationVC.swift; sourceTree = "<group>"; };
+		CF6DD0B7210685C300B3D83B /* DriverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverCell.swift; sourceTree = "<group>"; };
+		CF6DD0B92106892E00B3D83B /* ClientQueueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientQueueVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +80,14 @@
 				CF6DD094210656E600B3D83B /* LoginVC.swift */,
 				CF6DD0A72106637300B3D83B /* RegisterVC.swift */,
 				CF6DD096210656E600B3D83B /* Main.storyboard */,
+				CF6DD0B92106892E00B3D83B /* ClientQueueVC.swift */,
+				CF6DD0B7210685C300B3D83B /* DriverCell.swift */,
+				CF6DD0AB210676DA00B3D83B /* DriveNoneVC.swift */,
+				CF6DD0AD2106799900B3D83B /* DriveQueueVC.swift */,
+				CF6DD0AF21067D6800B3D83B /* PickupMapVC.swift */,
+				CF6DD0B121067E3700B3D83B /* DriveQueueCell.swift */,
+				CF6DD0B32106816700B3D83B /* OrganizationCell.swift */,
+				CF6DD0B52106850300B3D83B /* OrganizationVC.swift */,
 				CF6DD0A92106664F00B3D83B /* HomeVC.swift */,
 				CF6DD09C210656E700B3D83B /* Assets.xcassets */,
 				CF6DD09E210656E700B3D83B /* LaunchScreen.storyboard */,
@@ -144,11 +168,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF6DD0B42106816700B3D83B /* OrganizationCell.swift in Sources */,
+				CF6DD0B221067E3700B3D83B /* DriveQueueCell.swift in Sources */,
+				CF6DD0B62106850300B3D83B /* OrganizationVC.swift in Sources */,
+				CF6DD0BA2106892E00B3D83B /* ClientQueueVC.swift in Sources */,
+				CF6DD0AE2106799900B3D83B /* DriveQueueVC.swift in Sources */,
 				CF6DD095210656E600B3D83B /* LoginVC.swift in Sources */,
+				CF6DD0AC210676DA00B3D83B /* DriveNoneVC.swift in Sources */,
 				CF6DD0AA2106664F00B3D83B /* HomeVC.swift in Sources */,
+				CF6DD0B8210685C300B3D83B /* DriverCell.swift in Sources */,
 				CF6DD0A82106637300B3D83B /* RegisterVC.swift in Sources */,
 				CF6DD09B210656E600B3D83B /* Passenger.xcdatamodeld in Sources */,
 				CF6DD093210656E600B3D83B /* AppDelegate.swift in Sources */,
+				CF6DD0B021067D6800B3D83B /* PickupMapVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
