@@ -19,6 +19,9 @@ class HomeVC: UIViewController {
 //        performSegue(withIdentifier: "HomeToDriveNoneSegue", sender: "HomeToDriveNone")
         performSegue(withIdentifier: "HomeToDriveSegue", sender: "HomeToDrive")
     }
+    @IBAction func adminPushed(_ sender: UIButton) {
+        performSegue(withIdentifier: "HomeToAdminSegue", sender: "HomeToAdmin")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource=self

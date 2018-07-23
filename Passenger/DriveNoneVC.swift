@@ -13,6 +13,9 @@ class DriveNoneVC: UIViewController {
     @IBAction func homePushed(_ sender: UIButton) {
         performSegue(withIdentifier: "DriveNoneToHomeSegue", sender: "DriveNoneToHome")
     }
+    @IBAction func adminPushed(_ sender: UIButton) {
+        performSegue(withIdentifier: "DriverNoneToAdminSegue", sender: "DriverNoneToAdmin")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

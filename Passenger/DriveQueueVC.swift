@@ -16,6 +16,10 @@ class DriveQueueVC: UIViewController {
     @IBAction func homePushed(_ sender: UIButton) {
         performSegue(withIdentifier: "DriveToHomeSegue", sender: "DriveToHome")
     }
+    
+    @IBAction func adminPushed(_ sender: UIButton) {
+        performSegue(withIdentifier: "DriverToAdminSegue", sender: "DriverToAdmin")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource=self
