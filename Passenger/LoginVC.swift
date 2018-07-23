@@ -8,8 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginVC: UIViewController {
 
+    @IBAction func registerPushed(_ sender: UIButton) {
+        performSegue(withIdentifier: "LoginToRegisterSegue", sender: "LoginToRegister")
+    }
+    
+    @IBAction func loginPushed(_ sender: UIButton) {
+        performSegue(withIdentifier: "LoginToHomeSegue", sender: "LoginToHome")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

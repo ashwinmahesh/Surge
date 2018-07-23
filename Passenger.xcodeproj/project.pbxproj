@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		CF6DD093210656E600B3D83B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD092210656E600B3D83B /* AppDelegate.swift */; };
-		CF6DD095210656E600B3D83B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD094210656E600B3D83B /* ViewController.swift */; };
+		CF6DD095210656E600B3D83B /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD094210656E600B3D83B /* LoginVC.swift */; };
 		CF6DD098210656E600B3D83B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF6DD096210656E600B3D83B /* Main.storyboard */; };
 		CF6DD09B210656E600B3D83B /* Passenger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD099210656E600B3D83B /* Passenger.xcdatamodeld */; };
 		CF6DD09D210656E700B3D83B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF6DD09C210656E700B3D83B /* Assets.xcassets */; };
 		CF6DD0A0210656E700B3D83B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF6DD09E210656E700B3D83B /* LaunchScreen.storyboard */; };
+		CF6DD0A82106637300B3D83B /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0A72106637300B3D83B /* RegisterVC.swift */; };
+		CF6DD0AA2106664F00B3D83B /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0A92106664F00B3D83B /* HomeVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CF6DD08F210656E600B3D83B /* Passenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Passenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF6DD092210656E600B3D83B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CF6DD094210656E600B3D83B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CF6DD094210656E600B3D83B /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		CF6DD097210656E600B3D83B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CF6DD09A210656E600B3D83B /* Passenger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Passenger.xcdatamodel; sourceTree = "<group>"; };
 		CF6DD09C210656E700B3D83B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF6DD09F210656E700B3D83B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF6DD0A1210656E700B3D83B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF6DD0A72106637300B3D83B /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		CF6DD0A92106664F00B3D83B /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +61,10 @@
 			isa = PBXGroup;
 			children = (
 				CF6DD092210656E600B3D83B /* AppDelegate.swift */,
-				CF6DD094210656E600B3D83B /* ViewController.swift */,
+				CF6DD094210656E600B3D83B /* LoginVC.swift */,
+				CF6DD0A72106637300B3D83B /* RegisterVC.swift */,
 				CF6DD096210656E600B3D83B /* Main.storyboard */,
+				CF6DD0A92106664F00B3D83B /* HomeVC.swift */,
 				CF6DD09C210656E700B3D83B /* Assets.xcassets */,
 				CF6DD09E210656E700B3D83B /* LaunchScreen.storyboard */,
 				CF6DD0A1210656E700B3D83B /* Info.plist */,
@@ -138,7 +144,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF6DD095210656E600B3D83B /* ViewController.swift in Sources */,
+				CF6DD095210656E600B3D83B /* LoginVC.swift in Sources */,
+				CF6DD0AA2106664F00B3D83B /* HomeVC.swift in Sources */,
+				CF6DD0A82106637300B3D83B /* RegisterVC.swift in Sources */,
 				CF6DD09B210656E600B3D83B /* Passenger.xcdatamodeld in Sources */,
 				CF6DD093210656E600B3D83B /* AppDelegate.swift in Sources */,
 			);
