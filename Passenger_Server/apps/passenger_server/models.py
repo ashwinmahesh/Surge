@@ -14,5 +14,6 @@ class Organization(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     poster = models.ForeignKey(User, related_name="organizations")
     approved = models.BooleanField(default=False)
+    drivers=models.IntegerField(default=0)
 
 # Create your models here.

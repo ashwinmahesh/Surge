@@ -11,6 +11,8 @@ import CoreData
 
 class HomeVC: UIViewController {
     
+    @IBOutlet weak var searchField: UITextField!
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
@@ -50,14 +52,35 @@ class HomeVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let sentMessage = sender as? String{
-//            if sentMessage == "HomeToAdmin"{
-//                let dest = segue.destination as! AdminMainVC
-//                dest.fetchOrganizations()
-//            }
-//        }
+    func fetchAll(){
+        if let urlReq = URL(string: "\(SERVER.IP)/getYourOrganizations/"){
+            var request = URLRequest(url: urlReq)
+            request.httpMethod="POST"
+//            let bodyData = "id=\(id)"
+//            request.httpBody = bodyData.data(using:.utf8)
+            let session = URLSession.shared
+            let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+                do{
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                        print(jsonResult)
+//                        let response = jsonResult["response"] as! NSDictionary
+//                        let organizations = response["organizations"] as! NSMutableArray
+//                        for organization in organizations{
+//                            let orgFixed = organization as! NSDictionary
+//                            self.tableData.append(orgFixed)
+//                            //                            print(self.tableData)
+//                        }
+                        DispatchQueue.main.async{
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+                catch{
+                    print(error)
+                }
+            }
+            task.resume()
+        }
     }
 
 }

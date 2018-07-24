@@ -76,6 +76,9 @@ def assignDriver(request):
     user = User.objects.get(email=request.POST['email'])
     user.drivingFor_id = request.POST['orgID']
     user.save()
+    org = Organization.objects.get(id=request.POST['orgID'])
+    org.drivers+=1
+    org.save()
     return JsonResponse({'response':'Driver added'})
 
 @csrf_exempt
@@ -99,9 +102,21 @@ def removeDriver(request):
         return HttpResponse("This page is accessible by POST only!")
     print(request.POST)
     user = User.objects.get(email=request.POST['email'])
+    org = Organization.objects.get(id=user.drivingFor_id)
+    org.driver-=1
+    org.save()
     user.drivingFor_id=-1
     user.save()
     return JsonResponse({'response':'success'})
+
+@csrf_exempt
+def fetchAllActive(request):
+    if request.method!='POST':
+        return HttpResponse("This page is accessible by POST only!")
+    print(request.POST)
+    orgs = Organization.objects.filter(drivers__gt=0).filter(approved=True).values()
+    response={'organizations':list(orgs)}
+    return JsonResponse({'response':response})
 
 
 # Create your views here.
