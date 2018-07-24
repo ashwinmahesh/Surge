@@ -141,7 +141,9 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell=tableView.cellForRow(at: indexPath) as! OrganizationCell
-        performSegue(withIdentifier: "AllToOneOrgSegue", sender: cell.orgID!)
+        DispatchQueue.main.async{
+            self.performSegue(withIdentifier: "AllToOneOrgSegue", sender: cell.orgID!)
+        }
 //        performSegue(withIdentifier: "HomeToClientQueueSegue", sender: "HomeToClientQueue")
     }
     

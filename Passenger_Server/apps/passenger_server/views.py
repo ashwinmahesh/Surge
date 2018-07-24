@@ -124,5 +124,18 @@ def searchFor(request):
     response={'organizations':list(orgs)}
     return JsonResponse({'response':response})
 
+@csrf_exempt
+def joinQueue(request):
+    if request.method!='POST':
+        return HttpResponse("Posting only. Sorry pal.")
+    print(request.POST)
+    if len(User.objects.filter(id=request.POST['userID']))==0 or len(Organization.objects.filter(id=request.POST['orgID']))==0:
+        return JsonResponse({'response':'bad'})
+    user = User.objects.get(id=request.POST['userID'])
+    org = Organization.objects.get(id=request.POST['orgID'])
+    user.queue=org
+    user.save()
+    return JsonResponse({'response':'added'})
+
 
 # Create your views here.

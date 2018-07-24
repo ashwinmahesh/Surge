@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class OrganizationVC: UIViewController {
     var orgID:Int?
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var tableData:[NSDictionary]=[]
 
@@ -18,8 +22,72 @@ class OrganizationVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func requestRidePushed(_ sender: UIButton) {
-        performSegue(withIdentifier: "RequestToConfirmSegue", sender: "RequestToConfirm")
+        let alert = UIAlertController(title: "Join Queue", message: "Are you sure you want to join this queue? You will lose your place in any other queue you are in.", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
+            self.joinQueue()
+        }
+        let no = UIAlertAction(title: "No", style: .cancel, handler:nil)
+        alert.addAction(yes)
+        alert.addAction(no)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+        
     }
+    func joinQueue(){
+        var id:Int64?
+        let request:NSFetchRequest<User>=User.fetchRequest()
+        do{
+            let user = try context.fetch(request).first!
+            id = user.id
+        }
+        catch{
+            print(error)
+        }
+        if let urlReq = URL(string: "\(SERVER.IP)/joinQueue/"){
+            var request = URLRequest(url: urlReq)
+            request.httpMethod="POST"
+            let bodyData = "orgID=\(orgID!)&userID=\(id!)"
+            request.httpBody = bodyData.data(using:.utf8)
+            let session = URLSession.shared
+            let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+                do{
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                        let response = jsonResult["response"] as! String
+                        if response=="bad"{
+                            let badAlert = UIAlertController(title: "Queue Join Failure", message: "We were unable to add you to the queue for this organization. Try again later.", preferredStyle: .alert)
+                            let ok = UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
+                                return
+                            })
+                            badAlert.addAction(ok)
+                            DispatchQueue.main.async{
+                                self.present(badAlert, animated: true)
+                            }
+                        }
+                        else{
+                            DispatchQueue.main.async{
+                                self.performSegue(withIdentifier: "RequestToConfirmSegue", sender: "RequestToConfirm")
+                            }
+                        }
+                    }
+                }
+                catch{
+                    print(error)
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let sentMessage = sender as? String{
+            if sentMessage=="RequestToConfirm"{
+                let dest = segue.destination as! ClientQueueVC
+                dest.orgID = orgID
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource=self
@@ -68,6 +136,7 @@ class OrganizationVC: UIViewController {
         }
     }
 }
+
 extension OrganizationVC:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableData.count

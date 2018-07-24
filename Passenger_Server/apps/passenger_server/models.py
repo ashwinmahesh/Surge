@@ -7,6 +7,7 @@ class User(models.Model):
     phone_number=models.CharField(max_length=10)
     password=models.CharField(max_length=255)
     drivingFor_id=models.IntegerField(default=-1)
+    # queue=models.ForeignKey(Organization, related_name="passengers")
 
 class Organization(models.Model):
     name = models.CharField(max_length=255)
@@ -15,5 +16,7 @@ class Organization(models.Model):
     poster = models.ForeignKey(User, related_name="organizations")
     approved = models.BooleanField(default=False)
     drivers=models.IntegerField(default=0)
+
+User.queue = models.ForeignKey(Organization, related_name="passengers")
 
 # Create your models here.

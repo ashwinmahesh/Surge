@@ -9,6 +9,8 @@
 import UIKit
 
 class ClientQueueVC: UIViewController {
+    
+    var orgID:Int?
 
     @IBOutlet weak var queueLabel: UILabel!
     @IBAction func backPushed(_ sender: UIButton) {
@@ -19,6 +21,7 @@ class ClientQueueVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("OrgID: \(orgID!)")
 
         // Do any additional setup after loading the view.
     }
