@@ -21,6 +21,18 @@ def processRegister(request):
     print("Successful registration")
     return JsonResponse({'response':'Registration successful'})
 
-
+@csrf_exempt
+def processLogin(request):
+    if request.method!='POST':
+        return HttpResponse('You are not posting!')
+    print(request.POST)
+    email=request.POST['email']
+    password = request.POST['password']
+    if len(User.objects.filter(email=email))==0:
+        return JsonResponse({'response':'User does not exist'})
+    user = User.objects.get(email=email)
+    if bcrypt.checkpw(password.encode(), user.password.encode()):
+        return JsonResponse({'response':'Login successful'})
+    return JsonResponse({'response':'Password does not match user'})
 
 # Create your views here.
