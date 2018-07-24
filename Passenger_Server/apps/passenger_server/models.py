@@ -7,5 +7,11 @@ class User(models.Model):
     phone_number=models.CharField(max_length=10)
     password=models.CharField(max_length=255)
 
+class Organization(models.Model):
+    name = models.CharField(max_length=255)
+    description=models.CharField(max_length=300)
+    created_at=models.DateTimeField(auto_now_add=True)
+    poster = models.ForeignKey(User, related_name="organizations")
+    approved = models.BooleanField(default=False)
 
 # Create your models here.
