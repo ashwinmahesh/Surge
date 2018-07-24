@@ -9,6 +9,7 @@
 import UIKit
 
 class AdminDriversVC: UIViewController {
+    var orgID:Int?
     
     @IBAction func backPushed(_ sender: UIButton) {
         performSegue(withIdentifier: "AdminViewToMainSegue", sender: "AdminViewToMain")
@@ -26,8 +27,7 @@ class AdminDriversVC: UIViewController {
         tableView.dataSource=self
         tableView.delegate = self
         tableView.rowHeight=155
-
-        // Do any additional setup after loading the view.
+        print("OrgID is \(orgID!)")
     }
 
     override func didReceiveMemoryWarning() {

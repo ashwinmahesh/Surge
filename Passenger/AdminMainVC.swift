@@ -26,6 +26,13 @@ class AdminMainVC: UIViewController {
     @IBAction func addPushed(_ sender: UIButton) {
         performSegue(withIdentifier: "AdminMainToAddSegue", sender: "AdminMainToAdd")
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let orgID = sender as? Int{
+            let dest = segue.destination as! AdminDriversVC
+            dest.orgID = orgID
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource=self
@@ -113,8 +120,9 @@ extension AdminMainVC:UITableViewDataSource, UITableViewDelegate{
             }
         }
         else{
+            let cell=tableView.cellForRow(at: indexPath) as! AdminOrgCell
             DispatchQueue.main.async{
-                self.performSegue(withIdentifier: "AdminMainToViewSegue", sender: "AdminMainToView")
+                self.performSegue(withIdentifier: "AdminMainToViewSegue", sender: cell.orgID)
             }
         }
     }
