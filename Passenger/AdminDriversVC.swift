@@ -89,10 +89,6 @@ class AdminDriversVC: UIViewController {
         }
     }
     
-    func removeDriver(){
-        
-    }
-    
     @IBOutlet weak var textField: UITextField!
     
 
@@ -167,7 +163,7 @@ extension AdminDriversVC:AdminDriverCellDelegate{
                     }
                 }
                 catch{
-                    
+                    print(error)
                 }
             }
             task.resume()
