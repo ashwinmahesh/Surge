@@ -11,5 +11,5 @@ urlpatterns=[
     url(r'^assignDriver/$', views.assignDriver),
     url(r'^getOrgDrivers/$', views.getOrgDrivers),
     url(r'^removeDriver/$', views.removeDriver),
-    url(r'^fetchAllActivate/$', views.fetchAllActive),
+    url(r'^fetchAllActive/$', views.fetchAllActive),
 ]

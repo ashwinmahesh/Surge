@@ -16,7 +16,7 @@ class HomeVC: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-    var tableData:[String]=["Pike"]
+    var tableData:[NSDictionary]=[]
     @IBOutlet weak var tableView: UITableView!
     @IBAction func logoutPushed(_ sender: UIButton) {
         let request:NSFetchRequest<User> = User.fetchRequest()
@@ -43,7 +43,8 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         tableView.dataSource=self
         tableView.delegate=self
-        tableView.rowHeight=100
+        tableView.rowHeight=115
+        fetchAllActive()
 
         // Do any additional setup after loading the view.
     }
@@ -52,24 +53,20 @@ class HomeVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func fetchAll(){
-        if let urlReq = URL(string: "\(SERVER.IP)/getYourOrganizations/"){
-            var request = URLRequest(url: urlReq)
-            request.httpMethod="POST"
-//            let bodyData = "id=\(id)"
-//            request.httpBody = bodyData.data(using:.utf8)
+    func fetchAllActive(){
+        tableData=[]
+        if let url = URL(string: "\(SERVER.IP)/fetchAllActive/"){
             let session = URLSession.shared
-            let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            let task = session.dataTask(with: url) { (data, response, error) in
                 do{
                     if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
                         print(jsonResult)
-//                        let response = jsonResult["response"] as! NSDictionary
-//                        let organizations = response["organizations"] as! NSMutableArray
-//                        for organization in organizations{
-//                            let orgFixed = organization as! NSDictionary
-//                            self.tableData.append(orgFixed)
-//                            //                            print(self.tableData)
-//                        }
+                        let response = jsonResult["response"] as! NSDictionary
+                        let organizations = response["organizations"] as! NSMutableArray
+                        for organization in organizations{
+                            let organizationFixed = organization as! NSDictionary
+                            self.tableData.append(organizationFixed)
+                        }
                         DispatchQueue.main.async{
                             self.tableView.reloadData()
                         }
@@ -91,8 +88,10 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrganizationCell", for: indexPath) as! OrganizationCell
-        cell.organizationLabel.text = "Pi Kappa Alpha"
-        cell.driverCountLabel.text = "Drivers: 2"
+        let currentOrg=tableData[indexPath.row]
+        cell.organizationLabel.text = currentOrg["name"] as! String
+        cell.driverCountLabel.text = "Drivers: \(currentOrg["drivers"] as! Int)"
+        cell.orgID = currentOrg["id"] as! Int
         return cell
     }
     

@@ -9,6 +9,8 @@
 import UIKit
 
 class OrganizationCell: UITableViewCell {
+    
+    var orgID:Int?
 
     @IBOutlet weak var organizationLabel: UILabel!
     @IBOutlet weak var driverCountLabel: UILabel!

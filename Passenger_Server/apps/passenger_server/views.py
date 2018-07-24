@@ -111,9 +111,9 @@ def removeDriver(request):
 
 @csrf_exempt
 def fetchAllActive(request):
-    if request.method!='POST':
-        return HttpResponse("This page is accessible by POST only!")
-    print(request.POST)
+    # if request.method!='POST':
+    #     return HttpResponse("This page is accessible by POST only!")
+    # print(request.POST)
     orgs = Organization.objects.filter(drivers__gt=0).filter(approved=True).values()
     response={'organizations':list(orgs)}
     return JsonResponse({'response':response})
