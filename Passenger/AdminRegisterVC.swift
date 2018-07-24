@@ -87,12 +87,15 @@ class AdminRegisterVC: UIViewController {
                 do{
                     if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
                         let response = jsonResult["response"] as! String
-                        if response == "An organization already exists with this name"{
-                            let alert = UIAlertController(title:"Invalid Entry", message:"An organization already exists with this name. Try being more specific!", preferredStyle: .alert)
-                            let ok = UIAlertAction(title:"OK", style:.default, handler:nil)
-                            alert.addAction(ok)
-                            self.present(alert, animated:true)
-                            return
+                        print(response)
+                        if response == "invalid"{
+                            DispatchQueue.main.async{
+                                let alert = UIAlertController(title:"Invalid Entry", message:"An organization already exists with this name. Try being more specific!", preferredStyle: .alert)
+                                let ok = UIAlertAction(title:"OK", style:.default, handler:nil)
+                                alert.addAction(ok)
+                                self.present(alert, animated:true)
+                                return
+                            }
                         }
                         else{
                             DispatchQueue.main.async{

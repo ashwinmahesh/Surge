@@ -41,7 +41,7 @@ def processOrgRegister(request):
         return HttpResponse("You are not posting!")
     print(request.POST)
     if len(Organization.objects.filter(name=request.POST['name']))==1:
-        return JsonResponse({'response':'An organization already exists with this name'})
+        return JsonResponse({'response':'invalid'})
     Organization.objects.create(name=request.POST['name'], description=request.POST['description'], poster = User.objects.get(id=request.POST['userID']))
     return JsonResponse({'response':'Successfully created organization!'})
 
@@ -55,5 +55,15 @@ def getYourOrganizations(request):
     response={'organizations':list(orgs)}
     return JsonResponse({'response':response})
 
+@csrf_exempt
+def deleteOrganization(request):
+    if request.method!='POST':
+        return HttpResponse("This page is accessible by POST only!")
+    print(request.POST)
+    if len(Organization.objects.filter(id=request.POST['id']))==0:
+        return JsonResponse({'response':'Organization does not exist'})
+    org= Organization.objects.get(id=request.POST['id'])
+    org.delete()
+    return JsonResponse({'response':'Organization successfully deleted'})
 
 # Create your views here.

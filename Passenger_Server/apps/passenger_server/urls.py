@@ -6,5 +6,6 @@ urlpatterns=[
     url(r'^processRegister/$', views.processRegister),
     url(r'^processLogin/$', views.processLogin),
     url(r'^processOrgRegister/$', views.processOrgRegister),
-    url(r'^getYourOrganizations/$', views.getYourOrganizations)
+    url(r'^getYourOrganizations/$', views.getYourOrganizations),
+    url(r'^deleteOrganization/$', views.deleteOrganization),
 ]

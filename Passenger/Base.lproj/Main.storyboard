@@ -173,7 +173,7 @@
                                 <rect key="frame" x="8" y="108" width="359" height="417"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AdminOrgCell" rowHeight="100" id="461-Mi-3nl" customClass="AdminOrgCell" customModule="Passenger" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AdminOrgCell" rowHeight="100" id="461-Mi-3nl" customClass="AdminOrgCell" customModule="Passenger" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="359" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="461-Mi-3nl" id="R35-G6-DY9">
@@ -1497,10 +1497,10 @@ Pickup</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Xn9-7b-aPG"/>
-        <segue reference="yOR-fO-RUa"/>
-        <segue reference="L80-m9-cH9"/>
-        <segue reference="M0i-e4-gbt"/>
-        <segue reference="4Z1-6i-Fvb"/>
-        <segue reference="YhL-2t-MKh"/>
+        <segue reference="9zR-kp-tVk"/>
+        <segue reference="uSx-CY-STW"/>
+        <segue reference="pPW-eh-LCz"/>
+        <segue reference="cty-lP-3v6"/>
+        <segue reference="zwM-KT-lUR"/>
     </inferredMetricsTieBreakers>
 </document>

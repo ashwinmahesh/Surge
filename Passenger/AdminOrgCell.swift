@@ -7,14 +7,22 @@
 //
 
 import UIKit
+protocol AdminOrgCellDelegate{
+    func removePushed(cell:AdminOrgCell)
+}
 
 class AdminOrgCell: UITableViewCell {
 
+    var delegate:AdminOrgCellDelegate?
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     
+    var orgID:Int?
+    
     @IBAction func removePushed(_ sender: UIButton) {
-        print("You pushed remove")
+//        print("You pushed remove")
+        delegate!.removePushed(cell:self)
     }
     override func awakeFromNib() {
         super.awakeFromNib()

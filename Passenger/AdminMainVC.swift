@@ -34,7 +34,6 @@ class AdminMainVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
-        print(tableData)
         fetchOrganizations()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +69,7 @@ class AdminMainVC: UIViewController {
                         for organization in organizations{
                             let orgFixed = organization as! NSDictionary
                             self.tableData.append(orgFixed)
-                            print(self.tableData)
+//                            print(self.tableData)
                         }
                         DispatchQueue.main.async{
                             self.tableView.reloadData()
@@ -102,13 +101,82 @@ extension AdminMainVC:UITableViewDataSource, UITableViewDelegate{
         else if status==1{
             cell.statusLabel.text = "Approved"
         }
-//        cell.nameLabel.text = "Pi Kappa Alpha"
-//        cell.statusLabel.text = "Approved"
-        
+        cell.orgID=currentOrg["id"] as! Int
+        cell.delegate=self
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "AdminMainToWaitSegue", sender: "AdminMainToWait")
-        performSegue(withIdentifier: "AdminMainToViewSegue", sender: "AdminMainToView")
+        let cell = tableView.cellForRow(at: indexPath) as! AdminOrgCell
+        if cell.statusLabel.text! == "Pending"{
+            DispatchQueue.main.async{
+                self.performSegue(withIdentifier: "AdminMainToWaitSegue", sender: "AdminMainToWait")
+            }
+        }
+        else{
+            DispatchQueue.main.async{
+                self.performSegue(withIdentifier: "AdminMainToViewSegue", sender: "AdminMainToView")
+            }
+        }
+    }
+}
+extension AdminMainVC:AdminOrgCellDelegate{
+    func removePushed(cell:AdminOrgCell) {
+        print("Removing organization with id \(cell.orgID!)")
+        DispatchQueue.main.async{
+            let alert = UIAlertController(title:"Confirm", message: "Are you sure you want to delete this organization?", preferredStyle: .alert)
+            let yes = UIAlertAction(title:"Yes", style:.default, handler:{
+                action in
+                self.deleteOrganization(cell: cell)
+            })
+            let no = UIAlertAction(title:"No", style:.cancel, handler:nil)
+            alert.addAction(yes)
+            alert.addAction(no)
+            
+            self.present(alert, animated:true)
+        }
+        
+    }
+    
+    func deleteOrganization(cell:AdminOrgCell){
+        let indexPath = self.tableView.indexPath(for: cell)
+        if let urlReq = URL(string: "\(SERVER.IP)/deleteOrganization/"){
+            var request = URLRequest(url:urlReq)
+            request.httpMethod="POST"
+            let bodyData="id=\(cell.orgID!)"
+            request.httpBody = bodyData.data(using:.utf8)
+            let session = URLSession.shared
+            let task = session.dataTask(with: request) { (data, response, error) in
+                do{
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                        let response = jsonResult["response"] as! String
+                        if response=="Organization does not exist"{
+                            DispatchQueue.main.async{
+                                let alert = UIAlertController(title:"Deletion Error", message:"We could not delete this organization.", preferredStyle: .alert)
+                                let ok = UIAlertAction(title:"OK", style:.default, handler:nil)
+                                alert.addAction(ok)
+                                self.present(alert, animated:true)
+                                return
+                            }
+                        }
+                        else{
+                            DispatchQueue.main.async{
+                                let alert = UIAlertController(title:"Deletion Success", message:"Organization successfully deleted", preferredStyle: .alert)
+                                let ok = UIAlertAction(title:"OK", style:.default, handler:nil)
+                                alert.addAction(ok)
+                                self.present(alert, animated:true)
+                            }
+                            DispatchQueue.main.async{
+                                self.tableData.remove(at: indexPath!.row)
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
+                catch{
+                    print(error)
+                }
+            }
+            task.resume()
+        }
     }
 }
