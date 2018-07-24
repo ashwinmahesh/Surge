@@ -27,7 +27,7 @@ class AdminDriversVC: UIViewController {
             let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
                 do{
                     if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
-                        print(jsonResult)
+//                        print(jsonResult)
                         let response = jsonResult["response"] as! String
                         if response=="User does not exist"{
                             let alert = UIAlertController(title: "Driver Add Error", message: "No user exists with that email address", preferredStyle: .alert)
@@ -69,7 +69,7 @@ class AdminDriversVC: UIViewController {
             let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
                 do{
                     if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
-                        print(jsonResult)
+//                        print(jsonResult)
                         let response = jsonResult["response"] as! NSDictionary
                         let users = response["users"] as! NSMutableArray
                         for user in users{
@@ -87,6 +87,10 @@ class AdminDriversVC: UIViewController {
             }
             task.resume()
         }
+    }
+    
+    func removeDriver(){
+        
     }
     
     @IBOutlet weak var textField: UITextField!
@@ -118,8 +122,55 @@ extension AdminDriversVC: UITableViewDataSource, UITableViewDelegate{
         cell.nameLabel.text = (currentDriver["first_name"] as! String) + " " + (currentDriver["last_name"] as! String)
         cell.emailLabel.text=currentDriver["email"] as! String
         cell.phoneLabel.text=(currentDriver["phone_number"] as! String)
+        cell.delegate=self
         return cell
     }
+}
+extension AdminDriversVC:AdminDriverCellDelegate{
+    func removePushed(cell: AdminDriverCell) {
+//        print("You are removing a cell")
+        let alert = UIAlertController(title: "Confirm", message: "Are you sure you want to remove this driver?", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
+            self.removeDriver(cell:cell)
+        }
+        let no = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alert.addAction(yes)
+        alert.addAction(no)
+        DispatchQueue.main.async{
+            self.present(alert, animated: true)
+        }
+    }
     
-    
+    func removeDriver(cell:AdminDriverCell){
+        let email=cell.emailLabel.text!
+//        print("Email: \(email)")
+        if let urlReq = URL(string: "\(SERVER.IP)/removeDriver/"){
+            var request = URLRequest(url: urlReq)
+            request.httpMethod="POST"
+            let bodyData = "email=\(email)"
+            request.httpBody = bodyData.data(using:.utf8)
+            let session = URLSession.shared
+            let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+                do{
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                        print(jsonResult)
+                        let response = jsonResult["response"] as! String
+                        if response=="success"{
+                            let alert = UIAlertController(title: "Driver Successfully Removed", message: "Driver successfully removed from your organization", preferredStyle: .alert)
+                            let ok=UIAlertAction(title: "Ok", style: .default, handler: nil)
+                            alert.addAction(ok)
+                            DispatchQueue.main.async{
+                                self.present(alert, animated: true)
+                                self.fetchDrivers()
+                            }
+                        }
+                    }
+                }
+                catch{
+                    
+                }
+            }
+            task.resume()
+        }
+    }
 }

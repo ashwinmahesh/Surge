@@ -7,15 +7,20 @@
 //
 
 import UIKit
+protocol AdminDriverCellDelegate{
+    func removePushed(cell: AdminDriverCell)
+}
 
 class AdminDriverCell: UITableViewCell {
-
+    
+    var delegate:AdminDriverCellDelegate!
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     
     @IBAction func removePushed(_ sender: UIButton) {
-        
+        delegate.removePushed(cell: self)
     }
     override func awakeFromNib() {
         super.awakeFromNib()

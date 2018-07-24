@@ -93,5 +93,15 @@ def getOrgDrivers(request):
     response ={'users':output}
     return JsonResponse({'response':response})
 
+@csrf_exempt
+def removeDriver(request):
+    if request.method!='POST':
+        return HttpResponse("This page is accessible by POST only!")
+    print(request.POST)
+    user = User.objects.get(email=request.POST['email'])
+    user.drivingFor_id=-1
+    user.save()
+    return JsonResponse({'response':'success'})
+
 
 # Create your views here.

@@ -10,4 +10,5 @@ urlpatterns=[
     url(r'^deleteOrganization/$', views.deleteOrganization),
     url(r'^assignDriver/$', views.assignDriver),
     url(r'^getOrgDrivers/$', views.getOrgDrivers),
+    url(r'^removeDriver/$', views.removeDriver),
 ]
