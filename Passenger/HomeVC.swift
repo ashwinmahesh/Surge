@@ -44,9 +44,18 @@ class HomeVC: UIViewController {
         tableView.dataSource=self
         tableView.delegate=self
         tableView.rowHeight=115
-        fetchAllActive()
+//        fetchAllActive()
 
-        // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        fetchAllActive()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let orgID = sender as? Int{
+            let dest = segue.destination as! OrganizationVC
+            dest.orgID=orgID
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,7 +69,7 @@ class HomeVC: UIViewController {
             let task = session.dataTask(with: url) { (data, response, error) in
                 do{
                     if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
-                        print(jsonResult)
+//                        print(jsonResult)
                         let response = jsonResult["response"] as! NSDictionary
                         let organizations = response["organizations"] as! NSMutableArray
                         for organization in organizations{
@@ -131,7 +140,8 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "AllToOneOrgSegue", sender: "AllToOneOrg")
+        let cell=tableView.cellForRow(at: indexPath) as! OrganizationCell
+        performSegue(withIdentifier: "AllToOneOrgSegue", sender: cell.orgID!)
 //        performSegue(withIdentifier: "HomeToClientQueueSegue", sender: "HomeToClientQueue")
     }
     

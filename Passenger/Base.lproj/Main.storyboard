@@ -173,7 +173,7 @@
                                 <rect key="frame" x="8" y="108" width="359" height="417"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AdminOrgCell" rowHeight="100" id="461-Mi-3nl" customClass="AdminOrgCell" customModule="Passenger" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AdminOrgCell" rowHeight="100" id="461-Mi-3nl" customClass="AdminOrgCell" customModule="Passenger" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="359" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="461-Mi-3nl" id="R35-G6-DY9">
@@ -428,7 +428,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pi Kappa Alpha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZY-zi-WnW">
-                                <rect key="frame" x="99" y="72" width="176" height="30"/>
+                                <rect key="frame" x="99.5" y="72" width="176" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" red="1" green="0.841319178" blue="0.27913154610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -497,7 +497,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pi Kappa Alpha" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7J-BJ-Xkb">
-                                <rect key="frame" x="99" y="72" width="176" height="30"/>
+                                <rect key="frame" x="99.5" y="72" width="176" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" red="1" green="0.841319178" blue="0.27913154610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -526,7 +526,7 @@
                                 <rect key="frame" x="16" y="236" width="343" height="431"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AdminDriverCell" rowHeight="155" id="IXE-VB-9YK" customClass="AdminDriverCell" customModule="Passenger" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AdminDriverCell" rowHeight="155" id="IXE-VB-9YK" customClass="AdminDriverCell" customModule="Passenger" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="155"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IXE-VB-9YK" id="prz-LW-RDI">
@@ -932,7 +932,7 @@
                                 <rect key="frame" x="8" y="111" width="359" height="496"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="QueueCell" rowHeight="120" id="Xln-6i-NR1" customClass="DriveQueueCell" customModule="Passenger" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="QueueCell" rowHeight="120" id="Xln-6i-NR1" customClass="DriveQueueCell" customModule="Passenger" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="359" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xln-6i-NR1" id="yDh-lC-bIW">
@@ -1214,7 +1214,7 @@ Pickup</string>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrganizationCell" rowHeight="100" id="fio-sh-so1" customClass="OrganizationCell" customModule="Passenger" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrganizationCell" rowHeight="100" id="fio-sh-so1" customClass="OrganizationCell" customModule="Passenger" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="359" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fio-sh-so1" id="BnI-a6-agb">
@@ -1369,7 +1369,7 @@ Pickup</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pi Kappa Alpha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3z5-Kd-CT9">
                                 <rect key="frame" x="96" y="80" width="183" height="28"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="25"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="1" green="0.841319178" blue="0.27913154610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cG-5Q-Pfo">
@@ -1387,14 +1387,8 @@ Pickup</string>
                                     <action selector="requestRidePushed:" destination="Zxk-V0-73c" eventType="touchUpInside" id="udw-eQ-nFg"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drivers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuA-e0-krN">
-                                <rect key="frame" x="16" y="124" width="87.5" height="29"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2wj-sE-Z2y">
-                                <rect key="frame" x="16" y="161" width="343" height="433"/>
+                                <rect key="frame" x="16" y="206" width="343" height="388"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DriverCell" rowHeight="90" id="Zus-FW-hv3" customClass="DriverCell" customModule="Passenger" customModuleProvider="target">
@@ -1404,28 +1398,28 @@ Pickup</string>
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ashwin Mahesh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sek-Ab-NUY">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ashwin Mahesh" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sek-Ab-NUY">
                                                     <rect key="frame" x="15" y="11" width="171" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(408) 644-9017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmD-MY-fJO">
-                                                    <rect key="frame" x="15" y="38.5" width="154" height="25.5"/>
+                                                    <rect key="frame" x="15" y="46.5" width="154" height="25.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.39076412671232874" green="0.37569256504817999" blue="0.3869962362962916" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
+                                                <constraint firstItem="qmD-MY-fJO" firstAttribute="top" secondItem="Sek-Ab-NUY" secondAttribute="bottom" constant="8" id="3dQ-SP-UWF"/>
                                                 <constraint firstItem="Sek-Ab-NUY" firstAttribute="top" secondItem="NvP-yv-cHX" secondAttribute="topMargin" id="7SX-GZ-lzv"/>
                                                 <constraint firstItem="qmD-MY-fJO" firstAttribute="leading" secondItem="NvP-yv-cHX" secondAttribute="leadingMargin" id="Ymm-GE-acT"/>
                                                 <constraint firstItem="Sek-Ab-NUY" firstAttribute="leading" secondItem="NvP-yv-cHX" secondAttribute="leadingMargin" id="dHJ-bV-kSZ"/>
-                                                <constraint firstItem="qmD-MY-fJO" firstAttribute="top" secondItem="Sek-Ab-NUY" secondAttribute="bottom" id="szx-k2-tsQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.23158424855363124" green="0.20041656516841991" blue="0.37139340753424654" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="Sek-Ab-NUY" id="cYW-SA-lsH"/>
                                             <outlet property="phoneLabel" destination="qmD-MY-fJO" id="kib-dS-0cD"/>
@@ -1433,11 +1427,27 @@ Pickup</string>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="pUO-D0-x2V">
+                                <rect key="frame" x="142.5" y="108" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="S8Z-M0-KDU"/>
+                                    <constraint firstAttribute="height" constant="90" id="TWu-tJ-3Xm"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drivers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuA-e0-krN">
+                                <rect key="frame" x="16" y="169" width="87.5" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="pUO-D0-x2V" firstAttribute="top" secondItem="3z5-Kd-CT9" secondAttribute="bottom" id="18C-rz-BRs"/>
                             <constraint firstItem="YuA-e0-krN" firstAttribute="leading" secondItem="6fD-D4-JYK" secondAttribute="leading" constant="16" id="4aV-cn-bAo"/>
+                            <constraint firstItem="pUO-D0-x2V" firstAttribute="centerX" secondItem="coO-QY-aiA" secondAttribute="centerX" id="C2F-1Q-0dg"/>
                             <constraint firstItem="2wj-sE-Z2y" firstAttribute="top" secondItem="YuA-e0-krN" secondAttribute="bottom" constant="8" id="Gpi-GV-eWb"/>
+                            <constraint firstItem="2wj-sE-Z2y" firstAttribute="top" secondItem="pUO-D0-x2V" secondAttribute="bottom" constant="8" id="Khg-BI-POz"/>
                             <constraint firstItem="3z5-Kd-CT9" firstAttribute="top" secondItem="Bk3-Pt-qjx" secondAttribute="bottom" constant="16" id="LN8-pi-XoL"/>
                             <constraint firstItem="6fD-D4-JYK" firstAttribute="bottom" secondItem="5cG-5Q-Pfo" secondAttribute="bottom" constant="20" id="LNI-Zi-fer"/>
                             <constraint firstItem="Bk3-Pt-qjx" firstAttribute="top" secondItem="6fD-D4-JYK" secondAttribute="top" id="XAQ-dZ-BJA"/>
@@ -1445,7 +1455,6 @@ Pickup</string>
                             <constraint firstItem="5cG-5Q-Pfo" firstAttribute="centerX" secondItem="coO-QY-aiA" secondAttribute="centerX" id="eIR-Yb-FUy"/>
                             <constraint firstItem="5cG-5Q-Pfo" firstAttribute="top" secondItem="2wj-sE-Z2y" secondAttribute="bottom" constant="8" id="jQz-Wk-4Fl"/>
                             <constraint firstItem="Bk3-Pt-qjx" firstAttribute="trailing" secondItem="6fD-D4-JYK" secondAttribute="trailing" id="kvW-65-Jgp"/>
-                            <constraint firstItem="YuA-e0-krN" firstAttribute="top" secondItem="3z5-Kd-CT9" secondAttribute="bottom" constant="16" id="pZ0-mJ-o2Q"/>
                             <constraint firstItem="Bk3-Pt-qjx" firstAttribute="leading" secondItem="6fD-D4-JYK" secondAttribute="leading" id="rRe-as-Jb4"/>
                             <constraint firstItem="3z5-Kd-CT9" firstAttribute="centerX" secondItem="coO-QY-aiA" secondAttribute="centerX" id="ukO-K8-k84"/>
                             <constraint firstItem="2wj-sE-Z2y" firstAttribute="leading" secondItem="6fD-D4-JYK" secondAttribute="leading" constant="16" id="we4-Jq-X1I"/>
@@ -1459,7 +1468,7 @@ Pickup</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gfT-iw-ThJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2613.75" y="36.971830985915496"/>
+            <point key="canvasLocation" x="2613.5999999999999" y="36.431784107946029"/>
         </scene>
         <!--Client QueueVC-->
         <scene sceneID="H3P-ia-G0r">
@@ -1559,7 +1568,7 @@ Pickup</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Xn9-7b-aPG"/>
-        <segue reference="9zR-kp-tVk"/>
+        <segue reference="Q3q-kt-K7g"/>
         <segue reference="L80-m9-cH9"/>
         <segue reference="M0i-e4-gbt"/>
         <segue reference="cty-lP-3v6"/>

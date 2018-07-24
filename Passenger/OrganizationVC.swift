@@ -9,6 +9,7 @@
 import UIKit
 
 class OrganizationVC: UIViewController {
+    var orgID:Int?
     
     var tableData:[String]=["Ashwin"]
 
@@ -23,8 +24,8 @@ class OrganizationVC: UIViewController {
         super.viewDidLoad()
         tableView.dataSource=self
         tableView.delegate=self
-        tableView.rowHeight=90
-
+        tableView.rowHeight=100
+        print("Org id: \(orgID)")
         // Do any additional setup after loading the view.
     }
 
