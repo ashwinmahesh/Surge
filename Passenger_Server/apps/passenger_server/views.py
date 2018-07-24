@@ -45,4 +45,15 @@ def processOrgRegister(request):
     Organization.objects.create(name=request.POST['name'], description=request.POST['description'], poster = User.objects.get(id=request.POST['userID']))
     return JsonResponse({'response':'Successfully created organization!'})
 
+@csrf_exempt
+def getYourOrganizations(request):
+    if request.method!='POST':
+        return HttpResponse("This page is accessible by POST only!")
+    print(request.POST)
+    user=User.objects.get(id=int(request.POST['id']))
+    orgs = Organization.objects.filter(poster=user).values()
+    response={'organizations':list(orgs)}
+    return JsonResponse({'response':response})
+
+
 # Create your views here.

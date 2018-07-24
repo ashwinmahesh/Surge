@@ -50,6 +50,15 @@ class HomeVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let sentMessage = sender as? String{
+//            if sentMessage == "HomeToAdmin"{
+//                let dest = segue.destination as! AdminMainVC
+//                dest.fetchOrganizations()
+//            }
+//        }
+    }
 
 }
 extension HomeVC: UITableViewDataSource, UITableViewDelegate{
