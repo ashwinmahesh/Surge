@@ -29,6 +29,7 @@
 		CF6DD0C22106A0DC00B3D83B /* AdminWaitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0C12106A0DC00B3D83B /* AdminWaitVC.swift */; };
 		CF6DD0C42106A88500B3D83B /* AdminDriversVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0C32106A88500B3D83B /* AdminDriversVC.swift */; };
 		CF6DD0C62106A8B000B3D83B /* AdminDriverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0C52106A8B000B3D83B /* AdminDriverCell.swift */; };
+		CF6DD0C82106AB9100B3D83B /* SERVER.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0C72106AB9100B3D83B /* SERVER.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		CF6DD0C12106A0DC00B3D83B /* AdminWaitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminWaitVC.swift; sourceTree = "<group>"; };
 		CF6DD0C32106A88500B3D83B /* AdminDriversVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDriversVC.swift; sourceTree = "<group>"; };
 		CF6DD0C52106A8B000B3D83B /* AdminDriverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDriverCell.swift; sourceTree = "<group>"; };
+		CF6DD0C72106AB9100B3D83B /* SERVER.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERVER.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				CF6DD094210656E600B3D83B /* LoginVC.swift */,
 				CF6DD0A72106637300B3D83B /* RegisterVC.swift */,
 				CF6DD096210656E600B3D83B /* Main.storyboard */,
+				CF6DD0C72106AB9100B3D83B /* SERVER.swift */,
 				CF6DD0BB2106971800B3D83B /* AdminMainVC.swift */,
 				CF6DD0BD210697A600B3D83B /* AdminOrgCell.swift */,
 				CF6DD0BF21069DA800B3D83B /* AddOrgVC.swift */,
@@ -196,6 +199,7 @@
 				CF6DD0C42106A88500B3D83B /* AdminDriversVC.swift in Sources */,
 				CF6DD095210656E600B3D83B /* LoginVC.swift in Sources */,
 				CF6DD0AC210676DA00B3D83B /* DriveNoneVC.swift in Sources */,
+				CF6DD0C82106AB9100B3D83B /* SERVER.swift in Sources */,
 				CF6DD0BC2106971800B3D83B /* AdminMainVC.swift in Sources */,
 				CF6DD0AA2106664F00B3D83B /* HomeVC.swift in Sources */,
 				CF6DD0B8210685C300B3D83B /* DriverCell.swift in Sources */,
