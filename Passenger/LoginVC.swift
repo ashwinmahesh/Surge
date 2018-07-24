@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class LoginVC: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    var result:NSDictionary=[:]
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBAction func registerPushed(_ sender: UIButton) {
         performSegue(withIdentifier: "LoginToRegisterSegue", sender: "LoginToRegister")
@@ -19,7 +25,7 @@ class LoginVC: UIViewController {
     
     @IBAction func loginPushed(_ sender: UIButton) {
         if clientValidate(){
-            var notValid=false
+            var valid=false
             if let urlReq = URL(string: "\(SERVER.IP)/processLogin/"){
                 var request = URLRequest(url:urlReq)
                 request.httpMethod = "POST"
@@ -31,7 +37,9 @@ class LoginVC: UIViewController {
                     do{
                         if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
                             let response = jsonResult["response"] as! String
-                            print("Response: \(response)")
+//                            print("Response: \(response)")
+                            self.result=jsonResult
+//                            print(jsonResult)
                             if response == "User does not exist"{
                                 DispatchQueue.main.async{
                                     self.alert(title: "Login failed", message: "User does not exist")
@@ -44,7 +52,7 @@ class LoginVC: UIViewController {
                             }
                             else if response == "Login successful"{
                                 DispatchQueue.main.async{
-                                    notValid=true
+                                    valid=true
                                     self.performSegue(withIdentifier: "LoginToHomeSegue", sender: "LoginToHome")
                                 }
                             }
@@ -55,19 +63,47 @@ class LoginVC: UIViewController {
                     }
                 }
                 task.resume()
-                print(notValid)
-                if notValid==true{
-                    self.performSegue(withIdentifier: "LoginToHomeSegue", sender: "LoginToHome")
-                }
+                print(valid)
+
             }
             
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        let request:NSFetchRequest<User> = User.fetchRequest()
+        do{
+            let fetchResult = try context.fetch(request)
+//            print("Result is: ",fetchResult)
+//            print("Count is: ", fetchResult.count)
+            if fetchResult.count>0{
+//                print("Inside the if statement")
+                DispatchQueue.main.async{
+                    self.performSegue(withIdentifier: "LoginToHomeSegue", sender: "AlreadyLoggedIn")
+                }
+            }
+        }
+        catch{
+            print(error)
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let sent = sender as? String{
+            if sent=="LoginToHome"{
+//                print("Entering here")
+//                print("Result is: ")
+                let newUser = User(context:self.context)
+                newUser.first_name = result["first_name"] as! String
+                newUser.last_name = result["last_name"] as! String
+                newUser.email = result["email"] as! String
+                newUser.id = result["id"] as! Int64
+                newUser.phone_number = result["phone_number"] as! String
+                appDelegate.saveContext()
+            }
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

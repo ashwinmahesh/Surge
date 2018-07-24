@@ -32,7 +32,7 @@ def processLogin(request):
         return JsonResponse({'response':'User does not exist'})
     user = User.objects.get(email=email)
     if bcrypt.checkpw(password.encode(), user.password.encode()):
-        return JsonResponse({'response':'Login successful'})
+        return JsonResponse({'response':'Login successful', 'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':user.phone_number, 'id':user.id})
     return JsonResponse({'response':'Password does not match user'})
 
 # Create your views here.

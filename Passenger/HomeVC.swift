@@ -7,12 +7,27 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeVC: UIViewController {
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var tableData:[String]=["Pike"]
     @IBOutlet weak var tableView: UITableView!
     @IBAction func logoutPushed(_ sender: UIButton) {
+        let request:NSFetchRequest<User> = User.fetchRequest()
+        do{
+            let result = try context.fetch(request).first
+            if let user = result as? User{
+                context.delete(user)
+                appDelegate.saveContext()
+            }
+        }
+        catch{
+            print(error)
+        }
         performSegue(withIdentifier: "HomeToLoginSegue", sender: "HomeToLogin")
     }
     @IBAction func drivePushed(_ sender: UIButton) {
