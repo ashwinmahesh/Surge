@@ -66,4 +66,32 @@ def deleteOrganization(request):
     org.delete()
     return JsonResponse({'response':'Organization successfully deleted'})
 
+@csrf_exempt
+def assignDriver(request):
+    if request.method!='POST':
+        return HttpResponse("This page is accessible by POST only!")
+    print(request.POST)
+    if len(User.objects.filter(email=request.POST['email']))==0:
+        return JsonResponse({'response':'User does not exist'})
+    user = User.objects.get(email=request.POST['email'])
+    user.drivingFor_id = request.POST['orgID']
+    user.save()
+    return JsonResponse({'response':'Driver added'})
+
+@csrf_exempt
+def getOrgDrivers(request):
+    if request.method!='POST':
+        return HttpResponse("This page is accessible by POST only!")
+    print(request.POST)
+    users = User.objects.filter(drivingFor_id=int(request.POST['orgID']))
+    output=[]
+    for user in users:
+        phoneNumber=user.phone_number
+        phoneNew = "(" + user.phone_number[0:3] + ") " + user.phone_number[3:6] + "-" + user.phone_number[6:]
+        userDict = {'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':phoneNew}
+        output.append(userDict)
+    response ={'users':output}
+    return JsonResponse({'response':response})
+
+
 # Create your views here.

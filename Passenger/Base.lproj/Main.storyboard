@@ -533,23 +533,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="154.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ashwin Mahesh" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKu-UR-lFD">
-                                                    <rect key="frame" x="15" y="11" width="157" height="26"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ashwin Mahesh" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKu-UR-lFD">
+                                                    <rect key="frame" x="15" y="11" width="313" height="25.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mahesh2@purdue.edu" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uj2-Yu-F1E">
-                                                    <rect key="frame" x="15" y="45" width="198" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mahesh2@purdue.edu" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uj2-Yu-F1E">
+                                                    <rect key="frame" x="15" y="45" width="283" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(408) 644-9017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qy-LZ-hCc">
-                                                    <rect key="frame" x="15" y="77" width="147" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(408) 644-9017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qy-LZ-hCc">
+                                                    <rect key="frame" x="15" y="77" width="283" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -571,8 +568,17 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
+                                                <constraint firstItem="uj2-Yu-F1E" firstAttribute="leading" secondItem="prz-LW-RDI" secondAttribute="leadingMargin" id="7wE-44-1TP"/>
                                                 <constraint firstItem="Brd-uh-hXA" firstAttribute="centerY" secondItem="prz-LW-RDI" secondAttribute="centerY" id="8rn-Jy-q1q"/>
+                                                <constraint firstItem="Brd-uh-hXA" firstAttribute="leading" secondItem="uj2-Yu-F1E" secondAttribute="trailing" id="CwS-oP-17T"/>
+                                                <constraint firstItem="kKu-UR-lFD" firstAttribute="leading" secondItem="prz-LW-RDI" secondAttribute="leadingMargin" id="NvW-1y-EBV"/>
+                                                <constraint firstItem="kKu-UR-lFD" firstAttribute="trailing" secondItem="prz-LW-RDI" secondAttribute="trailingMargin" id="RlY-B4-DPs"/>
+                                                <constraint firstItem="9qy-LZ-hCc" firstAttribute="leading" secondItem="prz-LW-RDI" secondAttribute="leadingMargin" id="buS-tB-oDs"/>
+                                                <constraint firstItem="Brd-uh-hXA" firstAttribute="leading" secondItem="9qy-LZ-hCc" secondAttribute="trailing" id="clk-Dz-cuH"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Brd-uh-hXA" secondAttribute="trailing" id="fq3-aO-iv2"/>
+                                                <constraint firstItem="uj2-Yu-F1E" firstAttribute="top" secondItem="kKu-UR-lFD" secondAttribute="bottom" constant="8.5" id="par-TG-KXH"/>
+                                                <constraint firstItem="9qy-LZ-hCc" firstAttribute="top" secondItem="uj2-Yu-F1E" secondAttribute="bottom" constant="8" id="tvO-kz-XQg"/>
+                                                <constraint firstItem="kKu-UR-lFD" firstAttribute="top" secondItem="prz-LW-RDI" secondAttribute="topMargin" id="zfV-U8-ZBJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1501,6 +1507,6 @@ Pickup</string>
         <segue reference="uSx-CY-STW"/>
         <segue reference="pPW-eh-LCz"/>
         <segue reference="cty-lP-3v6"/>
-        <segue reference="zwM-KT-lUR"/>
+        <segue reference="W8e-OP-UMs"/>
     </inferredMetricsTieBreakers>
 </document>

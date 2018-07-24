@@ -8,4 +8,6 @@ urlpatterns=[
     url(r'^processOrgRegister/$', views.processOrgRegister),
     url(r'^getYourOrganizations/$', views.getYourOrganizations),
     url(r'^deleteOrganization/$', views.deleteOrganization),
+    url(r'^assignDriver/$', views.assignDriver),
+    url(r'^getOrgDrivers/$', views.getOrgDrivers),
 ]

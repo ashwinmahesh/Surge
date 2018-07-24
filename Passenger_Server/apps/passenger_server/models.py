@@ -6,6 +6,7 @@ class User(models.Model):
     email=models.CharField(max_length=255)
     phone_number=models.CharField(max_length=10)
     password=models.CharField(max_length=255)
+    drivingFor_id=models.IntegerField(default=-1)
 
 class Organization(models.Model):
     name = models.CharField(max_length=255)
