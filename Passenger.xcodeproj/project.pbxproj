@@ -25,6 +25,10 @@
 		CF6DD0BA2106892E00B3D83B /* ClientQueueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0B92106892E00B3D83B /* ClientQueueVC.swift */; };
 		CF6DD0BC2106971800B3D83B /* AdminMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0BB2106971800B3D83B /* AdminMainVC.swift */; };
 		CF6DD0BE210697A600B3D83B /* AdminOrgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0BD210697A600B3D83B /* AdminOrgCell.swift */; };
+		CF6DD0C021069DA800B3D83B /* AddOrgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0BF21069DA800B3D83B /* AddOrgVC.swift */; };
+		CF6DD0C22106A0DC00B3D83B /* AdminWaitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0C12106A0DC00B3D83B /* AdminWaitVC.swift */; };
+		CF6DD0C42106A88500B3D83B /* AdminDriversVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0C32106A88500B3D83B /* AdminDriversVC.swift */; };
+		CF6DD0C62106A8B000B3D83B /* AdminDriverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0C52106A8B000B3D83B /* AdminDriverCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		CF6DD0B92106892E00B3D83B /* ClientQueueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientQueueVC.swift; sourceTree = "<group>"; };
 		CF6DD0BB2106971800B3D83B /* AdminMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMainVC.swift; sourceTree = "<group>"; };
 		CF6DD0BD210697A600B3D83B /* AdminOrgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminOrgCell.swift; sourceTree = "<group>"; };
+		CF6DD0BF21069DA800B3D83B /* AddOrgVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrgVC.swift; sourceTree = "<group>"; };
+		CF6DD0C12106A0DC00B3D83B /* AdminWaitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminWaitVC.swift; sourceTree = "<group>"; };
+		CF6DD0C32106A88500B3D83B /* AdminDriversVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDriversVC.swift; sourceTree = "<group>"; };
+		CF6DD0C52106A8B000B3D83B /* AdminDriverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDriverCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +94,10 @@
 				CF6DD096210656E600B3D83B /* Main.storyboard */,
 				CF6DD0BB2106971800B3D83B /* AdminMainVC.swift */,
 				CF6DD0BD210697A600B3D83B /* AdminOrgCell.swift */,
+				CF6DD0BF21069DA800B3D83B /* AddOrgVC.swift */,
+				CF6DD0C12106A0DC00B3D83B /* AdminWaitVC.swift */,
+				CF6DD0C32106A88500B3D83B /* AdminDriversVC.swift */,
+				CF6DD0C52106A8B000B3D83B /* AdminDriverCell.swift */,
 				CF6DD0B92106892E00B3D83B /* ClientQueueVC.swift */,
 				CF6DD0B7210685C300B3D83B /* DriverCell.swift */,
 				CF6DD0AB210676DA00B3D83B /* DriveNoneVC.swift */,
@@ -177,8 +189,11 @@
 				CF6DD0B42106816700B3D83B /* OrganizationCell.swift in Sources */,
 				CF6DD0B221067E3700B3D83B /* DriveQueueCell.swift in Sources */,
 				CF6DD0B62106850300B3D83B /* OrganizationVC.swift in Sources */,
+				CF6DD0C021069DA800B3D83B /* AddOrgVC.swift in Sources */,
+				CF6DD0C62106A8B000B3D83B /* AdminDriverCell.swift in Sources */,
 				CF6DD0BA2106892E00B3D83B /* ClientQueueVC.swift in Sources */,
 				CF6DD0AE2106799900B3D83B /* DriveQueueVC.swift in Sources */,
+				CF6DD0C42106A88500B3D83B /* AdminDriversVC.swift in Sources */,
 				CF6DD095210656E600B3D83B /* LoginVC.swift in Sources */,
 				CF6DD0AC210676DA00B3D83B /* DriveNoneVC.swift in Sources */,
 				CF6DD0BC2106971800B3D83B /* AdminMainVC.swift in Sources */,
@@ -189,6 +204,7 @@
 				CF6DD093210656E600B3D83B /* AppDelegate.swift in Sources */,
 				CF6DD0BE210697A600B3D83B /* AdminOrgCell.swift in Sources */,
 				CF6DD0B021067D6800B3D83B /* PickupMapVC.swift in Sources */,
+				CF6DD0C22106A0DC00B3D83B /* AdminWaitVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +358,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashwinmahesh.Passenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -360,7 +376,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashwinmahesh.Passenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

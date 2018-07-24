@@ -1,5 +1,5 @@
 //
-//  AdminOrgCell.swift
+//  AdminDriverCell.swift
 //  Passenger
 //
 //  Created by Ashwin Mahesh on 7/23/18.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class AdminOrgCell: UITableViewCell {
+class AdminDriverCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
     
     @IBAction func removePushed(_ sender: UIButton) {
-        print("You pushed remove")
+        
     }
     override func awakeFromNib() {
         super.awakeFromNib()

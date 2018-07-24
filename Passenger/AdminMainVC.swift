@@ -10,7 +10,7 @@ import UIKit
 
 class AdminMainVC: UIViewController {
 
-    var tableData:[String]=[]
+    var tableData:[String]=["Pike"]
     @IBOutlet weak var tableView: UITableView!
     @IBAction func homePushed(_ sender: UIButton) {
         performSegue(withIdentifier: "AdminToHomeSegue", sender: "AdminToHome")
@@ -19,10 +19,14 @@ class AdminMainVC: UIViewController {
 //        performSegue(withIdentifier: "AdminToDriverNoneSegue", sender: "AdminToDriverNone")
         performSegue(withIdentifier: "AdminToDriverSegue", sender: "AdminToDriver")
     }
+    @IBAction func addPushed(_ sender: UIButton) {
+        performSegue(withIdentifier: "AdminMainToAddSegue", sender: "AdminMainToAdd")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource=self
         tableView.delegate=self
+        tableView.rowHeight=100
         // Do any additional setup after loading the view.
     }
 
@@ -38,8 +42,14 @@ extension AdminMainVC:UITableViewDataSource, UITableViewDelegate{
         return tableData.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AdminOrgCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AdminOrgCell", for: indexPath) as! AdminOrgCell
+        cell.nameLabel.text = "Pi Kappa Alpha"
+        cell.statusLabel.text = "Approved"
         
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        performSegue(withIdentifier: "AdminMainToWaitSegue", sender: "AdminMainToWait")
+        performSegue(withIdentifier: "AdminMainToViewSegue", sender: "AdminMainToView")
     }
 }
