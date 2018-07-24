@@ -12,4 +12,5 @@ urlpatterns=[
     url(r'^getOrgDrivers/$', views.getOrgDrivers),
     url(r'^removeDriver/$', views.removeDriver),
     url(r'^fetchAllActive/$', views.fetchAllActive),
+    url(r'^searchFor/$', views.searchFor)
 ]

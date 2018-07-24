@@ -1210,7 +1210,7 @@ Pickup</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7PY-1t-GMn">
-                                <rect key="frame" x="8" y="154" width="359" height="453"/>
+                                <rect key="frame" x="8" y="244" width="359" height="363"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -1262,7 +1262,7 @@ Pickup</string>
                                 </prototypes>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="search" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xAV-rF-lnp">
-                                <rect key="frame" x="16" y="111" width="343" height="35"/>
+                                <rect key="frame" x="16" y="201" width="299" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="9m4-Ef-JLO"/>
                                 </constraints>
@@ -1270,24 +1270,50 @@ Pickup</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Club" translatesAutoresizingMaskIntoConstraints="NO" id="TYF-ie-d08">
+                                <rect key="frame" x="142.5" y="103" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="tWb-Cx-5J1"/>
+                                    <constraint firstAttribute="height" constant="90" id="vHY-gR-zao"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxB-61-3oh">
+                                <rect key="frame" x="331" y="201" width="36" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.841319178" blue="0.27913154610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="lzD-wl-ygP"/>
+                                    <constraint firstAttribute="height" constant="35" id="rZR-Pl-sev"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <state key="normal" title="GO">
+                                    <color key="titleColor" red="0.44723857630000002" green="0.53266020849999995" blue="0.96741224319999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchFor:" destination="uaR-Kz-C9b" eventType="touchUpInside" id="FcM-Pw-4Vx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="pxB-61-3oh" firstAttribute="leading" secondItem="xAV-rF-lnp" secondAttribute="trailing" constant="16" id="0k7-gL-ZZ2"/>
                             <constraint firstItem="pk0-mH-L9h" firstAttribute="leading" secondItem="5pw-ZV-HcE" secondAttribute="leading" id="1zs-X1-BMb"/>
                             <constraint firstItem="7PY-1t-GMn" firstAttribute="leading" secondItem="5pw-ZV-HcE" secondAttribute="leading" constant="8" id="4a6-V2-IhU"/>
                             <constraint firstItem="KVk-fw-gSM" firstAttribute="top" secondItem="pk0-mH-L9h" secondAttribute="bottom" constant="8" id="601-Qh-VNx"/>
-                            <constraint firstItem="5pw-ZV-HcE" firstAttribute="trailing" secondItem="xAV-rF-lnp" secondAttribute="trailing" constant="16" id="6OD-b1-t5T"/>
                             <constraint firstItem="5pw-ZV-HcE" firstAttribute="trailing" secondItem="7PY-1t-GMn" secondAttribute="trailing" constant="8" id="6ym-qB-yyq"/>
                             <constraint firstItem="KVk-fw-gSM" firstAttribute="centerX" secondItem="3N7-M6-sUe" secondAttribute="centerX" id="9iS-ph-xs2"/>
                             <constraint firstItem="pk0-mH-L9h" firstAttribute="top" secondItem="5pw-ZV-HcE" secondAttribute="top" id="GWA-rv-SRc"/>
                             <constraint firstItem="xhx-e7-540" firstAttribute="top" secondItem="7PY-1t-GMn" secondAttribute="bottom" id="KVI-Uj-bgU"/>
+                            <constraint firstItem="TYF-ie-d08" firstAttribute="centerX" secondItem="3N7-M6-sUe" secondAttribute="centerX" id="SEj-Jk-Q3h"/>
+                            <constraint firstItem="5pw-ZV-HcE" firstAttribute="trailing" secondItem="pxB-61-3oh" secondAttribute="trailing" constant="8" id="WBg-gz-1Tf"/>
                             <constraint firstItem="xhx-e7-540" firstAttribute="bottom" secondItem="5pw-ZV-HcE" secondAttribute="bottom" id="XOY-P2-IfA"/>
+                            <constraint firstItem="pxB-61-3oh" firstAttribute="centerY" secondItem="xAV-rF-lnp" secondAttribute="centerY" id="bhp-5y-l1A"/>
                             <constraint firstItem="pk0-mH-L9h" firstAttribute="trailing" secondItem="5pw-ZV-HcE" secondAttribute="trailing" id="cGH-Jd-LKc"/>
                             <constraint firstItem="5pw-ZV-HcE" firstAttribute="trailing" secondItem="xhx-e7-540" secondAttribute="trailing" id="cf6-ef-F7B"/>
+                            <constraint firstItem="xAV-rF-lnp" firstAttribute="top" secondItem="TYF-ie-d08" secondAttribute="bottom" constant="8" id="j6K-he-eLh"/>
                             <constraint firstItem="7PY-1t-GMn" firstAttribute="top" secondItem="xAV-rF-lnp" secondAttribute="bottom" constant="8" id="jnT-b1-fS6"/>
                             <constraint firstItem="xAV-rF-lnp" firstAttribute="leading" secondItem="5pw-ZV-HcE" secondAttribute="leading" constant="16" id="kLH-n3-ee0"/>
-                            <constraint firstItem="xAV-rF-lnp" firstAttribute="top" secondItem="KVk-fw-gSM" secondAttribute="bottom" constant="8" id="qej-yV-Y8D"/>
                             <constraint firstItem="xhx-e7-540" firstAttribute="leading" secondItem="5pw-ZV-HcE" secondAttribute="leading" id="vkc-R7-pUE"/>
+                            <constraint firstItem="TYF-ie-d08" firstAttribute="top" secondItem="KVk-fw-gSM" secondAttribute="bottom" id="xDp-Ei-G5t"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5pw-ZV-HcE"/>
                     </view>
@@ -1527,6 +1553,7 @@ Pickup</string>
     <resources>
         <image name="Arrow" width="100" height="100"/>
         <image name="Car" width="50" height="50"/>
+        <image name="Club" width="100" height="100"/>
         <image name="Home" width="50" height="50"/>
         <image name="Icon" width="100" height="100"/>
     </resources>

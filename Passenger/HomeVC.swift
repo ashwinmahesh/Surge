@@ -79,6 +79,41 @@ class HomeVC: UIViewController {
             task.resume()
         }
     }
+    
+    @IBAction func searchFor(_ sender: UIButton) {
+        tableData=[]
+        print("Entering function")
+        let searchKey=searchField.text!
+        if let urlReq = URL(string: "\(SERVER.IP)/searchFor/"){
+            var request = URLRequest(url:urlReq)
+            request.httpMethod = "POST"
+            let bodyData="key=\(searchKey)"
+            request.httpBody = bodyData.data(using: .utf8)
+            let session = URLSession.shared
+            let task = session.dataTask(with: request as URLRequest){
+                data, response, error in
+                do{
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+//                        print(jsonResult)
+                        let response = jsonResult["response"] as! NSDictionary
+                        let organizations = response["organizations"] as! NSMutableArray
+                        for organization in organizations{
+                            let organizationFixed = organization as! NSDictionary
+                            self.tableData.append(organizationFixed)
+                        }
+                        DispatchQueue.main.async{
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+                catch{
+                    print(error)
+                }
+            }
+            task.resume()
+        }
+    }
+    
 
 }
 extension HomeVC: UITableViewDataSource, UITableViewDelegate{
