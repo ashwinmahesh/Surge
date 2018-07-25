@@ -16,6 +16,8 @@ class PickupMapVC: UIViewController {
     var lat:Double?
     var long:Double?
     
+    var yourPassenger:Bool?
+    
     @IBOutlet var statusButtons: [UIButton]!
     let manager = CLLocationManager()
     var pickupCoordinates:CLLocationCoordinate2D?
@@ -31,6 +33,7 @@ class PickupMapVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Your passenger? ",yourPassenger!)
         
         nameLabel.text = name!
         phoneLabel.text = phoneNumber!
@@ -51,8 +54,12 @@ class PickupMapVC: UIViewController {
         destPlacemark = MKPlacemark(coordinate: pickupCoordinates!)
         destItem = MKMapItem(placemark: destPlacemark!)
         
-        for button in statusButtons{
-            button.isHidden=true
+        if let showButtons = yourPassenger as? Bool{
+            if showButtons == false{
+                for button in statusButtons{
+                    button.isHidden=true
+                }
+            }
         }
     }
 
