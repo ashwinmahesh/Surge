@@ -63,6 +63,10 @@ def deleteOrganization(request):
     if len(Organization.objects.filter(id=request.POST['id']))==0:
         return JsonResponse({'response':'Organization does not exist'})
     org= Organization.objects.get(id=request.POST['id'])
+    users = User.objects.filter(drivingFor_id=org.id)
+    for user in users:
+        user.drivingFor_id=-1
+        user.save()
     org.delete()
     return JsonResponse({'response':'Organization successfully deleted'})
 
@@ -103,7 +107,7 @@ def removeDriver(request):
     print(request.POST)
     user = User.objects.get(email=request.POST['email'])
     org = Organization.objects.get(id=user.drivingFor_id)
-    org.driver-=1
+    org.drivers-=1
     org.save()
     user.drivingFor_id=-1
     user.save()
@@ -175,3 +179,11 @@ def removeFromQueue(request):
     user.queue=None
     user.save()
     return JsonResponse({'response':'success'})
+
+@csrf_exempt
+def getDrivingForId(request):
+    if request.method!='POST':
+        return HttpResponse("Posting only. Sorry pal.")
+    print(request.POST)
+    user = User.objects.get(id=int(request.POST['userID']))
+    return JsonResponse({'response':'success', 'drivingFor_ID':user.drivingFor_id})

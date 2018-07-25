@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class HomeVC: UIViewController {
+    var drivingForId:Int?
     
     @IBOutlet weak var searchField: UITextField!
     
@@ -34,8 +35,7 @@ class HomeVC: UIViewController {
         performSegue(withIdentifier: "HomeToLoginSegue", sender: "HomeToLogin")
     }
     @IBAction func drivePushed(_ sender: UIButton) {
-//        performSegue(withIdentifier: "HomeToDriveNoneSegue", sender: "HomeToDriveNone")
-        performSegue(withIdentifier: "HomeToDriveSegue", sender: "HomeToDrive")
+        getDrivingForID()
     }
     @IBAction func adminPushed(_ sender: UIButton) {
         performSegue(withIdentifier: "HomeToAdminSegue", sender: "HomeToAdmin")
@@ -184,6 +184,51 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
                         print(jsonResult)
                         let response = jsonResult["response"] as! String
                         self.queueStatus=response
+                    }
+                }
+                catch{
+                    print(error)
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    func getDrivingForID(){
+        var id:Int64?
+        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
+        do{
+            id = try context.fetch(fetchRequest).first!.id
+        }
+        catch{
+            print(error)
+        }
+        
+        if let urlReq = URL(string: "\(SERVER.IP)/getDrivingForId/"){
+            var request = URLRequest(url:urlReq)
+            request.httpMethod = "POST"
+            let bodyData="userID=\(id!)"
+            request.httpBody = bodyData.data(using: .utf8)
+            let session = URLSession.shared
+            let task = session.dataTask(with: request as URLRequest){
+                data, response, error in
+                do{
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                        print(jsonResult)
+                        let response = jsonResult["response"] as! String
+                        if response=="success"{
+                            self.drivingForId = jsonResult["drivingFor_ID"] as! Int
+                            if self.drivingForId! == -1{
+                                DispatchQueue.main.async{
+                                    self.performSegue(withIdentifier: "HomeToDriveNoneSegue", sender: "HomeToDriveNone")
+                                }
+                            }
+                            else if self.drivingForId! > -1{
+                                DispatchQueue.main.async{
+                                    self.performSegue(withIdentifier: "HomeToDriveSegue", sender: "HomeToDrive")
+                                }
+                            }
+                        }
                     }
                 }
                 catch{

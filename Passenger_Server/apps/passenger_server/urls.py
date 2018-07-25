@@ -17,4 +17,5 @@ urlpatterns=[
     url(r'^getQueuePosition/$', views.getQueuePos),
     url(r'^getQueuedOrganization/$', views.getQueuedOrganization),
     url(r'^removeFromQueue/$', views.removeFromQueue),
+    url(r'^getDrivingForId/$', views.getDrivingForId),
 ]
