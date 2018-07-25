@@ -18,7 +18,6 @@ class AdminWaitVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         orgNameLabel.text = orgNameText!
-
         // Do any additional setup after loading the view.
     }
 

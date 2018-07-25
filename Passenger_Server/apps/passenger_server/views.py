@@ -91,6 +91,7 @@ def getOrgDrivers(request):
         return HttpResponse("This page is accessible by POST only!")
     print(request.POST)
     users = User.objects.filter(drivingFor_id=int(request.POST['orgID']))
+    org_name = Organization.objects.get(id=int(request.POST['orgID'])).name
     output=[]
     for user in users:
         phoneNumber=user.phone_number
@@ -98,7 +99,7 @@ def getOrgDrivers(request):
         userDict = {'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':phoneNew}
         output.append(userDict)
     response ={'users':output}
-    return JsonResponse({'response':response})
+    return JsonResponse({'response':response, 'organization':org_name})
 
 @csrf_exempt
 def removeDriver(request):
@@ -181,6 +182,9 @@ def removeFromQueue(request):
     user = User.objects.get(id=int(request.POST['userID']))
     user.queue=None
     user.driver_id=-1
+    user.location=''
+    user.longitude = ''
+    user.latitude = ''
     user.save()
     return JsonResponse({'response':'success'})
 
@@ -227,3 +231,16 @@ def assignPassengerDriver(request):
     passenger.driver_id=driverID
     passenger.save()
     return JsonResponse({'response':'We have assigned the driver'})
+
+@csrf_exempt
+def removePassengerDriver(request):
+    if request.method!='POST':
+        return HttpResponse('Posting only. Sorry pal.')
+    print(request.POST)
+    passengerID = int(request.POST['passengerID'])
+    if len(User.objects.filter(id=passengerID))==0:
+        return JsonResponse({'response':'Could not find this passenger'})
+    passenger = User.objects.get(id=passengerID)
+    passenger.driver_id=-1
+    passenger.save()
+    return JsonResponse({'response':'success'})

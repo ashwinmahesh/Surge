@@ -1075,6 +1075,9 @@
 Pickup</string>
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="confirmPushed:" destination="Rdy-FN-szC" eventType="touchUpInside" id="gzt-r8-RDN"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="cta-vt-4rD">
                                         <rect key="frame" x="125.5" y="0.0" width="124" height="60"/>
@@ -1085,6 +1088,9 @@ Pickup</string>
 Pickup</string>
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="cancelPushed:" destination="Rdy-FN-szC" eventType="touchUpInside" id="MTy-8y-VV4"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="GWE-Fl-M3K">
                                         <rect key="frame" x="250.5" y="0.0" width="124.5" height="60"/>
@@ -1093,6 +1099,9 @@ Pickup</string>
                                         <state key="normal" title="Remove User">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="removePushed:" destination="Rdy-FN-szC" eventType="touchUpInside" id="mBG-FK-n9l"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1143,9 +1152,11 @@ Pickup</string>
                         <outletCollection property="statusButtons" destination="cta-vt-4rD" collectionClass="NSMutableArray" id="GYM-R1-Ars"/>
                         <outletCollection property="statusButtons" destination="GWE-Fl-M3K" collectionClass="NSMutableArray" id="rNB-T9-ZCL"/>
                         <segue destination="BVw-FS-2cD" kind="presentation" identifier="MapToDriveSegue" id="6Yx-Wq-97o"/>
+                        <segue destination="W5I-uj-MxQ" kind="unwind" identifier="unwindFromMapVC" unwindAction="unwindFromMapVCWithSegue:" id="QKY-MF-Frb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pZf-KY-HUc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="W5I-uj-MxQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3247" y="941"/>
         </scene>
@@ -1232,7 +1243,7 @@ Pickup</string>
                                             <rect key="frame" x="0.0" y="0.0" width="359" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pi Kappa Alpha" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Atm-2m-mKE">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organization Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Atm-2m-mKE">
                                                     <rect key="frame" x="15" y="11" width="301" height="29"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                     <color key="textColor" red="1" green="0.841319178" blue="0.27913154610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1377,9 +1388,9 @@ Pickup</string>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pi Kappa Alpha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3z5-Kd-CT9">
-                                <rect key="frame" x="96" y="80" width="183" height="28"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organization Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3z5-Kd-CT9">
+                                <rect key="frame" x="8" y="80" width="359" height="31"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="25"/>
                                 <color key="textColor" red="1" green="0.841319178" blue="0.27913154610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1399,7 +1410,7 @@ Pickup</string>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2wj-sE-Z2y">
-                                <rect key="frame" x="16" y="206" width="343" height="388"/>
+                                <rect key="frame" x="16" y="209" width="343" height="385"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DriverCell" rowHeight="90" id="Zus-FW-hv3" customClass="DriverCell" customModule="Passenger" customModuleProvider="target">
@@ -1439,14 +1450,14 @@ Pickup</string>
                                 </prototypes>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="pUO-D0-x2V">
-                                <rect key="frame" x="142.5" y="108" width="90" height="90"/>
+                                <rect key="frame" x="142.5" y="111" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="S8Z-M0-KDU"/>
                                     <constraint firstAttribute="height" constant="90" id="TWu-tJ-3Xm"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drivers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuA-e0-krN">
-                                <rect key="frame" x="16" y="169" width="87.5" height="29"/>
+                                <rect key="frame" x="16" y="172" width="87.5" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1464,15 +1475,17 @@ Pickup</string>
                             <constraint firstItem="Bk3-Pt-qjx" firstAttribute="top" secondItem="6fD-D4-JYK" secondAttribute="top" id="XAQ-dZ-BJA"/>
                             <constraint firstItem="6fD-D4-JYK" firstAttribute="trailing" secondItem="2wj-sE-Z2y" secondAttribute="trailing" constant="16" id="bqt-bj-viL"/>
                             <constraint firstItem="5cG-5Q-Pfo" firstAttribute="centerX" secondItem="coO-QY-aiA" secondAttribute="centerX" id="eIR-Yb-FUy"/>
+                            <constraint firstItem="3z5-Kd-CT9" firstAttribute="leading" secondItem="6fD-D4-JYK" secondAttribute="leading" constant="8" id="gB7-np-qO9"/>
                             <constraint firstItem="5cG-5Q-Pfo" firstAttribute="top" secondItem="2wj-sE-Z2y" secondAttribute="bottom" constant="8" id="jQz-Wk-4Fl"/>
                             <constraint firstItem="Bk3-Pt-qjx" firstAttribute="trailing" secondItem="6fD-D4-JYK" secondAttribute="trailing" id="kvW-65-Jgp"/>
                             <constraint firstItem="Bk3-Pt-qjx" firstAttribute="leading" secondItem="6fD-D4-JYK" secondAttribute="leading" id="rRe-as-Jb4"/>
-                            <constraint firstItem="3z5-Kd-CT9" firstAttribute="centerX" secondItem="coO-QY-aiA" secondAttribute="centerX" id="ukO-K8-k84"/>
+                            <constraint firstItem="6fD-D4-JYK" firstAttribute="trailing" secondItem="3z5-Kd-CT9" secondAttribute="trailing" constant="8" id="rgM-yM-iVy"/>
                             <constraint firstItem="2wj-sE-Z2y" firstAttribute="leading" secondItem="6fD-D4-JYK" secondAttribute="leading" constant="16" id="we4-Jq-X1I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6fD-D4-JYK"/>
                     </view>
                     <connections>
+                        <outlet property="nameLabel" destination="3z5-Kd-CT9" id="3fW-b2-J8b"/>
                         <outlet property="tableView" destination="2wj-sE-Z2y" id="CmP-ol-rut"/>
                         <segue destination="pg1-mI-a5G" kind="presentation" identifier="RequestToConfirmSegue" id="27x-JJ-tgU"/>
                     </connections>
@@ -1582,10 +1595,10 @@ Pickup</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="27x-JJ-tgU"/>
-        <segue reference="9zR-kp-tVk"/>
-        <segue reference="uSx-CY-STW"/>
-        <segue reference="Gle-kb-3Z7"/>
+        <segue reference="AzA-Ms-faH"/>
+        <segue reference="6Yx-Wq-97o"/>
+        <segue reference="M0i-e4-gbt"/>
         <segue reference="cty-lP-3v6"/>
-        <segue reference="ts2-pv-eF4"/>
+        <segue reference="ZFa-2a-MJl"/>
     </inferredMetricsTieBreakers>
 </document>

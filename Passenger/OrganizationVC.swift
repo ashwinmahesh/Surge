@@ -21,6 +21,8 @@ class OrganizationVC: UIViewController {
     
     var tableData:[NSDictionary]=[]
     
+    @IBOutlet weak var nameLabel: UILabel!
+    
     var myLong:Double?
     var myLat:Double?
     var address:String?
@@ -131,6 +133,9 @@ class OrganizationVC: UIViewController {
 //                        print(jsonResult)
                         let response = jsonResult["response"] as! NSDictionary
                         let users = response["users"] as! NSMutableArray
+                        DispatchQueue.main.async{
+                            self.nameLabel.text = jsonResult["organization"] as! String
+                        }
                         for user in users{
                             let userFixed = user as! NSDictionary
                             self.tableData.append(userFixed)

@@ -57,6 +57,16 @@ class DriveQueueVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func unwindFromMapVC(segue: UIStoryboardSegue){
+        if segue.identifier == "unwindFromMapVC"{
+            let source = segue.source as! PickupMapVC
+            print("Source action: \(source.action)")
+            if source.action=="cancel"{
+                hasSelectedPassenger = false
+            }
+        }
+    }
+    
     func fetchQueue(){
         tableData=[]
         let urlReq=URL(string: "\(SERVER.IP)/fetchQueue/")!
@@ -112,7 +122,7 @@ class DriveQueueVC: UIViewController {
             let dest = segue.destination as! PickupMapVC
             let indexPath = sender as! IndexPath
             let cell = tableView.cellForRow(at: indexPath) as! DriveQueueCell
-            print("Cell.driverID: \(cell.driverID!), userID: \(userID)")
+//            print("Cell.driverID: \(cell.driverID!), userID: \(userID)")
             if cell.driverID! == userID{
                 dest.yourPassenger = true
             }
@@ -122,6 +132,7 @@ class DriveQueueVC: UIViewController {
             let user = tableData[indexPath.row]
             dest.name = (user["first_name"] as! String) + " " + (user["last_name"] as! String)
             dest.phoneNumber = user["phone_number"] as! String
+            dest.passengerID = cell.userID
             dest.lat = Double(user["lat"] as! String)
             dest.long = Double(user["long"] as! String)
         }
@@ -146,6 +157,7 @@ extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
             cell.statusLabel.text = "Driver: \(currentUser["driver"] as! String)"
 //            cell.statusLabel.text = "Driver: Assigned"
         }
+        print("hasSelectedPassenger: ", hasSelectedPassenger)
         if hasSelectedPassenger{
              cell.pickupButton.isHidden=true
         }

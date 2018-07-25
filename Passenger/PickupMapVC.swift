@@ -16,7 +16,10 @@ class PickupMapVC: UIViewController {
     var lat:Double?
     var long:Double?
     
+    var action:String=""
+    
     var yourPassenger:Bool?
+    var passengerID:Int?
     
     @IBOutlet var statusButtons: [UIButton]!
     let manager = CLLocationManager()
@@ -33,12 +36,12 @@ class PickupMapVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Your passenger? ",yourPassenger!)
+//        print("Your passenger? ",yourPassenger!)
         
         nameLabel.text = name!
         phoneLabel.text = phoneNumber!
         
-        print("Latitude: \(lat!), Longitude: \(long!)")
+//        print("Latitude: \(lat!), Longitude: \(long!)")
         
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -67,9 +70,69 @@ class PickupMapVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func confirmPushed(_ sender: UIButton) {
+        print("Pressing confirm")
+    }
+    
+    @IBAction func cancelPushed(_ sender: UIButton) {
+        self.action="cancel"
+        let alert = UIAlertController(title: "Cancel Confirm", message: "Are you sure you want to cancel your pickup of this person?", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
+            self.removeDriver()
+        }
+        let no = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alert.addAction(yes)
+        alert.addAction(no)
+        DispatchQueue.main.async{
+            self.present(alert, animated: true)
+        }
+    }
+    @IBAction func removePushed(_ sender: UIButton) {
+        print("Pressing remove")
+    }
+    func removeDriver(){
+        let urlReq: URL = URL(string: "\(SERVER.IP)/removePassengerDriver/")!
+        var request = URLRequest(url:urlReq)
+        request.httpMethod = "POST"
+        let bodyData = "passengerID=\(passengerID!)"
+        request.httpBody=bodyData.data(using:.utf8)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest){
+            data, response, error in
+            do{
+                if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                    let response = jsonResult["response"] as! String
+                    if response == "success"{
+                        let alert = UIAlertController(title: "Cancel Success", message: "Successfully removed yourself as this persons driver", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "Ok", style: .default) { (action) in
+                            self.performSegue(withIdentifier: "unwindFromMapVC", sender: "cancel")
+                        }
+                        alert.addAction(ok)
+                        DispatchQueue.main.async{
+                            self.present(alert, animated: true)
+                        }
+                    }
+                    else{
+                        let alert = UIAlertController(title: "Cancel Fail", message: "Unable to remove yourself as this person's driver", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                        alert.addAction(ok)
+                        DispatchQueue.main.async{
+                            self.present(alert, animated: true)
+                        }
+                    }
+                }
+            }
+            catch{
+                print(error)
+            }
+        }
+        task.resume()
+    }
+    
+    
 }
 extension PickupMapVC:CLLocationManagerDelegate{
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.005, 0.005)
