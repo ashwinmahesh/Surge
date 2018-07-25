@@ -145,9 +145,7 @@
                                         <color key="backgroundColor" red="0.75294117650000003" green="0.75294117650000003" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="Car"/>
                                         <connections>
-                                            <action selector="drivePushed:" destination="uaR-Kz-C9b" eventType="touchUpInside" id="EqU-zT-Sae"/>
                                             <action selector="drivePushed:" destination="S8b-g5-Cjz" eventType="touchUpInside" id="eza-FS-PN9"/>
-                                            <segue destination="u2g-R6-4kw" kind="presentation" identifier="AdminToDriverNoneSegue" animates="NO" id="pPW-eh-LCz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lwr-Cy-hke">
@@ -269,11 +267,12 @@
                         <segue destination="pH1-Ae-erh" kind="presentation" identifier="AdminMainToAddSegue" animates="NO" id="cAh-Eb-WLI"/>
                         <segue destination="Mdo-KM-O6F" kind="presentation" identifier="AdminMainToWaitSegue" animates="NO" id="cty-lP-3v6"/>
                         <segue destination="Zi0-eE-IZ9" kind="presentation" identifier="AdminMainToViewSegue" animates="NO" id="itp-Wa-2YS"/>
+                        <segue destination="u2g-R6-4kw" kind="presentation" identifier="AdminToDriverNoneSegue" id="Gle-kb-3Z7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jcE-ST-tjV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="-699.40029985007504"/>
+            <point key="canvasLocation" x="721" y="-698"/>
         </scene>
         <!--Admin RegisterVC-->
         <scene sceneID="0go-jj-1qH">
@@ -1582,12 +1581,11 @@ Pickup</string>
         <image name="Icon" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wqK-Zb-voh"/>
         <segue reference="27x-JJ-tgU"/>
-        <segue reference="AzA-Ms-faH"/>
-        <segue reference="6Yx-Wq-97o"/>
-        <segue reference="M0i-e4-gbt"/>
+        <segue reference="9zR-kp-tVk"/>
+        <segue reference="uSx-CY-STW"/>
+        <segue reference="Gle-kb-3Z7"/>
         <segue reference="cty-lP-3v6"/>
-        <segue reference="ZFa-2a-MJl"/>
+        <segue reference="ts2-pv-eF4"/>
     </inferredMetricsTieBreakers>
 </document>
