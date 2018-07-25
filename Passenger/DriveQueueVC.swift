@@ -161,12 +161,21 @@ extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
         if hasSelectedPassenger{
              cell.pickupButton.isHidden=true
         }
+        else{
+             cell.pickupButton.isHidden=false
+        }
         if hasSelectedPassenger && (currentUser["driver_id"] as! Int64)==userID{
             cell.pickupButton.isHidden=false
             cell.pickupButton.backgroundColor = UIColor.orange
             cell.pickupButton.setTitle("Yours", for: .normal)
             cell.pickupButton.isEnabled=false
         }
+        else{
+            cell.pickupButton.backgroundColor = UIColor.init(red: CGFloat(114.0/255.0), green: CGFloat(136.0/255.0), blue: CGFloat(247.0/255.0), alpha: CGFloat(1.0))
+            cell.pickupButton.setTitle("Pickup", for: .normal)
+            cell.pickupButton.isEnabled=true
+        }
+        
         cell.addressLabel.text = currentUser["location"] as! String
         cell.userID = currentUser["id"] as! Int
         cell.delegate=self

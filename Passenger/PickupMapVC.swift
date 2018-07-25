@@ -76,9 +76,10 @@ class PickupMapVC: UIViewController {
     }
     
     @IBAction func cancelPushed(_ sender: UIButton) {
-        self.action="cancel"
+        
         let alert = UIAlertController(title: "Cancel Confirm", message: "Are you sure you want to cancel your pickup of this person?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
+            self.action="cancel"
             self.removeDriver()
         }
         let no = UIAlertAction(title: "No", style: .cancel, handler: nil)
@@ -89,7 +90,18 @@ class PickupMapVC: UIViewController {
         }
     }
     @IBAction func removePushed(_ sender: UIButton) {
-        print("Pressing remove")
+        
+        let alert = UIAlertController(title: "Remove Confirm", message: "Are you sure you want to remove this person from the queue?", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
+            self.action="remove"
+            self.removePassenger()
+        }
+        let no = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alert.addAction(yes)
+        alert.addAction(no)
+        DispatchQueue.main.async{
+            self.present(alert, animated: true)
+        }
     }
     func removeDriver(){
         let urlReq: URL = URL(string: "\(SERVER.IP)/removePassengerDriver/")!
@@ -129,7 +141,36 @@ class PickupMapVC: UIViewController {
         }
         task.resume()
     }
-    
+    func removePassenger(){
+        let urlReq: URL = URL(string: "\(SERVER.IP)/removeFromQueue/")!
+        var request = URLRequest(url:urlReq)
+        request.httpMethod = "POST"
+        let bodyData = "userID=\(passengerID!)"
+        request.httpBody=bodyData.data(using:.utf8)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest){
+            data, response, error in
+            do{
+                if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                    let response = jsonResult["response"] as! String
+                    if response=="success"{
+                        let alert = UIAlertController(title: "Remove Succes", message: "Successfully removed this passenger from the queue.", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "Ok", style: .default) { (action) in
+                            self.performSegue(withIdentifier: "unwindFromMapVC", sender: "remove")
+                        }
+                        alert.addAction(ok)
+                        DispatchQueue.main.async{
+                            self.present(alert, animated: true)
+                        }
+                    }
+                }
+            }
+            catch{
+                print(error)
+            }
+        }
+        task.resume()
+    }
     
 }
 extension PickupMapVC:CLLocationManagerDelegate{
