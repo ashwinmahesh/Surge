@@ -25,7 +25,7 @@ class ClientQueueVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("OrgID: \(orgID!)")
+        print("OrgID: \(orgID!)")
     }
 
     override func didReceiveMemoryWarning() {

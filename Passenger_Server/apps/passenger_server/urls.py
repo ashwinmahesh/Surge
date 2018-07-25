@@ -14,5 +14,6 @@ urlpatterns=[
     url(r'^fetchAllActive/$', views.fetchAllActive),
     url(r'^searchFor/$', views.searchFor),
     url(r'^joinQueue/$', views.joinQueue),
-    url(r'^getQueuePosition/$', views.getQueuePos)
+    url(r'^getQueuePosition/$', views.getQueuePos),
+    url(r'^getQueuedOrganization/$', views.getQueuedOrganization),
 ]

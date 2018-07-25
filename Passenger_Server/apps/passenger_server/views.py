@@ -155,5 +155,15 @@ def getQueuePos(request):
         
     return JsonResponse({'response':'Got your request baby!', 'position':counter, 'organization':org.name})
 
-
+@csrf_exempt
+def getQueuedOrganization(request):
+    if request.method!='POST':
+        return HttpResponse("Posting only. Sorry pal.")
+    print(request.POST)
+    user = User.objects.get(id=request.POST['userID'])
+    print('Queue id:',user.queue.id)
+    print('Request.POST[orgID]:',request.POST['orgID'])
+    if user.queue is None or user.queue.id!=int(request.POST['orgID']):
+        return JsonResponse({'response':'not in line'})
+    return JsonResponse({'response':'in line'})
 # Create your views here.

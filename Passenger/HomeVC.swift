@@ -16,6 +16,7 @@ class HomeVC: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
+    var queueStatus:String=""
     var tableData:[NSDictionary]=[]
     @IBOutlet weak var tableView: UITableView!
     @IBAction func logoutPushed(_ sender: UIButton) {
@@ -146,11 +147,48 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell=tableView.cellForRow(at: indexPath) as! OrganizationCell
+        getQueueStatus(cell: cell)
         DispatchQueue.main.async{
-            self.performSegue(withIdentifier: "AllToOneOrgSegue", sender: cell.orgID!)
+            if self.queueStatus=="not in line"{
+                self.performSegue(withIdentifier: "AllToOneOrgSegue", sender: cell.orgID!)
+            }
+            else if self.queueStatus=="in line"{
+                self.performSegue(withIdentifier: "HomeToClientQueueSegue", sender: cell.orgID!)
+            }
         }
-//        performSegue(withIdentifier: "HomeToClientQueueSegue", sender: "HomeToClientQueue")
+//
     }
-    
+    func getQueueStatus(cell:OrganizationCell){
+        var id:Int64?
+        let fetchReq:NSFetchRequest<User> = User.fetchRequest()
+        do{
+            id = try context.fetch(fetchReq).first!.id
+        }
+        catch{
+            print(error)
+        }
+        
+        if let urlReq = URL(string: "\(SERVER.IP)/getQueuedOrganization/"){
+            var request = URLRequest(url:urlReq)
+            request.httpMethod = "POST"
+            let bodyData="orgID=\(cell.orgID!)&userID=\(id!)"
+            request.httpBody = bodyData.data(using: .utf8)
+            let session = URLSession.shared
+            let task = session.dataTask(with: request as URLRequest){
+                data, response, error in
+                do{
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                        print(jsonResult)
+                        let response = jsonResult["response"] as! String
+                        self.queueStatus=response
+                    }
+                }
+                catch{
+                    print(error)
+                }
+            }
+            task.resume()
+        }
+    }
     
 }
