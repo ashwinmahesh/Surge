@@ -80,6 +80,18 @@ class DriveQueueVC: UIViewController {
         task.resume()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier=="DriveQueueToMapSegue"{
+            let dest = segue.destination as! PickupMapVC
+            let indexPath = sender as! IndexPath
+            let user = tableData[indexPath.row]
+            dest.name = (user["first_name"] as! String) + " " + (user["last_name"] as! String)
+            dest.phoneNumber = user["phone_number"] as! String
+            dest.lat = Double(user["lat"] as! String)
+            dest.long = Double(user["long"] as! String)
+        }
+    }
+    
 }
 extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -101,7 +113,7 @@ extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "DriveQueueToMapSegue", sender: "DriveQueueToMap")
+        performSegue(withIdentifier: "DriveQueueToMapSegue", sender: indexPath)
     }
     
     

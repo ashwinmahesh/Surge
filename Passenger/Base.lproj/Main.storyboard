@@ -1129,6 +1129,7 @@ Pickup</string>
                         <viewLayoutGuide key="safeArea" id="vkL-TI-GGc"/>
                     </view>
                     <connections>
+                        <outlet property="mapView" destination="opG-yP-lqc" id="vHw-tT-uHw"/>
                         <outlet property="nameLabel" destination="iy9-Jt-xKL" id="9Gs-zB-fyW"/>
                         <outlet property="phoneLabel" destination="nxI-Wv-a6p" id="eh7-Cs-fuQ"/>
                         <segue destination="BVw-FS-2cD" kind="presentation" identifier="MapToDriveSegue" id="6Yx-Wq-97o"/>
@@ -1570,7 +1571,6 @@ Pickup</string>
         <image name="Icon" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wqK-Zb-voh"/>
         <segue reference="27x-JJ-tgU"/>
         <segue reference="Q3q-kt-K7g"/>
         <segue reference="6Yx-Wq-97o"/>
