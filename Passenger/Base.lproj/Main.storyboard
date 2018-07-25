@@ -427,8 +427,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pi Kappa Alpha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZY-zi-WnW">
-                                <rect key="frame" x="99.5" y="72" width="176" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pi Kappa Alpha" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZY-zi-WnW">
+                                <rect key="frame" x="8" y="72" width="359" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" red="1" green="0.841319178" blue="0.27913154610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -446,10 +446,11 @@
                             <constraint firstItem="m0U-63-RUQ" firstAttribute="leading" secondItem="gMh-6d-Rwy" secondAttribute="leading" constant="32" id="DV9-JW-FJy"/>
                             <constraint firstItem="PFA-20-RrC" firstAttribute="top" secondItem="gMh-6d-Rwy" secondAttribute="top" id="MqX-JU-TRZ"/>
                             <constraint firstAttribute="trailing" secondItem="m0U-63-RUQ" secondAttribute="trailing" constant="32" id="XyV-yy-1QO"/>
-                            <constraint firstItem="lZY-zi-WnW" firstAttribute="centerX" secondItem="Ko4-bX-c0n" secondAttribute="centerX" id="dtD-pw-mPB"/>
                             <constraint firstItem="m0U-63-RUQ" firstAttribute="top" secondItem="lZY-zi-WnW" secondAttribute="bottom" constant="32" id="eQB-at-7GG"/>
                             <constraint firstItem="PFA-20-RrC" firstAttribute="leading" secondItem="gMh-6d-Rwy" secondAttribute="leading" id="kWX-2e-WzQ"/>
                             <constraint firstItem="lZY-zi-WnW" firstAttribute="top" secondItem="PFA-20-RrC" secondAttribute="bottom" constant="8" id="oia-Y4-XAN"/>
+                            <constraint firstItem="gMh-6d-Rwy" firstAttribute="trailing" secondItem="lZY-zi-WnW" secondAttribute="trailing" constant="8" id="pcd-dY-tK7"/>
+                            <constraint firstItem="lZY-zi-WnW" firstAttribute="leading" secondItem="gMh-6d-Rwy" secondAttribute="leading" constant="8" id="tmJ-dg-Yxi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gMh-6d-Rwy"/>
                     </view>
@@ -497,8 +498,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pi Kappa Alpha" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7J-BJ-Xkb">
-                                <rect key="frame" x="99.5" y="72" width="176" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pi Kappa Alpha" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7J-BJ-Xkb">
+                                <rect key="frame" x="8" y="72" width="359" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" red="1" green="0.841319178" blue="0.27913154610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -609,7 +610,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="e7J-BJ-Xkb" firstAttribute="centerX" secondItem="p4h-yc-YNC" secondAttribute="centerX" id="0nt-TZ-4oL"/>
+                            <constraint firstItem="e7J-BJ-Xkb" firstAttribute="leading" secondItem="pYF-Jr-lit" secondAttribute="leading" constant="8" id="2xg-WN-deg"/>
                             <constraint firstItem="LOo-WE-zSj" firstAttribute="top" secondItem="e7J-BJ-Xkb" secondAttribute="bottom" constant="8" id="4sX-IX-K0K"/>
                             <constraint firstItem="azq-rc-3Vd" firstAttribute="top" secondItem="YZu-hd-GRl" secondAttribute="bottom" constant="16" id="58D-6V-ODy"/>
                             <constraint firstItem="1eh-by-OKo" firstAttribute="leading" secondItem="YZu-hd-GRl" secondAttribute="trailing" constant="16" id="5FM-jd-cA3"/>
@@ -622,6 +623,7 @@
                             <constraint firstItem="YjJ-Hb-qxN" firstAttribute="top" secondItem="pYF-Jr-lit" secondAttribute="top" id="WpU-Vu-cJP"/>
                             <constraint firstItem="pYF-Jr-lit" firstAttribute="trailing" secondItem="1eh-by-OKo" secondAttribute="trailing" constant="8" id="YEl-aB-sLc"/>
                             <constraint firstItem="YZu-hd-GRl" firstAttribute="leading" secondItem="pYF-Jr-lit" secondAttribute="leading" constant="16" id="e4x-2Q-cFY"/>
+                            <constraint firstItem="pYF-Jr-lit" firstAttribute="trailing" secondItem="e7J-BJ-Xkb" secondAttribute="trailing" constant="8" id="iIo-KX-cJd"/>
                             <constraint firstItem="YjJ-Hb-qxN" firstAttribute="leading" secondItem="pYF-Jr-lit" secondAttribute="leading" id="j3P-Cq-JIH"/>
                             <constraint firstItem="pYF-Jr-lit" firstAttribute="bottom" secondItem="aZ7-17-351" secondAttribute="bottom" id="kyg-KB-7Y2"/>
                             <constraint firstItem="pYF-Jr-lit" firstAttribute="trailing" secondItem="aZ7-17-351" secondAttribute="trailing" constant="16" id="oyC-zv-r9a"/>
@@ -1092,6 +1094,7 @@ Pickup</string>
                                         </state>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="pW7-37-rQW"/>
                                 </constraints>
@@ -1112,7 +1115,7 @@ Pickup</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.80784313730000001" green="0.80784313730000001" blue="0.80784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="nqw-ec-5X0" firstAttribute="trailing" secondItem="vkL-TI-GGc" secondAttribute="trailing" id="9JX-ts-CVT"/>
                             <constraint firstItem="DNL-g5-chj" firstAttribute="leading" secondItem="vkL-TI-GGc" secondAttribute="leading" id="SXT-Hc-L6o"/>
@@ -1135,6 +1138,9 @@ Pickup</string>
                         <outlet property="mapView" destination="opG-yP-lqc" id="vHw-tT-uHw"/>
                         <outlet property="nameLabel" destination="iy9-Jt-xKL" id="9Gs-zB-fyW"/>
                         <outlet property="phoneLabel" destination="nxI-Wv-a6p" id="eh7-Cs-fuQ"/>
+                        <outletCollection property="statusButtons" destination="fbe-QU-XoT" collectionClass="NSMutableArray" id="xdz-0u-1MH"/>
+                        <outletCollection property="statusButtons" destination="cta-vt-4rD" collectionClass="NSMutableArray" id="GYM-R1-Ars"/>
+                        <outletCollection property="statusButtons" destination="GWE-Fl-M3K" collectionClass="NSMutableArray" id="rNB-T9-ZCL"/>
                         <segue destination="BVw-FS-2cD" kind="presentation" identifier="MapToDriveSegue" id="6Yx-Wq-97o"/>
                     </connections>
                 </viewController>
@@ -1580,6 +1586,6 @@ Pickup</string>
         <segue reference="6Yx-Wq-97o"/>
         <segue reference="M0i-e4-gbt"/>
         <segue reference="cty-lP-3v6"/>
-        <segue reference="ZFa-2a-MJl"/>
+        <segue reference="zwM-KT-lUR"/>
     </inferredMetricsTieBreakers>
 </document>

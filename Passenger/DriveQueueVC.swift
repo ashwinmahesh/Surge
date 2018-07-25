@@ -116,11 +116,16 @@ extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
             cell.statusLabel.text = "Driver: Assigned"
         }
         cell.addressLabel.text = currentUser["location"] as! String
+        cell.delegate=self
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "DriveQueueToMapSegue", sender: indexPath)
     }
-    
-    
+}
+
+extension DriveQueueVC:DriveQueueCellDelegate{
+    func pickupPushed(cell: DriveQueueCell) {
+        let indexPath = tableView.indexPath(for: cell)!
+    }
 }

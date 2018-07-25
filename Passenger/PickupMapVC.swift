@@ -16,6 +16,7 @@ class PickupMapVC: UIViewController {
     var lat:Double?
     var long:Double?
     
+    @IBOutlet var statusButtons: [UIButton]!
     let manager = CLLocationManager()
     var pickupCoordinates:CLLocationCoordinate2D?
     var destPlacemark:MKPlacemark?
@@ -49,6 +50,10 @@ class PickupMapVC: UIViewController {
         pickupCoordinates = CLLocationCoordinate2DMake(lat!, long!)
         destPlacemark = MKPlacemark(coordinate: pickupCoordinates!)
         destItem = MKMapItem(placemark: destPlacemark!)
+        
+        for button in statusButtons{
+            button.isHidden=true
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,7 +104,7 @@ extension PickupMapVC:MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = UIColor.blue
-        renderer.lineWidth = 8.0
+        renderer.lineWidth = 6.0
         return renderer
     }
 }
