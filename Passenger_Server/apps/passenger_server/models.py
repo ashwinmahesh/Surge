@@ -8,6 +8,8 @@ class User(models.Model):
     password=models.CharField(max_length=255)
     drivingFor_id=models.IntegerField(default=-1)
     queue = models.ForeignKey('Organization', related_name="passengers", null=True)
+    location=models.CharField(max_length=255, default = '')
+    driver_id=models.IntegerField(default=-1)
     # queue=models.ForeignKey(Organization, related_name="passengers")
 
 class Organization(models.Model):

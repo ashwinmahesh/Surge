@@ -61,6 +61,10 @@ class HomeVC: UIViewController {
                 let dest = segue.destination as! ClientQueueVC
                 dest.orgID=orgID
             }
+            else if segue.identifier=="HomeToDriveSegue"{
+                let dest = segue.destination as! DriveQueueVC
+                dest.orgID=orgID
+            }
         }
     }
 
@@ -225,7 +229,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
                             }
                             else if self.drivingForId! > -1{
                                 DispatchQueue.main.async{
-                                    self.performSegue(withIdentifier: "HomeToDriveSegue", sender: "HomeToDrive")
+                                    self.performSegue(withIdentifier: "HomeToDriveSegue", sender: self.drivingForId)
                                 }
                             }
                         }

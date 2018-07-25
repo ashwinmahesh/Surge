@@ -187,3 +187,18 @@ def getDrivingForId(request):
     print(request.POST)
     user = User.objects.get(id=int(request.POST['userID']))
     return JsonResponse({'response':'success', 'drivingFor_ID':user.drivingFor_id})
+
+@csrf_exempt
+def fetchQueue(request):
+    if request.method!='POST':
+        return HttpResponse("You must post.")
+    print(request.POST)
+    if len(Organization.objects.filter(id=int(request.POST['orgID'])))==0:
+        return JsonResponse({'response':'Could not find organization'})
+    queue_raw = Organization.objects.get(id=int(request.POST['orgID'])).passengers.all()
+    queue=[]
+    for user in queue_raw:
+        info={'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':user.phone_number, 'location':user.location, 'driver_id':user.driver_id}
+        queue.append(info)
+    return JsonResponse({'response':'Fetched your queue', 'queue':list(queue)})
+    
