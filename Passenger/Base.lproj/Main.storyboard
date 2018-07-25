@@ -454,6 +454,7 @@
                         <viewLayoutGuide key="safeArea" id="gMh-6d-Rwy"/>
                     </view>
                     <connections>
+                        <outlet property="orgNameLabel" destination="lZY-zi-WnW" id="c78-yr-IQQ"/>
                         <segue destination="S8b-g5-Cjz" kind="presentation" identifier="WaitToHomeSegue" animates="NO" id="zwM-KT-lUR"/>
                     </connections>
                 </viewController>
@@ -630,6 +631,7 @@
                         <viewLayoutGuide key="safeArea" id="pYF-Jr-lit"/>
                     </view>
                     <connections>
+                        <outlet property="orgName" destination="e7J-BJ-Xkb" id="gvP-x4-jw8"/>
                         <outlet property="tableView" destination="aZ7-17-351" id="JgW-xz-AF1"/>
                         <outlet property="textField" destination="YZu-hd-GRl" id="Gy0-tn-i7X"/>
                         <segue destination="S8b-g5-Cjz" kind="presentation" identifier="AdminViewToMainSegue" animates="NO" id="W8e-OP-UMs"/>
@@ -925,7 +927,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Queue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqM-xe-5K8">
                                 <rect key="frame" x="149.5" y="72" width="76.5" height="31"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="25"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="1" green="0.841319178" blue="0.27913154610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AgG-EJ-S9C">
@@ -1571,11 +1573,12 @@ Pickup</string>
         <image name="Icon" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="wqK-Zb-voh"/>
         <segue reference="27x-JJ-tgU"/>
-        <segue reference="Q3q-kt-K7g"/>
+        <segue reference="AzA-Ms-faH"/>
         <segue reference="6Yx-Wq-97o"/>
         <segue reference="M0i-e4-gbt"/>
         <segue reference="cty-lP-3v6"/>
-        <segue reference="W8e-OP-UMs"/>
+        <segue reference="ZFa-2a-MJl"/>
     </inferredMetricsTieBreakers>
 </document>

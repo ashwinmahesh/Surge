@@ -86,6 +86,7 @@ class LoginVC: UIViewController {
         catch{
             print(error)
         }
+        self.hideKeyboard()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -131,5 +132,17 @@ class LoginVC: UIViewController {
         return true
     }
 
+}
+extension UIViewController{
+    func hideKeyboard(){
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+    }
 }
 

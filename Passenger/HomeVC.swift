@@ -45,8 +45,8 @@ class HomeVC: UIViewController {
         tableView.dataSource=self
         tableView.delegate=self
         tableView.rowHeight=115
-//        fetchAllActive()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         fetchAllActive()
     }
@@ -100,6 +100,7 @@ class HomeVC: UIViewController {
     }
     
     @IBAction func searchFor(_ sender: UIButton) {
+        searchField.resignFirstResponder()
         tableData=[]
         print("Entering function")
         let searchKey=searchField.text!
@@ -131,6 +132,7 @@ class HomeVC: UIViewController {
             }
             task.resume()
         }
+        
     }
     
 
@@ -242,5 +244,5 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
             task.resume()
         }
     }
-    
 }
+

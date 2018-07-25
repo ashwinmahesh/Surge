@@ -17,13 +17,15 @@ class PickupMapVC: UIViewController {
     var long:Double?
     
     let manager = CLLocationManager()
+    var pickupCoordinates:CLLocationCoordinate2D?
+    var destPlacemark:MKPlacemark?
+    var destItem:MKMapItem?
 
     @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     @IBAction func backPushed(_ sender: UIButton) {
-//        performSegue(withIdentifier: "MapToDriveSegue", sender: "MapToDrive")
         dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
@@ -44,35 +46,9 @@ class PickupMapVC: UIViewController {
         mapView.showsScale = true
         mapView.showsPointsOfInterest = true
         mapView.showsUserLocation = true
-        
-        let driverCoordinates = manager.location?.coordinate
-        let pickupCoordinates:CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat!, long!)
-        
-        let sourcePlacemark = MKPlacemark(coordinate: driverCoordinates!)
-        let destPlacemark = MKPlacemark(coordinate: pickupCoordinates)
-        
-        let sourceItem = MKMapItem(placemark: sourcePlacemark)
-        let destItem = MKMapItem(placemark: destPlacemark)
-        let directionRequest = MKDirectionsRequest()
-        directionRequest.source = sourceItem
-        directionRequest.destination = destItem
-        directionRequest.transportType = .automobile
-        
-        let directions = MKDirections(request: directionRequest)
-        directions.calculate { (response, error) in
-            guard let response = response else {
-                if let error = error{
-                    print("Something went wrong")
-                }
-                return
-            }
-            let route = response.routes[0]
-            self.mapView.add(route.polyline, level: .aboveLabels)
-            
-            let rect = route.polyline.boundingMapRect
-            self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
-        }
-        // Do any additional setup after loading the view.
+        pickupCoordinates = CLLocationCoordinate2DMake(lat!, long!)
+        destPlacemark = MKPlacemark(coordinate: pickupCoordinates!)
+        destItem = MKMapItem(placemark: destPlacemark!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,20 +58,48 @@ class PickupMapVC: UIViewController {
 }
 extension PickupMapVC:CLLocationManagerDelegate{
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[0]
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.005, 0.005)
+        let sourceLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(sourceLocation, span)
+        let driverCoordinates = manager.location?.coordinate
+        let sourcePlacemark = MKPlacemark(coordinate: driverCoordinates!)
+        let sourceItem = MKMapItem(placemark: sourcePlacemark)
+        let directionRequest = MKDirectionsRequest()
+        directionRequest.source = sourceItem
+        directionRequest.destination = destItem
+        directionRequest.transportType = .automobile
+        
+        let directions = MKDirections(request: directionRequest)
+        directions.calculate { (response, error) in
+            guard let response = response else{
+                if let error = error{
+                    print("Something went wrong")
+                }
+                return
+            }
+            let route = response.routes[0]
+            self.mapView.add(route.polyline, level: .aboveLabels)
+            self.mapView.setRegion(region, animated: true)
+            
+        }
+    }
+    
     func placeDest(){
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
         let pickupLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat!, long!)
         let region = MKCoordinateRegionMake(pickupLocation, span)
         mapView.setRegion(region, animated: true)
         //Place annotation here
-        
     }
 }
+
 extension PickupMapVC:MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = UIColor.blue
-        renderer.lineWidth = 5.0
+        renderer.lineWidth = 8.0
         return renderer
     }
 }

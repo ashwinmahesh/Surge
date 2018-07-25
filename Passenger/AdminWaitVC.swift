@@ -9,12 +9,15 @@
 import UIKit
 
 class AdminWaitVC: UIViewController {
+    var orgNameText:String?
 
+    @IBOutlet weak var orgNameLabel: UILabel!
     @IBAction func backPushed(_ sender: UIButton) {
         performSegue(withIdentifier: "WaitToHomeSegue", sender: "WaitToHome")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        orgNameLabel.text = orgNameText!
 
         // Do any additional setup after loading the view.
     }

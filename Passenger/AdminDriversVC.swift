@@ -9,6 +9,9 @@
 import UIKit
 
 class AdminDriversVC: UIViewController {
+    var orgNameText:String?
+    @IBOutlet weak var orgName: UILabel!
+    
     var orgID:Int?
     var tableData:[NSDictionary]=[]
     
@@ -100,6 +103,8 @@ class AdminDriversVC: UIViewController {
         tableView.rowHeight=155
         print("OrgID is \(orgID!)")
         fetchDrivers()
+        self.hideKeyboard()
+        orgName.text = orgNameText!
     }
 
     override func didReceiveMemoryWarning() {
@@ -170,3 +175,4 @@ extension AdminDriversVC:AdminDriverCellDelegate{
         }
     }
 }
+

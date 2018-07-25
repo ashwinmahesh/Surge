@@ -27,9 +27,18 @@ class AdminMainVC: UIViewController {
         performSegue(withIdentifier: "AdminMainToAddSegue", sender: "AdminMainToAdd")
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let orgID = sender as? Int{
-            let dest = segue.destination as! AdminDriversVC
-            dest.orgID = orgID
+        if let indexPath = sender as? IndexPath{
+            let cell = tableView.cellForRow(at: indexPath) as! AdminOrgCell
+            if segue.identifier=="AdminMainToWaitSegue"{
+                let dest = segue.destination as! AdminWaitVC
+//                dest.orgID = cell.orgID!
+                dest.orgNameText = cell.nameLabel.text!
+            }
+            else{
+                let dest = segue.destination as! AdminDriversVC
+                dest.orgID = cell.orgID!
+                dest.orgNameText = cell.nameLabel.text!
+            }
         }
     }
     
@@ -116,13 +125,12 @@ extension AdminMainVC:UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.cellForRow(at: indexPath) as! AdminOrgCell
         if cell.statusLabel.text! == "Pending"{
             DispatchQueue.main.async{
-                self.performSegue(withIdentifier: "AdminMainToWaitSegue", sender: "AdminMainToWait")
+                self.performSegue(withIdentifier: "AdminMainToWaitSegue", sender: indexPath)
             }
         }
         else{
-            let cell=tableView.cellForRow(at: indexPath) as! AdminOrgCell
             DispatchQueue.main.async{
-                self.performSegue(withIdentifier: "AdminMainToViewSegue", sender: cell.orgID)
+                self.performSegue(withIdentifier: "AdminMainToViewSegue", sender: indexPath)
             }
         }
     }
