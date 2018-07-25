@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
 class DriveQueueVC: UIViewController {
     
     var orgID:Int?
     var orgName:String?
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     
     @IBOutlet weak var queueNameLabel: UILabel!
     var tableData:[NSDictionary]=[]
@@ -29,9 +34,12 @@ class DriveQueueVC: UIViewController {
         tableView.dataSource=self
         tableView.delegate=self
         tableView.rowHeight=120
-        fetchQueue()
+//        fetchQueue()
 
         // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        fetchQueue()
     }
 
     override func didReceiveMemoryWarning() {
@@ -113,9 +121,12 @@ extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
             cell.statusLabel.text = "Driver: Not Assigned"
         }
         else{
-            cell.statusLabel.text = "Driver: Assigned"
+            cell.statusLabel.text = "Driver: \(currentUser["driver"] as! String)"
+//            cell.statusLabel.text = "Driver: Assigned"
+            cell.pickupButton.isHidden=true
         }
         cell.addressLabel.text = currentUser["location"] as! String
+        cell.userID = currentUser["id"] as! Int
         cell.delegate=self
         return cell
     }
@@ -126,6 +137,70 @@ extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
 
 extension DriveQueueVC:DriveQueueCellDelegate{
     func pickupPushed(cell: DriveQueueCell) {
+        let pickupAlert = UIAlertController(title: "Pickup Confirm", message: "Are you sure you want to pick this person up?", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
+            self.pickupPerson(cell: cell)
+        }
+        let no = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        pickupAlert.addAction(yes)
+        pickupAlert.addAction(no)
+        DispatchQueue.main.async{
+            self.present(pickupAlert, animated: true)
+        }
+    }
+    
+    func pickupPerson(cell:DriveQueueCell){
         let indexPath = tableView.indexPath(for: cell)!
+        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
+        var userID:Int64 = -1
+        do{
+            let user = try context.fetch(fetchRequest).first!
+            userID = user.id
+        }
+        catch{
+            print("There was an error")
+        }
+        
+        let urlReq: URL = URL(string: "\(SERVER.IP)/assignPassengerDriver/")!
+        var request = URLRequest(url:urlReq)
+        request.httpMethod = "POST"
+        let bodyData = "passengerID=\(cell.userID!)&driverID=\(userID)"
+        request.httpBody=bodyData.data(using:.utf8)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest){
+            data, response, error in
+            do{
+                if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                    let response = jsonResult["response"] as! String
+                    if response=="Unable to pick this person up"{
+                        let alert = UIAlertController(title: "Pickup Error", message: "We are unable to assign you to this passenger", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                        alert.addAction(ok)
+                        DispatchQueue.main.async{
+                            self.present(alert, animated:true)
+                        }
+                        return
+                    }
+                    else{
+                        let alert = UIAlertController(title: "Pickup Success", message: "You are now assigned to pick this person up. Give them a call to let them know you are on the way!", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "Ok", style: .default, handler: {action in
+                            let indexPath = self.tableView.indexPath(for: cell)
+                            cell.driverID=userID
+                            DispatchQueue.main.async{
+                                self.performSegue(withIdentifier: "DriveQueueToMapSegue", sender: indexPath)
+                            }
+                        })
+                        alert.addAction(ok)
+                        DispatchQueue.main.async{
+                            self.present(alert, animated:true)
+                        }
+                    }
+                }
+            }
+            catch{
+                print(error)
+            }
+        }
+        task.resume()
     }
 }

@@ -180,6 +180,7 @@ def removeFromQueue(request):
     print(request.POST)
     user = User.objects.get(id=int(request.POST['userID']))
     user.queue=None
+    user.driver_id=-1
     user.save()
     return JsonResponse({'response':'success'})
 
@@ -204,7 +205,25 @@ def fetchQueue(request):
     for user in queue_raw:
         phoneNumber=user.phone_number
         phoneNew = "(" + user.phone_number[0:3] + ") " + user.phone_number[3:6] + "-" + user.phone_number[6:]
-        info={'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':phoneNew, 'lat':user.latitude, 'long':user.longitude, 'driver_id':user.driver_id, 'location':user.location}
+        driver=""
+        if user.driver_id!=-1:
+            driver = User.objects.get(id=user.driver_id).first_name + " " + User.objects.get(id=user.driver_id).last_name
+        info={'id':user.id, 'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':phoneNew, 'lat':user.latitude, 'long':user.longitude, 'driver_id':user.driver_id, 'location':user.location, 'driver':driver}
         queue.append(info)
     return JsonResponse({'response':'Fetched your queue', 'queue':list(queue), 'name':org_name})
     
+@csrf_exempt
+def assignPassengerDriver(request):
+    if request.method!='POST':
+        return HttpResponse('Posting only. Sorry pal.')
+    print(request.POST)
+    driverID = int(request.POST['driverID'])
+    passengerID = int(request.POST['passengerID'])
+    if len(User.objects.filter(id=driverID))==0 or len(User.objects.filter(id=passengerID))==0:
+        return JsonResponse({'response':'Unable to pick this person up'})
+    passenger = User.objects.get(id=passengerID)
+    if passenger.driver_id!=-1:
+        return JsonResponse({'response':'Unable to pick this person up'})
+    passenger.driver_id=driverID
+    passenger.save()
+    return JsonResponse({'response':'We have assigned the driver'})

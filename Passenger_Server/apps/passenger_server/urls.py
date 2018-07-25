@@ -19,4 +19,5 @@ urlpatterns=[
     url(r'^removeFromQueue/$', views.removeFromQueue),
     url(r'^getDrivingForId/$', views.getDrivingForId),
     url(r'^fetchQueue/$', views.fetchQueue),
+    url(r'^assignPassengerDriver/$', views.assignPassengerDriver),
 ]

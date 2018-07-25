@@ -926,8 +926,8 @@
                                     <constraint firstAttribute="height" constant="60" id="9Yg-De-sum"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Queue" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqM-xe-5K8">
-                                <rect key="frame" x="149.5" y="72" width="76.5" height="31"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Queue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqM-xe-5K8">
+                                <rect key="frame" x="8" y="72" width="359" height="31"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="25"/>
                                 <color key="textColor" red="1" green="0.841319178" blue="0.27913154610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -994,6 +994,7 @@
                                         <connections>
                                             <outlet property="addressLabel" destination="Mre-qx-38n" id="6Dh-r3-vpb"/>
                                             <outlet property="nameLabel" destination="Qy8-3B-rLz" id="V5X-Cn-hOe"/>
+                                            <outlet property="pickupButton" destination="3TE-Xq-56W" id="JkX-Ts-kcB"/>
                                             <outlet property="statusLabel" destination="q4e-dn-zGN" id="6Yb-z8-mPX"/>
                                         </connections>
                                     </tableViewCell>
@@ -1002,8 +1003,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="aqM-xe-5K8" firstAttribute="leading" secondItem="pZf-Ur-Ch8" secondAttribute="leading" constant="8" id="0jY-Sr-RF9"/>
                             <constraint firstItem="aqM-xe-5K8" firstAttribute="top" secondItem="dNm-ES-ByM" secondAttribute="bottom" constant="8" id="7fM-0A-gfR"/>
-                            <constraint firstItem="aqM-xe-5K8" firstAttribute="centerX" secondItem="GRg-gq-uQ9" secondAttribute="centerX" id="Iec-2s-KbU"/>
                             <constraint firstItem="AgG-EJ-S9C" firstAttribute="leading" secondItem="pZf-Ur-Ch8" secondAttribute="leading" constant="8" id="MAK-6B-QKf"/>
                             <constraint firstItem="pZf-Ur-Ch8" firstAttribute="trailing" secondItem="AgG-EJ-S9C" secondAttribute="trailing" constant="8" id="PPx-G2-ZJA"/>
                             <constraint firstItem="Emq-7a-kIK" firstAttribute="leading" secondItem="pZf-Ur-Ch8" secondAttribute="leading" id="Ryd-qq-jn6"/>
@@ -1012,6 +1013,7 @@
                             <constraint firstItem="Emq-7a-kIK" firstAttribute="top" secondItem="AgG-EJ-S9C" secondAttribute="bottom" id="ftQ-cD-xs0"/>
                             <constraint firstItem="Emq-7a-kIK" firstAttribute="bottom" secondItem="pZf-Ur-Ch8" secondAttribute="bottom" id="hdh-ao-3Cw"/>
                             <constraint firstItem="dNm-ES-ByM" firstAttribute="leading" secondItem="pZf-Ur-Ch8" secondAttribute="leading" id="qN4-c3-d2h"/>
+                            <constraint firstItem="pZf-Ur-Ch8" firstAttribute="trailing" secondItem="aqM-xe-5K8" secondAttribute="trailing" constant="8" id="sor-rM-ewN"/>
                             <constraint firstItem="AgG-EJ-S9C" firstAttribute="top" secondItem="aqM-xe-5K8" secondAttribute="bottom" constant="8" id="wxj-eg-WPf"/>
                             <constraint firstItem="pZf-Ur-Ch8" firstAttribute="trailing" secondItem="Emq-7a-kIK" secondAttribute="trailing" id="zRA-Hj-EKG"/>
                         </constraints>
@@ -1586,6 +1588,6 @@ Pickup</string>
         <segue reference="6Yx-Wq-97o"/>
         <segue reference="M0i-e4-gbt"/>
         <segue reference="cty-lP-3v6"/>
-        <segue reference="zwM-KT-lUR"/>
+        <segue reference="ZFa-2a-MJl"/>
     </inferredMetricsTieBreakers>
 </document>

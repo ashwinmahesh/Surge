@@ -15,11 +15,15 @@ protocol DriveQueueCellDelegate{
 class DriveQueueCell: UITableViewCell {
     
     var delegate: DriveQueueCellDelegate?
+    
+    var userID:Int?
+    var driverID:Int64?
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     
+    @IBOutlet weak var pickupButton: UIButton!
     @IBAction func pickupPushed(_ sender: UIButton) {
         delegate!.pickupPushed(cell: self)
     }
