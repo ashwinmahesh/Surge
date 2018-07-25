@@ -16,4 +16,5 @@ urlpatterns=[
     url(r'^joinQueue/$', views.joinQueue),
     url(r'^getQueuePosition/$', views.getQueuePos),
     url(r'^getQueuedOrganization/$', views.getQueuedOrganization),
+    url(r'^removeFromQueue/$', views.removeFromQueue),
 ]

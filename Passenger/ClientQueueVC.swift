@@ -14,6 +14,7 @@ class ClientQueueVC: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var orgID:Int?
+    var id:Int64?
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var queueLabel: UILabel!
@@ -21,7 +22,7 @@ class ClientQueueVC: UIViewController {
         performSegue(withIdentifier: "QueueToHomeSegue", sender: "QueueToHome")
     }
     @IBAction func cancelPushed(_ sender: UIButton) {
-        performSegue(withIdentifier: "QueueToHomeSegue", sender: "QueueToHome")
+        removeFromQueue()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ class ClientQueueVC: UIViewController {
     
 
     func getPosition(){
-        var id:Int64 = -1
+        id = -1
         let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
         do{
             let user = try context.fetch(fetchRequest).first!
@@ -50,7 +51,7 @@ class ClientQueueVC: UIViewController {
         let url = URL(string: "\(SERVER.IP)/getQueuePosition/")
         var request = URLRequest(url: url!)
         request.httpMethod="POST"
-        let bodyData="orgID=\(orgID!)&userID=\(id)"
+        let bodyData="orgID=\(orgID!)&userID=\(id!)"
         request.httpBody = bodyData.data(using:.utf8)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -63,6 +64,10 @@ class ClientQueueVC: UIViewController {
                         let ok = UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
                             return
                         })
+                        alert.addAction(ok)
+                        DispatchQueue.main.async{
+                            self.present(alert, animated: true)
+                        }
                     }
                     let position = jsonResult["position"] as! Int
                     let name=jsonResult["organization"] as! String
@@ -78,5 +83,37 @@ class ClientQueueVC: UIViewController {
         }
         task.resume()
     }
-
+    
+    func removeFromQueue(){
+        let url = URL(string: "\(SERVER.IP)/removeFromQueue/")
+        var request = URLRequest(url: url!)
+        request.httpMethod="POST"
+        let bodyData="userID=\(id!)"
+        request.httpBody = bodyData.data(using:.utf8)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            do{
+                if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                    print(jsonResult)
+                    let response = jsonResult["response"] as! String
+                    if response=="success"{
+                        let alert = UIAlertController(title: "Success", message: "Successfully removed from the queue!", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
+                            DispatchQueue.main.async{
+                                self.performSegue(withIdentifier: "QueueToHomeSegue", sender: "QueueToHome")
+                            }
+                        })
+                        alert.addAction(ok)
+                        DispatchQueue.main.async{
+                            self.present(alert, animated: true)
+                        }
+                    }
+                }
+            }
+            catch{
+                print(error)
+            }
+        }
+        task.resume()
+    }
 }

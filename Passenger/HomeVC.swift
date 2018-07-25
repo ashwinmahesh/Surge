@@ -148,11 +148,14 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell=tableView.cellForRow(at: indexPath) as! OrganizationCell
         getQueueStatus(cell: cell)
-        DispatchQueue.main.async{
-            if self.queueStatus=="not in line"{
+        
+        if self.queueStatus=="not in line"{
+            DispatchQueue.main.async{
                 self.performSegue(withIdentifier: "AllToOneOrgSegue", sender: cell.orgID!)
             }
-            else if self.queueStatus=="in line"{
+        }
+        else if self.queueStatus=="in line"{
+            DispatchQueue.main.async{
                 self.performSegue(withIdentifier: "HomeToClientQueueSegue", sender: cell.orgID!)
             }
         }
