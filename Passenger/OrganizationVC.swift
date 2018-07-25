@@ -8,14 +8,22 @@
 
 import UIKit
 import CoreData
+import MapKit
+import CoreLocation
 
 class OrganizationVC: UIViewController {
     var orgID:Int?
+    
+    let manager = CLLocationManager()
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var tableData:[NSDictionary]=[]
+    
+    var myLong:Double?
+    var myLat:Double?
+    var address:String?
 
     @IBOutlet weak var tableView: UITableView!
     @IBAction func backPushed(_ sender: UIButton) {
@@ -47,7 +55,7 @@ class OrganizationVC: UIViewController {
         if let urlReq = URL(string: "\(SERVER.IP)/joinQueue/"){
             var request = URLRequest(url: urlReq)
             request.httpMethod="POST"
-            let bodyData = "orgID=\(orgID!)&userID=\(id!)"
+            let bodyData = "orgID=\(orgID!)&userID=\(id!)&long=\(myLong!)&lat=\(myLat!)&address=\(address!)"
             request.httpBody = bodyData.data(using:.utf8)
             let session = URLSession.shared
             let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
@@ -93,6 +101,10 @@ class OrganizationVC: UIViewController {
         tableView.dataSource=self
         tableView.delegate=self
         tableView.rowHeight=100
+        manager.delegate=self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
 //        print("Org id: \(orgID!)")
         // Do any additional setup after loading the view.
     }
@@ -147,5 +159,27 @@ extension OrganizationVC:UITableViewDelegate, UITableViewDataSource{
         cell.nameLabel.text=(currentDriver["first_name"] as! String) + " " + (currentDriver["last_name"] as! String)
         cell.phoneLabel.text = "(408) 644-9017"
         return cell
+    }
+}
+
+extension OrganizationVC: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[0]
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        myLat = location.coordinate.latitude
+        myLong = location.coordinate.longitude
+        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+        
+        CLGeocoder().reverseGeocodeLocation(location){ placemark, error in
+            if error != nil{
+                print("There was an error")
+            }
+            else{
+                if let place = placemark?[0]{
+                    self.address = "\(place.subThoroughfare!) \(place.thoroughfare!), \(place.locality!), \(place.administrativeArea!) \(place.postalCode!)"
+                }
+            }
+        }
     }
 }

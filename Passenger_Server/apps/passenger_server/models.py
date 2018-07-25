@@ -9,6 +9,8 @@ class User(models.Model):
     drivingFor_id=models.IntegerField(default=-1)
     queue = models.ForeignKey('Organization', related_name="passengers", null=True)
     location=models.CharField(max_length=255, default = '')
+    latitude=models.CharField(max_length=60, default=0)
+    longitude=models.CharField(max_length=60, default=0)
     driver_id=models.IntegerField(default=-1)
     # queue=models.ForeignKey(Organization, related_name="passengers")
 

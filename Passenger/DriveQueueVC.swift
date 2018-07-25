@@ -91,13 +91,13 @@ extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
         let currentUser=tableData[indexPath.row]
         
         cell.nameLabel.text = (currentUser["first_name"] as! String) + " " + (currentUser["last_name"] as! String)
-        cell.addressLabel.text = currentUser["location"] as! String
         if (currentUser["driver_id"] as! Int) == -1{
             cell.statusLabel.text = "Driver: Not Assigned"
         }
         else{
             cell.statusLabel.text = "Driver: Assigned"
         }
+        cell.addressLabel.text = currentUser["location"] as! String
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

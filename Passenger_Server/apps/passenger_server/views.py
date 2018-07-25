@@ -138,6 +138,9 @@ def joinQueue(request):
     user = User.objects.get(id=request.POST['userID'])
     org = Organization.objects.get(id=request.POST['orgID'])
     user.queue=org
+    user.longitude = request.POST['long']
+    user.latitude = request.POST['lat']
+    user.location = request.POST['address']
     user.save()
     return JsonResponse({'response':'added'})
 
@@ -198,7 +201,7 @@ def fetchQueue(request):
     queue_raw = Organization.objects.get(id=int(request.POST['orgID'])).passengers.all()
     queue=[]
     for user in queue_raw:
-        info={'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':user.phone_number, 'location':user.location, 'driver_id':user.driver_id}
+        info={'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':user.phone_number, 'lat':user.latitude, 'long':user.longitude, 'driver_id':user.driver_id, 'location':user.location}
         queue.append(info)
     return JsonResponse({'response':'Fetched your queue', 'queue':list(queue)})
     
