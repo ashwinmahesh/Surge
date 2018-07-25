@@ -199,11 +199,12 @@ def fetchQueue(request):
     if len(Organization.objects.filter(id=int(request.POST['orgID'])))==0:
         return JsonResponse({'response':'Could not find organization'})
     queue_raw = Organization.objects.get(id=int(request.POST['orgID'])).passengers.all()
+    org_name = Organization.objects.get(id=int(request.POST['orgID'])).name
     queue=[]
     for user in queue_raw:
         phoneNumber=user.phone_number
         phoneNew = "(" + user.phone_number[0:3] + ") " + user.phone_number[3:6] + "-" + user.phone_number[6:]
         info={'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':phoneNew, 'lat':user.latitude, 'long':user.longitude, 'driver_id':user.driver_id, 'location':user.location}
         queue.append(info)
-    return JsonResponse({'response':'Fetched your queue', 'queue':list(queue)})
+    return JsonResponse({'response':'Fetched your queue', 'queue':list(queue), 'name':org_name})
     

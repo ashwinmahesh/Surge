@@ -11,7 +11,9 @@ import UIKit
 class DriveQueueVC: UIViewController {
     
     var orgID:Int?
+    var orgName:String?
     
+    @IBOutlet weak var queueNameLabel: UILabel!
     var tableData:[NSDictionary]=[]
 
     @IBOutlet weak var tableView: UITableView!
@@ -51,6 +53,10 @@ class DriveQueueVC: UIViewController {
                 if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
                     print(jsonResult)
                     let response = jsonResult["response"] as! String
+                    self.orgName = jsonResult["name"] as! String
+                    DispatchQueue.main.async{
+                        self.queueNameLabel.text = "\(self.orgName!) Queue"
+                    }
                     if response=="Could not find organization"{
                         let alert = UIAlertController(title: "Error", message: "We could not fetch the queue for this organization.", preferredStyle: .alert)
                         let ok = UIAlertAction(title: "Ok", style: .default, handler: { (action) in
