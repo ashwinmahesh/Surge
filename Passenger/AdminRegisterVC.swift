@@ -60,6 +60,12 @@ class AdminRegisterVC: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let sentName = sender as? String{
+            let dest = segue.destination as! AdminWaitVC
+            dest.orgNameText = sentName
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -100,7 +106,7 @@ class AdminRegisterVC: UIViewController {
                         }
                         else{
                             DispatchQueue.main.async{
-                                self.performSegue(withIdentifier: "AddToFinishSegue", sender: "AddToFinish")
+                                self.performSegue(withIdentifier: "AddToFinishSegue", sender: self.nameField.text!)
                             }
                         }
                     }

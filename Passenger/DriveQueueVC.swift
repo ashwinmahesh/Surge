@@ -69,7 +69,7 @@ class DriveQueueVC: UIViewController {
             data,response,error in
             do{
                 if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
-                    print(jsonResult)
+//                    print(jsonResult)
                     let response = jsonResult["response"] as! String
                     self.orgName = jsonResult["name"] as! String
                     DispatchQueue.main.async{

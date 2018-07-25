@@ -57,7 +57,7 @@ class ClientQueueVC: UIViewController {
         let task = session.dataTask(with: request) { (data, response, error) in
             do{
                 if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
-                    print(jsonResult)
+//                    print(jsonResult)
                     let response = jsonResult["response"] as! String
                     if response=="bad"{
                         let alert = UIAlertController(title: "Fetch Error", message: "We could not get your position in the queue. Try again.", preferredStyle: .alert)
@@ -94,7 +94,7 @@ class ClientQueueVC: UIViewController {
         let task = session.dataTask(with: request) { (data, response, error) in
             do{
                 if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
-                    print(jsonResult)
+//                    print(jsonResult)
                     let response = jsonResult["response"] as! String
                     if response=="success"{
                         let alert = UIAlertController(title: "Success", message: "Successfully removed from the queue!", preferredStyle: .alert)

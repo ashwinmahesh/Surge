@@ -220,7 +220,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
                 data, response, error in
                 do{
                     if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
-                        print(jsonResult)
+//                        print(jsonResult)
                         let response = jsonResult["response"] as! String
                         if response=="success"{
                             self.drivingForId = jsonResult["drivingFor_ID"] as! Int

@@ -223,13 +223,12 @@ extension AdminMainVC{
                 data, response, error in
                 do{
                     if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
-                        print(jsonResult)
+//                        print(jsonResult)
                         let response = jsonResult["response"] as! String
                         if response=="success"{
                             self.drivingForId = jsonResult["drivingFor_ID"] as! Int
-                            print(self.drivingForId!)
+//                            print(self.drivingForId!)
                             if self.drivingForId! > -1{
-                                print("I am in the right if statement")
                                 DispatchQueue.main.async{
                                     self.performSegue(withIdentifier: "AdminToDriverSegue", sender: self.drivingForId!)
                                 }
