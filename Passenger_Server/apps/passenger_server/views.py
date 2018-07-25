@@ -137,5 +137,23 @@ def joinQueue(request):
     user.save()
     return JsonResponse({'response':'added'})
 
+@csrf_exempt
+def getQueuePos(request):
+    if request.method!='POST':
+        return HttpResponse("Posting only. Sorry pal.")
+    print(request.POST)
+    if len(User.objects.filter(id=request.POST['userID']))==0 or len(Organization.objects.filter(id=request.POST['orgID']))==0:
+        return JsonResponse({'response':'bad'})
+    org = Organization.objects.get(id=request.POST['orgID'])
+    passengers = org.passengers.all()
+    counter=0
+    for passenger in passengers:
+        counter+=1
+        print("Passenger Id: ",passenger.id)
+        if passenger.id == request.POST['userID']:
+            break
+        
+    return JsonResponse({'response':'Got your request baby!', 'position':counter, 'organization':org.name})
+
 
 # Create your views here.

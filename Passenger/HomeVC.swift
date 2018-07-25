@@ -45,7 +45,6 @@ class HomeVC: UIViewController {
         tableView.delegate=self
         tableView.rowHeight=115
 //        fetchAllActive()
-
     }
     override func viewDidAppear(_ animated: Bool) {
         fetchAllActive()
@@ -53,8 +52,14 @@ class HomeVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let orgID = sender as? Int{
-            let dest = segue.destination as! OrganizationVC
-            dest.orgID=orgID
+            if segue.identifier == "AllToOneOrgSegue"{
+                let dest = segue.destination as! OrganizationVC
+                dest.orgID=orgID
+            }
+            else if segue.identifier == "HomeToClientQueueSegue"{
+                let dest = segue.destination as! ClientQueueVC
+                dest.orgID=orgID
+            }
         }
     }
 
