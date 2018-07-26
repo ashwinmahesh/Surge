@@ -23,4 +23,7 @@ urlpatterns=[
     url(r'^removePassengerDriver/$', views.removePassengerDriver),
     url(r'^processAdminLogin/$', views.processAdminLogin),
     url(r'^main/$', views.main),
+    url(r'^approvePost/$', views.approvePost),
+    url(r'^rejectPost/$', views.rejectPost),
+    url(r'^processAdminLogout/$', views.processAdminLogout)
 ]

@@ -9,6 +9,9 @@ div.nav p.welcome{
     padding:0px;
     margin:10px 15px;
 }
+div.body{
+    text-align:center;
+}
 div.nav a{
     background:rgb(2, 153, 247);
     color:white;
@@ -25,6 +28,7 @@ div.nav a:hover{
     color:rgb(146, 145, 145);
 }
 div.group{
+    text-align:left;
     border: 5px solid rgb(60,76,91);
     background:lightgray;
     width:500px;
@@ -34,6 +38,14 @@ div.group{
     margin-bottom:30px;
     max-height:800px;
     overflow:scroll;
+    display:inline-block;
+    vertical-align: top;
+}
+div.a{
+    margin-right:20px;
+}
+div.b{
+    margin-left:20px;
 }
 div.group p.title{
     font-size:26pt;
@@ -109,3 +121,4 @@ div.group p.info{
 div.group p.info span.tab{
     margin-left:30px;
 }
+div.wrapper{background:rgb(37,37,35)}

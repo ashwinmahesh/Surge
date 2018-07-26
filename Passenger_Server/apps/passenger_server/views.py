@@ -8,6 +8,10 @@ from djangounchained_flash import ErrorManager, getFromSession
 def index(request):
     if 'flash' not in request.session:
         request.session['flash']=ErrorManager().addToSession()
+    if 'loggedIn' in request.session and request.session['loggedIn']==True:
+        if 'userID' in request.session and len(User.objects.filter(id=request.session['userID']))==1:
+            if User.objects.get(id=request.session['userID']).user_level==9:
+                return redirect('/main')
     e=getFromSession(request.session['flash'])
     context={
         'email_error':e.getMessages('email_error'),
@@ -271,8 +275,62 @@ def processAdminLogin(request):
         e.addMessage("User does not have admin privileges", "main_error")
         request.session['flash']=e.addToSession()
         return redirect('/')
+    request.session['loggedIn']=True
+    request.session['userID']=User.objects.get(email=request.POST['email']).id
     return redirect('/main')
 
 def main(request):
-    context={'orgs': Organization.objects.filter(approved=False)}
+    if 'loggedIn' not in request.session:
+        return redirect('/')
+    if 'userID' not in request.session:
+        return redirect('/')
+    if request.session['loggedIn']==False:
+        return redirect('/')
+    if len(User.objects.filter(id=request.session['userID']))==0:
+        return redirect('/')
+    if User.objects.get(id=request.session['userID']).user_level!=9:
+        return redirect('/')
+    context={
+        'orgs': Organization.objects.filter(approved=False),
+        'orgs_approved':Organization.objects.filter(approved=True)
+        }
     return render(request, 'passenger_server/main.html', context)
+
+def approvePost(request):
+    if request.method!='POST':
+        return redirect('/')
+    if 'loggedIn' not in request.session:
+        return redirect('/')
+    if 'userID' not in request.session:
+        return redirect('/')
+    if request.session['loggedIn']==False:
+        return redirect('/')
+    if len(User.objects.filter(id=request.session['userID']))==0:
+        return redirect('/')
+    if User.objects.get(id=request.session['userID']).user_level!=9:
+        return redirect('/')
+    org = Organization.objects.get(id=request.POST['org_id'])
+    org.approved=True
+    org.save()
+    return redirect('/main/')
+
+def rejectPost(request):
+    if request.method!='POST':
+        return redirect('/')
+    if 'loggedIn' not in request.session:
+        return redirect('/')
+    if 'userID' not in request.session:
+        return redirect('/')
+    if request.session['loggedIn']==False:
+        return redirect('/')
+    if len(User.objects.filter(id=request.session['userID']))==0:
+        return redirect('/')
+    if User.objects.get(id=request.session['userID']).user_level!=9:
+        return redirect('/')
+    org = Organization.objects.get(id=request.POST['org_id'])
+    org.delete()
+    return redirect('/main/')
+
+def processAdminLogout(request):
+    request.session.clear()
+    return redirect('/')

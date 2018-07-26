@@ -18,10 +18,10 @@
         </div>
         <div class='nav'>
             <p class='welcome'>Welcome, Ashwin</p>
-            <a href='#'>Logout</a>
+            <a href='/processAdminLogout/'>Logout</a>
         </div>
         <div class='body'>
-            <div class='group'>
+            <div class='group a'>
                 <p class='title'>Pending</p>
                 {% for org in orgs %}
                 <div class='organization'>
@@ -31,15 +31,34 @@
                     <p class='date'>Posted on: {{org.created_at}}</p>
                     <p class='description'>{{org.description}}</p>
                     <div class='buttons'>
-                        <form action='#' method='POST'>
+                        <form action='/approvePost/' method='POST'>
                             {% csrf_token %}
-                            <input type='hidden' value='1' name='post_id'>
+                            <input type='hidden' value='{{ org.id }}' name='org_id'>
                             <input type='submit' class='approve' value='Approve'>
                         </form>
-                        <form action='#' method='POST'>
+                        <form action='/rejectPost/' method='POST'>
                             {% csrf_token %}
-                            <input type='hidden' value='1' name='post_id'>
+                            <input type='hidden' value='{{ org.id }}' name='org_id'>
                             <input type='submit' class='reject' value='Reject'>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class='group b'>
+                <p class='title'>Approved</p>
+                {% for org in orgs_approved %}
+                <div class='organization'>
+                    <p class='org_name'>{{ org.name }}</p>
+                    <p class='poster'>{{org.poster.first_name}} {{org.poster.last_name}}</p>
+                    <p class='info'>Email: {{org.poster.email}}<span class='tab'></span>Phone: {{org.poster.phone_number}}</p>
+                    <p class='date'>Posted on: {{org.created_at}}</p>
+                    <p class='description'>{{org.description}}</p>
+                    <div class='buttons'>
+                        <form action='/rejectPost/' method='post'>
+                            {% csrf_token %}
+                            <input type='hidden' value='{{org.id}}' name='org_id'>
+                            <input type='submit' class='reject' value='Remove'>
                         </form>
                     </div>
                 </div>
