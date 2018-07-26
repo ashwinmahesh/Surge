@@ -31,6 +31,7 @@
 		CF6DD0C42106A88500B3D83B /* AdminDriversVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0C32106A88500B3D83B /* AdminDriversVC.swift */; };
 		CF6DD0C62106A8B000B3D83B /* AdminDriverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0C52106A8B000B3D83B /* AdminDriverCell.swift */; };
 		CF6DD0C82106AB9100B3D83B /* SERVER.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DD0C72106AB9100B3D83B /* SERVER.swift */; };
+		CFE12491210A92E400CC066C /* CreditsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE12490210A92E400CC066C /* CreditsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		CF6DD0C32106A88500B3D83B /* AdminDriversVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDriversVC.swift; sourceTree = "<group>"; };
 		CF6DD0C52106A8B000B3D83B /* AdminDriverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDriverCell.swift; sourceTree = "<group>"; };
 		CF6DD0C72106AB9100B3D83B /* SERVER.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERVER.swift; sourceTree = "<group>"; };
+		CFE12490210A92E400CC066C /* CreditsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				CF6DD094210656E600B3D83B /* LoginVC.swift */,
 				CF6DD0A72106637300B3D83B /* RegisterVC.swift */,
 				CF6DD096210656E600B3D83B /* Main.storyboard */,
+				CFE12490210A92E400CC066C /* CreditsVC.swift */,
 				CF6DD0C72106AB9100B3D83B /* SERVER.swift */,
 				CF6DD0BB2106971800B3D83B /* AdminMainVC.swift */,
 				CF6DD0BD210697A600B3D83B /* AdminOrgCell.swift */,
@@ -220,6 +223,7 @@
 				CF6DD093210656E600B3D83B /* AppDelegate.swift in Sources */,
 				CF6DD0BE210697A600B3D83B /* AdminOrgCell.swift in Sources */,
 				CF6DD0B021067D6800B3D83B /* PickupMapVC.swift in Sources */,
+				CFE12491210A92E400CC066C /* CreditsVC.swift in Sources */,
 				CF6DD0C22106A0DC00B3D83B /* AdminWaitVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

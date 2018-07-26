@@ -17,6 +17,11 @@ class AdminMainVC: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func creditsPushed(_ sender: UIButton) {
+        performSegue(withIdentifier: "toCredits", sender: "admin")
+    }
+    
     @IBAction func homePushed(_ sender: UIButton) {
         performSegue(withIdentifier: "AdminToHomeSegue", sender: "AdminToHome")
     }
