@@ -100,7 +100,7 @@ class AdminDriversVC: UIViewController {
         super.viewDidLoad()
         tableView.dataSource=self
         tableView.delegate = self
-        tableView.rowHeight=120
+        tableView.rowHeight=110
         print("OrgID is \(orgID!)")
         fetchDrivers()
         self.hideKeyboard()
@@ -123,6 +123,7 @@ extension AdminDriversVC: UITableViewDataSource, UITableViewDelegate{
         cell.nameLabel.text = (currentDriver["first_name"] as! String) + " " + (currentDriver["last_name"] as! String)
         cell.emailLabel.text=currentDriver["email"] as! String
         cell.phoneLabel.text=(currentDriver["phone_number"] as! String)
+        cell.phoneNumber = currentDriver["phone_raw"] as! String
         cell.delegate=self
         return cell
     }
@@ -148,8 +149,33 @@ extension AdminDriversVC: UITableViewDataSource, UITableViewDelegate{
         let swipeConfig = UISwipeActionsConfiguration(actions: [delete])
         return swipeConfig
     }
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let text = UIContextualAction(style: .normal, title: "Text") { (action, view, finishAnimation) in
+            let alert = UIAlertController(title: "Text Confirmation", message: "Do you want to proceed with sending this person a text?", preferredStyle: .alert)
+            let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
+                self.sendMessage(cell: tableView.cellForRow(at: indexPath) as! AdminDriverCell)
+            }
+            let no = UIAlertAction(title: "No", style: .cancel, handler: nil)
+            alert.addAction(yes)
+            alert.addAction(no)
+            DispatchQueue.main.async{
+                self.present(alert, animated: true)
+            }
+            finishAnimation(true)
+        }
+        text.backgroundColor = UIColor.init(red: CGFloat(79.0/255.0), green: CGFloat(143.0/255.0), blue: 0, alpha: 1)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [text])
+        return swipeConfig
+    }
 }
 extension AdminDriversVC:AdminDriverCellDelegate{
+    func sendMessage(cell:AdminDriverCell){
+        let phoneNumber = cell.phoneNumber!
+        let url = URL(string : "sms://\(phoneNumber)")!
+        UIApplication.shared.open(url)
+    }
+    
+    
     func removePushed(cell: AdminDriverCell) {
 //        print("You are removing a cell")
         let alert = UIAlertController(title: "Confirm", message: "Are you sure you want to remove this driver?", preferredStyle: .alert)

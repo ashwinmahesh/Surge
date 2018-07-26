@@ -19,6 +19,8 @@ class AdminDriverCell: UITableViewCell {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     
+    var phoneNumber:String?
+    
     @IBAction func removePushed(_ sender: UIButton) {
 //        delegate.removePushed(cell: self)
     }

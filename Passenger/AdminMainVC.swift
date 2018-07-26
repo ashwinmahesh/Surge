@@ -140,7 +140,7 @@ extension AdminMainVC:UITableViewDataSource, UITableViewDelegate{
             }
         }
     }
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, finishAnimation) in
             let alert = UIAlertController(title:"Confirm", message: "Are you sure you want to delete this organization?", preferredStyle: .alert)
             let yes = UIAlertAction(title:"Yes", style:.default, handler:{
@@ -160,6 +160,25 @@ extension AdminMainVC:UITableViewDataSource, UITableViewDelegate{
         }
         delete.backgroundColor = UIColor.red
         let swipeConfig = UISwipeActionsConfiguration(actions:[delete])
+        return swipeConfig
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let info = UIContextualAction(style: .normal, title: "Info") { (action, view, finishAnimation) in
+            let cell = tableView.cellForRow(at: indexPath) as! AdminOrgCell
+            if cell.statusLabel.text! == "Pending"{
+                DispatchQueue.main.async{
+                    self.performSegue(withIdentifier: "AdminMainToWaitSegue", sender: indexPath)
+                }
+            }
+            else{
+                DispatchQueue.main.async{
+                    self.performSegue(withIdentifier: "AdminMainToViewSegue", sender: indexPath)
+                }
+            }
+        }
+        info.backgroundColor = UIColor.init(red: 114.0/255.0, green: 136.0/255.0, blue: 247.0/255.0, alpha: 1)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [info])
         return swipeConfig
     }
 }

@@ -92,6 +92,11 @@ def assignDriver(request):
     if len(User.objects.filter(email=request.POST['email']))==0:
         return JsonResponse({'response':'User does not exist'})
     user = User.objects.get(email=request.POST['email'])
+    if user.drivingFor_id!=-1:
+        if len(Organization.objects.filter(id=user.drivingFor_id))==1:
+            org = Organization.objects.get(id=user.drivingFor_id)
+            org.drivers-=1
+            org.save()
     user.drivingFor_id = request.POST['orgID']
     user.save()
     org = Organization.objects.get(id=request.POST['orgID'])
