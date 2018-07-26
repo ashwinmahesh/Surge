@@ -10,10 +10,17 @@ import UIKit
 
 class AdminWaitVC: UIViewController {
     var orgNameText:String?
+    var fromReg:Bool?
 
     @IBOutlet weak var orgNameLabel: UILabel!
     @IBAction func backPushed(_ sender: UIButton) {
-        performSegue(withIdentifier: "WaitToHomeSegue", sender: "WaitToHome")
+//        performSegue(withIdentifier: "WaitToHomeSegue", sender: "WaitToHome")
+        if let unwind = fromReg{
+            performSegue(withIdentifier: "unwindFromWaitSegue", sender: "unwindFromWait")
+        }
+        else{
+            dismiss(animated: true, completion: nil)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()

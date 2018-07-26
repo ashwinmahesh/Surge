@@ -16,7 +16,7 @@ class AdminDriversVC: UIViewController {
     var tableData:[NSDictionary]=[]
     
     @IBAction func backPushed(_ sender: UIButton) {
-        performSegue(withIdentifier: "AdminViewToMainSegue", sender: "AdminViewToMain")
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addPushed(_ sender: UIButton) {

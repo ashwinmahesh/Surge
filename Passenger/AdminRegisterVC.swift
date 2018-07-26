@@ -64,7 +64,12 @@ class AdminRegisterVC: UIViewController {
         if let sentName = sender as? String{
             let dest = segue.destination as! AdminWaitVC
             dest.orgNameText = sentName
+            dest.fromReg = true
         }
+    }
+    
+    @IBAction func unwindFromWaitVC(segue: UIStoryboardSegue){
+        dismiss(animated: false, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
