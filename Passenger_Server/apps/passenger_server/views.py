@@ -110,7 +110,7 @@ def getOrgDrivers(request):
     for user in users:
         phoneNumber=user.phone_number
         phoneNew = "(" + user.phone_number[0:3] + ") " + user.phone_number[3:6] + "-" + user.phone_number[6:]
-        userDict = {'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':phoneNew}
+        userDict = {'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':phoneNew, 'phone_raw':phoneNumber}
         output.append(userDict)
     response ={'users':output}
     return JsonResponse({'response':response, 'organization':org_name})

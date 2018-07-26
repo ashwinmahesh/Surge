@@ -109,7 +109,7 @@ class OrganizationVC: UIViewController {
         super.viewDidLoad()
         tableView.dataSource=self
         tableView.delegate=self
-        tableView.rowHeight=100
+        tableView.rowHeight=90
         manager.delegate=self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
@@ -170,7 +170,27 @@ extension OrganizationVC:UITableViewDelegate, UITableViewDataSource{
         let currentDriver=tableData[indexPath.row]
         cell.nameLabel.text=(currentDriver["first_name"] as! String) + " " + (currentDriver["last_name"] as! String)
         cell.phoneLabel.text = currentDriver["phone_number"] as! String
+        cell.phoneNumber = currentDriver["phone_raw"] as! String
         return cell
+    }
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let call = UIContextualAction(style: .normal, title: "Call") { (action, view, finishAnimation) in
+            self.placeCall(cell: tableView.cellForRow(at: indexPath) as! DriverCell)
+            finishAnimation(true)
+        }
+        call.backgroundColor = UIColor.init(red: CGFloat(79.0/255.0), green: CGFloat(143.0/255.0), blue: 0, alpha: 1)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [call])
+        return swipeConfig
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let swipeConfig = UISwipeActionsConfiguration(actions: [])
+        return swipeConfig
+    }
+    
+    func placeCall(cell:DriverCell){
+        let phoneNumber = cell.phoneNumber!
+        let url = URL(string: "telprompt://\(phoneNumber)")!
+        UIApplication.shared.open(url)
     }
 }
 

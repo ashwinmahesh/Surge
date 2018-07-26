@@ -9,6 +9,8 @@
 import UIKit
 
 class DriverCell: UITableViewCell {
+    
+    var phoneNumber:String?
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
