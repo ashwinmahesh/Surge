@@ -179,26 +179,35 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pi Kappa Alpha" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4y-zv-pmI">
-                                                    <rect key="frame" x="15" y="11" width="329" height="25.5"/>
+                                                    <rect key="frame" x="15" y="11" width="301" height="25.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                                     <color key="textColor" red="1" green="0.84131917795271072" blue="0.27913154609004898" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Approved / Pending" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmu-S4-8py">
-                                                    <rect key="frame" x="15" y="44.5" width="329" height="21.5"/>
+                                                    <rect key="frame" x="15" y="44.5" width="301" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="q9l-Ld-FYh">
+                                                    <rect key="frame" x="316" y="28" width="43" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="43" id="4bW-Ie-wrW"/>
+                                                        <constraint firstAttribute="width" constant="43" id="TyZ-Ro-2Xm"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="m4y-zv-pmI" secondAttribute="trailing" id="126-2h-bkR"/>
                                                 <constraint firstItem="tmu-S4-8py" firstAttribute="leading" secondItem="R35-G6-DY9" secondAttribute="leadingMargin" id="Dhk-H2-T0b"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="tmu-S4-8py" secondAttribute="trailing" id="H71-t4-Srd"/>
+                                                <constraint firstItem="q9l-Ld-FYh" firstAttribute="centerY" secondItem="R35-G6-DY9" secondAttribute="centerY" id="Ryv-MV-8wF"/>
                                                 <constraint firstItem="m4y-zv-pmI" firstAttribute="leading" secondItem="R35-G6-DY9" secondAttribute="leadingMargin" id="U5h-FU-jbk"/>
                                                 <constraint firstItem="m4y-zv-pmI" firstAttribute="top" secondItem="R35-G6-DY9" secondAttribute="topMargin" id="Vjz-I9-QNs"/>
+                                                <constraint firstAttribute="trailing" secondItem="q9l-Ld-FYh" secondAttribute="trailing" id="h1V-xw-01w"/>
                                                 <constraint firstItem="tmu-S4-8py" firstAttribute="top" secondItem="m4y-zv-pmI" secondAttribute="bottom" constant="8" id="kJZ-zg-wgF"/>
+                                                <constraint firstItem="q9l-Ld-FYh" firstAttribute="leading" secondItem="tmu-S4-8py" secondAttribute="trailing" id="n5n-8h-gr9"/>
+                                                <constraint firstItem="q9l-Ld-FYh" firstAttribute="leading" secondItem="m4y-zv-pmI" secondAttribute="trailing" id="no8-zJ-wES"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
