@@ -157,20 +157,23 @@ extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
         let currentUser=tableData[indexPath.row]
         
         cell.nameLabel.text = (currentUser["first_name"] as! String) + " " + (currentUser["last_name"] as! String)
+        
         if (currentUser["driver_id"] as! Int) == -1{
             cell.statusLabel.text = "Driver: Not Assigned"
+            if hasSelectedPassenger{
+                cell.pickupButton.isHidden=true
+            }
+            else{
+                cell.pickupButton.isHidden=false
+            }
         }
         else{
             cell.statusLabel.text = "Driver: \(currentUser["driver"] as! String)"
+            cell.pickupButton.isHidden=true
 //            cell.statusLabel.text = "Driver: Assigned"
         }
         print("hasSelectedPassenger: ", hasSelectedPassenger)
-        if hasSelectedPassenger{
-             cell.pickupButton.isHidden=true
-        }
-        else{
-             cell.pickupButton.isHidden=false
-        }
+
         if hasSelectedPassenger && (currentUser["driver_id"] as! Int64)==userID{
             cell.pickupButton.isHidden=false
             cell.pickupButton.backgroundColor = UIColor.orange
@@ -206,7 +209,20 @@ extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let pickup = UIContextualAction(style: .normal, title: "Pickup") { (action, view, finishAnimation) in
-
+            if self.hasSelectedPassenger == false{
+                self.pickupPushed(cell: tableView.cellForRow(at: indexPath) as! DriveQueueCell)
+            }
+            else{
+                let alert = UIAlertController(title: "Pickup Conflict", message: "You are already assigned to pick someone else up! Finish this ride first before you move on to the next one.", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "Ok", style: .default){
+                    action in
+                    return
+                }
+                alert.addAction(ok)
+                DispatchQueue.main.async{
+                    self.present(alert, animated: true)
+                }
+            }
             finishAnimation(true)
         }
         pickup.backgroundColor = UIColor.init(red: 114.0/255.0, green: 136.0/255.0, blue: 247.0/255.0, alpha: 1)

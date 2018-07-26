@@ -27,7 +27,7 @@ class DriveQueueCell: UITableViewCell {
     
     @IBOutlet weak var pickupButton: UIButton!
     @IBAction func pickupPushed(_ sender: UIButton) {
-        delegate!.pickupPushed(cell: self)
+//        delegate!.pickupPushed(cell: self)
     }
     override func awakeFromNib() {
         super.awakeFromNib()
