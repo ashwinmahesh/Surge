@@ -1578,10 +1578,11 @@ Pickup</string>
                     <connections>
                         <outlet property="nameLabel" destination="CGw-4d-K8z" id="FRF-tQ-qic"/>
                         <outlet property="queueLabel" destination="mYF-S2-3In" id="pgV-mX-z0u"/>
-                        <segue destination="uaR-Kz-C9b" kind="presentation" identifier="QueueToHomeSegue" id="Q3q-kt-K7g"/>
+                        <segue destination="iXI-SD-lPu" kind="unwind" identifier="unwindFromQueueSegue" unwindAction="unwindFromQueueWithSegue:" id="3s8-MR-z4e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wx3-ch-BOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="iXI-SD-lPu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3508" y="55.322338830584712"/>
         </scene>
@@ -1595,7 +1596,7 @@ Pickup</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="27x-JJ-tgU"/>
-        <segue reference="AzA-Ms-faH"/>
+        <segue reference="yOR-fO-RUa"/>
         <segue reference="6Yx-Wq-97o"/>
         <segue reference="M0i-e4-gbt"/>
         <segue reference="cty-lP-3v6"/>

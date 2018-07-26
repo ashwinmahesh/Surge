@@ -15,11 +15,23 @@ class ClientQueueVC: UIViewController {
     
     var orgID:Int?
     var id:Int64?
+    var fromRequest:Bool?
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var queueLabel: UILabel!
     @IBAction func backPushed(_ sender: UIButton) {
-        performSegue(withIdentifier: "QueueToHomeSegue", sender: "QueueToHome")
+        if let justRequest = fromRequest{
+            if justRequest == true{
+                DispatchQueue.main.async{
+                    self.performSegue(withIdentifier: "unwindFromQueueSegue", sender: nil)
+                }
+            }
+        }
+        else{
+            DispatchQueue.main.async{
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     @IBAction func cancelPushed(_ sender: UIButton) {
         removeFromQueue()

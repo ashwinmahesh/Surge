@@ -49,6 +49,7 @@ class HomeVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         fetchAllActive()
+        queueStatus = ""
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

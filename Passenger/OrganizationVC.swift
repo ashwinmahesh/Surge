@@ -94,7 +94,14 @@ class OrganizationVC: UIViewController {
             if sentMessage=="RequestToConfirm"{
                 let dest = segue.destination as! ClientQueueVC
                 dest.orgID = orgID
+                dest.fromRequest=true
             }
+        }
+    }
+    
+    @IBAction func unwindFromQueue(segue:UIStoryboardSegue){
+        DispatchQueue.main.async{
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
