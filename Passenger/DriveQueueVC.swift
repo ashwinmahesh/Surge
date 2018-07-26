@@ -13,7 +13,7 @@ class DriveQueueVC: UIViewController {
     
     var orgID:Int?
     var orgName:String?
-    var hasSelectedPassenger:Bool=false
+    var hasSelectedPassenger:Bool!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -49,6 +49,7 @@ class DriveQueueVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
+        hasSelectedPassenger=false
         fetchQueue()
     }
 
@@ -144,8 +145,6 @@ class DriveQueueVC: UIViewController {
         }
 
     }
-    
-    
 }
 extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -246,7 +245,6 @@ extension DriveQueueVC:DriveQueueCellDelegate{
     func pickupPushed(cell: DriveQueueCell) {
         let pickupAlert = UIAlertController(title: "Pickup Confirm", message: "Are you sure you want to pick this person up?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
-            self.hasSelectedPassenger=true
             self.pickupPerson(cell: cell)
         }
         let no = UIAlertAction(title: "No", style: .cancel, handler: nil)
@@ -285,6 +283,7 @@ extension DriveQueueVC:DriveQueueCellDelegate{
                         let ok = UIAlertAction(title: "Ok", style: .default, handler: {action in
                             let indexPath = self.tableView.indexPath(for: cell)
                             cell.driverID=self.userID
+                            self.hasSelectedPassenger=true
                             DispatchQueue.main.async{
                                 self.performSegue(withIdentifier: "DriveQueueToMapSegue", sender: indexPath)
                             }

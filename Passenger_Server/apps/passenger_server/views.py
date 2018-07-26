@@ -140,7 +140,12 @@ def searchFor(request):
         return HttpResponse("Posting only. Sorry pal.")
     print(request.POST)
     orgs = Organization.objects.filter(drivers__gt=0).filter(approved=True).filter(name__contains=request.POST['key']).values()
-    response={'organizations':list(orgs)}
+    output=[]
+    for org in orgs:
+        org_data={'name':org.name, 'drivers':org.drivers, 'queue_count':len(org.passengers.all())}
+        output.append(org_data)
+    # response={'organizations':list(orgs)}
+    response={'organizations':output}
     return JsonResponse({'response':response})
 
 @csrf_exempt
@@ -199,6 +204,7 @@ def removeFromQueue(request):
     user.location=''
     user.longitude = ''
     user.latitude = ''
+    user.driver_id=-1
     user.save()
     return JsonResponse({'response':'success'})
 
