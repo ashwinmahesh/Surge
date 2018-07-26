@@ -158,6 +158,16 @@ class HomeVC: UIViewController {
                         print(jsonResult)
                         let response = jsonResult["response"] as! String
                         self.queueStatus=response
+                        if self.queueStatus=="not in line"{
+                            DispatchQueue.main.async{
+                                self.performSegue(withIdentifier: "AllToOneOrgSegue", sender: cell.orgID!)
+                            }
+                        }
+                        else if self.queueStatus=="in line"{
+                            DispatchQueue.main.async{
+                                self.performSegue(withIdentifier: "HomeToClientQueueSegue", sender: cell.orgID!)
+                            }
+                        }
                     }
                 }
                 catch{
@@ -228,21 +238,15 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell=tableView.cellForRow(at: indexPath) as! OrganizationCell
-        getQueueStatus(cell: cell)
-        
-        if self.queueStatus=="not in line"{
-            DispatchQueue.main.async{
-                self.performSegue(withIdentifier: "AllToOneOrgSegue", sender: cell.orgID!)
-            }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let info = UIContextualAction(style: .normal, title: "Info") { (action, view, finishAnimation) in
+            let cell=tableView.cellForRow(at: indexPath) as! OrganizationCell
+            self.getQueueStatus(cell: cell)
+            finishAnimation(true)
         }
-        else if self.queueStatus=="in line"{
-            DispatchQueue.main.async{
-                self.performSegue(withIdentifier: "HomeToClientQueueSegue", sender: cell.orgID!)
-            }
-        }
-//
+        info.backgroundColor = UIColor.init(red: 114.0/255.0, green: 136.0/255.0, blue: 247.0/255.0, alpha: 1)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [info])
+        return swipeConfig
     }
     
 }
