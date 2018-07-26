@@ -271,4 +271,8 @@ def processAdminLogin(request):
         e.addMessage("User does not have admin privileges", "main_error")
         request.session['flash']=e.addToSession()
         return redirect('/')
-    return HttpResponse("Login is good")
+    return redirect('/main')
+
+def main(request):
+    context={'orgs': Organization.objects.filter(approved=False)}
+    return render(request, 'passenger_server/main.html', context)

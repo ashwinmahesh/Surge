@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Passenger</title>
+    {% load static %}
+    <link rel='stylesheet' type='text/css' href='{% static 'passenger_server/css/main.css' %}'>
+    <link rel='stylesheet' type='text/css' href='{% static 'passenger_server/css/cdHeaderCSS.css' %}'>
+    <link rel="stylesheet" type="text/css" href='{% static 'passenger_server/css/proxima_nova/fonts/fonts.css' %}'/>
+</head>
+<body>
+    <div class='wrapper'>
+        <div class='header'>
+            <!-- <img src='{% static 'passenger_server/images/logo.png' %}'> -->
+            <p class='title'>Passenger</p>
+        </div>
+        <div class='nav'>
+            <p class='welcome'>Welcome, Ashwin</p>
+            <a href='#'>Logout</a>
+        </div>
+        <div class='body'>
+            <div class='group'>
+                <p class='title'>Pending</p>
+                {% for org in orgs %}
+                <div class='organization'>
+                    <p class='org_name'>{{ org.name }}</p>
+                    <p class='poster'>{{org.poster.first_name}} {{org.poster.last_name}}</p>
+                    <p class='info'>Email: {{org.poster.email}}<span class='tab'></span>Phone: {{org.poster.phone_number}}</p>
+                    <p class='date'>Posted on: {{org.created_at}}</p>
+                    <p class='description'>{{org.description}}</p>
+                    <div class='buttons'>
+                        <form action='#' method='POST'>
+                            {% csrf_token %}
+                            <input type='hidden' value='1' name='post_id'>
+                            <input type='submit' class='approve' value='Approve'>
+                        </form>
+                        <form action='#' method='POST'>
+                            {% csrf_token %}
+                            <input type='hidden' value='1' name='post_id'>
+                            <input type='submit' class='reject' value='Reject'>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class='footer'>
+            <p>Created by Ashwin Mahesh</p>
+        </div>
+    </div>
+</body>
+</html>

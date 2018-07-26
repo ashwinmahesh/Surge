@@ -21,5 +21,6 @@ urlpatterns=[
     url(r'^fetchQueue/$', views.fetchQueue),
     url(r'^assignPassengerDriver/$', views.assignPassengerDriver),
     url(r'^removePassengerDriver/$', views.removePassengerDriver),
-    url(r'^processAdminLogin/$', views.processAdminLogin)
+    url(r'^processAdminLogin/$', views.processAdminLogin),
+    url(r'^main/$', views.main),
 ]

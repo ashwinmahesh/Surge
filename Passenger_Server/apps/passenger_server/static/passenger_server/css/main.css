@@ -1,0 +1,111 @@
+div.nav{
+    background:lightgray;
+}
+div.nav p.welcome{
+    display:inline-block;
+    width:fit-content;
+    font-weight:bold;
+    font-size:15pt;
+    padding:0px;
+    margin:10px 15px;
+}
+div.nav a{
+    background:rgb(2, 153, 247);
+    color:white;
+    text-decoration:none;
+    font-size:14pt;
+    font-weight:bold;
+    padding:5px 15px;
+    border-radius:6px;
+    float:right;
+    margin:5px 20px;
+}
+div.nav a:hover{
+    background:rgb(0, 102, 165);
+    color:rgb(146, 145, 145);
+}
+div.group{
+    border: 5px solid rgb(60,76,91);
+    background:lightgray;
+    width:500px;
+    border-radius:10px;
+    padding-top:1px;
+    margin-top:30px;
+    margin-bottom:30px;
+    max-height:800px;
+    overflow:scroll;
+}
+div.group p.title{
+    font-size:26pt;
+    font-weight:bolder;
+    text-align:center;
+    margin:0px;
+    margin-top:15px;
+}
+div.group p.org_name{
+    font-size:16pt;
+    margin:0px;
+    font-weight:bold;
+    margin-top:10px;
+    /* margin-left:10px; */
+}
+div.group div.organization{
+    border-top:2px solid rgb(60,76,91);
+    margin-top:15px;
+    margin-left:10px;
+    margin-right:10px;
+}
+div.group p.poster{
+    font-size:14pt;
+    margin:0px;
+    margin-top:4px;
+    /* margin-left:10px; */
+}
+div.group p.date{
+    font-style:italic;
+    margin:0px;
+}
+div.group p.description{
+    font-size:13pt;
+    margin:0px;
+    margin-top:15px;
+}
+div.group form{
+    display:inline-block;
+    width:fit-content;
+}
+div.group form input{
+    font-size:15pt;
+    height:35px;
+    width:125px;
+}
+div.group form input.approve{
+    background:rgb(9, 168, 9);
+    color:white;
+}
+div.group form input.approve:hover{
+    background:rgb(6, 128, 6);
+    color:rgb(202, 197, 197);
+}
+div.group form input.reject{
+    background:maroon;
+    color:white;
+}
+div.group form input.reject:hover{
+    background:rgb(83, 0, 0);
+    color:rgb(196, 193, 193);
+}
+div.group div.buttons{
+    text-align:center;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+div.group p.info{
+    margin:0px;
+    font-size:13pt;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+div.group p.info span.tab{
+    margin-left:30px;
+}
