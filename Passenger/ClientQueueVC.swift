@@ -111,8 +111,17 @@ class ClientQueueVC: UIViewController {
                     if response=="success"{
                         let alert = UIAlertController(title: "Success", message: "Successfully removed from the queue!", preferredStyle: .alert)
                         let ok = UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
-                            DispatchQueue.main.async{
-                                self.performSegue(withIdentifier: "QueueToHomeSegue", sender: "QueueToHome")
+                            if let justRequest = self.fromRequest{
+                                if justRequest == true{
+                                    DispatchQueue.main.async{
+                                        self.performSegue(withIdentifier: "unwindFromQueueSegue", sender: nil)
+                                    }
+                                }
+                            }
+                            else{
+                                DispatchQueue.main.async{
+                                    self.dismiss(animated: true, completion: nil)
+                                }
                             }
                         })
                         alert.addAction(ok)

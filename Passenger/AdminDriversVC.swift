@@ -100,7 +100,7 @@ class AdminDriversVC: UIViewController {
         super.viewDidLoad()
         tableView.dataSource=self
         tableView.delegate = self
-        tableView.rowHeight=155
+        tableView.rowHeight=120
         print("OrgID is \(orgID!)")
         fetchDrivers()
         self.hideKeyboard()
@@ -125,6 +125,28 @@ extension AdminDriversVC: UITableViewDataSource, UITableViewDelegate{
         cell.phoneLabel.text=(currentDriver["phone_number"] as! String)
         cell.delegate=self
         return cell
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, finishAnimation) in
+            let alert = UIAlertController(title: "Confirm", message: "Are you sure you want to remove this driver?", preferredStyle: .alert)
+            let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
+                finishAnimation(true)
+                self.removeDriver(cell:tableView.cellForRow(at: indexPath) as! AdminDriverCell)
+            }
+            let no = UIAlertAction(title: "No", style: .cancel){
+                action in
+                finishAnimation(true)
+                }
+            alert.addAction(yes)
+            alert.addAction(no)
+            DispatchQueue.main.async{
+                self.present(alert, animated: true)
+            }
+//            finishAnimation(true)
+        }
+        delete.backgroundColor = UIColor.red
+        let swipeConfig = UISwipeActionsConfiguration(actions: [delete])
+        return swipeConfig
     }
 }
 extension AdminDriversVC:AdminDriverCellDelegate{

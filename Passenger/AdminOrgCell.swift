@@ -8,7 +8,7 @@
 
 import UIKit
 protocol AdminOrgCellDelegate{
-    func removePushed(cell:AdminOrgCell)
+//    func removePushed(cell:AdminOrgCell)
 }
 
 class AdminOrgCell: UITableViewCell {
@@ -22,7 +22,7 @@ class AdminOrgCell: UITableViewCell {
     
     @IBAction func removePushed(_ sender: UIButton) {
 //        print("You pushed remove")
-        delegate!.removePushed(cell:self)
+//        delegate!.removePushed(cell:self)
     }
     override func awakeFromNib() {
         super.awakeFromNib()

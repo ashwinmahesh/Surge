@@ -44,7 +44,7 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         tableView.dataSource=self
         tableView.delegate=self
-        tableView.rowHeight=115
+        tableView.rowHeight=85
     }
     
     override func viewDidAppear(_ animated: Bool) {

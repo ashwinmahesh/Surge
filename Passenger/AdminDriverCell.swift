@@ -20,7 +20,7 @@ class AdminDriverCell: UITableViewCell {
     @IBOutlet weak var phoneLabel: UILabel!
     
     @IBAction func removePushed(_ sender: UIButton) {
-        delegate.removePushed(cell: self)
+//        delegate.removePushed(cell: self)
     }
     override func awakeFromNib() {
         super.awakeFromNib()

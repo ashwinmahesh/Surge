@@ -140,6 +140,28 @@ extension AdminMainVC:UITableViewDataSource, UITableViewDelegate{
             }
         }
     }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, finishAnimation) in
+            let alert = UIAlertController(title:"Confirm", message: "Are you sure you want to delete this organization?", preferredStyle: .alert)
+            let yes = UIAlertAction(title:"Yes", style:.default, handler:{
+                action in
+                finishAnimation(true)
+                self.deleteOrganization(cell: tableView.cellForRow(at: indexPath) as! AdminOrgCell)
+            })
+            let no = UIAlertAction(title:"No", style:.cancel){
+                action in
+                finishAnimation(true)
+            }
+            alert.addAction(yes)
+            alert.addAction(no)
+            
+            self.present(alert, animated:true)
+//            finishAnimation(true)
+        }
+        delete.backgroundColor = UIColor.red
+        let swipeConfig = UISwipeActionsConfiguration(actions:[delete])
+        return swipeConfig
+    }
 }
 extension AdminMainVC:AdminOrgCellDelegate{
     func removePushed(cell:AdminOrgCell) {
@@ -153,10 +175,9 @@ extension AdminMainVC:AdminOrgCellDelegate{
             let no = UIAlertAction(title:"No", style:.cancel, handler:nil)
             alert.addAction(yes)
             alert.addAction(no)
-            
+
             self.present(alert, animated:true)
         }
-        
     }
     
     func deleteOrganization(cell:AdminOrgCell){
