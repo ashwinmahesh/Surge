@@ -148,6 +148,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
         let currentOrg=tableData[indexPath.row]
         cell.organizationLabel.text = currentOrg["name"] as! String
         cell.driverCountLabel.text = "Drivers: \(currentOrg["drivers"] as! Int)"
+        cell.queueLabel.text = "Queue Size: \(currentOrg["queue_count"] as! Int)"
         cell.orgID = currentOrg["id"] as! Int
         return cell
     }

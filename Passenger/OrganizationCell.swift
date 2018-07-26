@@ -14,6 +14,7 @@ class OrganizationCell: UITableViewCell {
 
     @IBOutlet weak var organizationLabel: UILabel!
     @IBOutlet weak var driverCountLabel: UILabel!
+    @IBOutlet weak var queueLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

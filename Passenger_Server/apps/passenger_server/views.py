@@ -130,8 +130,14 @@ def removeDriver(request):
 
 @csrf_exempt
 def fetchAllActive(request):
-    orgs = Organization.objects.filter(drivers__gt=0).filter(approved=True).values()
-    response={'organizations':list(orgs)}
+    orgs = Organization.objects.filter(drivers__gt=0).filter(approved=True)
+    output=[]
+    for org in orgs:
+        org_data={'name':org.name, 'drivers':org.drivers, 'queue_count':len(org.passengers.all()), 'id':org.id}
+        output.append(org_data)
+    # response={'organizations':list(orgs)}
+    response={'organizations':output}
+    # response={'organizations':list(orgs)}
     return JsonResponse({'response':response})
 
 @csrf_exempt
@@ -139,10 +145,10 @@ def searchFor(request):
     if request.method!='POST':
         return HttpResponse("Posting only. Sorry pal.")
     print(request.POST)
-    orgs = Organization.objects.filter(drivers__gt=0).filter(approved=True).filter(name__contains=request.POST['key']).values()
+    orgs = Organization.objects.filter(drivers__gt=0).filter(approved=True).filter(name__contains=request.POST['key'])
     output=[]
     for org in orgs:
-        org_data={'name':org.name, 'drivers':org.drivers, 'queue_count':len(org.passengers.all())}
+        org_data={'name':org.name, 'drivers':org.drivers, 'queue_count':len(org.passengers.all()), 'id':org.id}
         output.append(org_data)
     # response={'organizations':list(orgs)}
     response={'organizations':output}
