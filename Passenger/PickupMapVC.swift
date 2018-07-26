@@ -72,7 +72,7 @@ class PickupMapVC: UIViewController {
     }
     
     @IBAction func confirmPushed(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Cancel Confirm", message: "Are you sure you want to cancel your pickup of this person?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Pickup Confirm", message: "Are you sure you want to mark this person as picked up?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
             self.action="pickup"
             self.pickupComplete()
@@ -87,7 +87,7 @@ class PickupMapVC: UIViewController {
     
     @IBAction func cancelPushed(_ sender: UIButton) {
         
-        let alert = UIAlertController(title: "Pickup Confirm", message: "Are you sure you want to mark this person as picked up?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Cancel Confirm", message: "Are you sure you want to cancel your pickup of this person?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
             self.action="cancel"
             self.removeDriver()

@@ -20,5 +20,6 @@ urlpatterns=[
     url(r'^getDrivingForId/$', views.getDrivingForId),
     url(r'^fetchQueue/$', views.fetchQueue),
     url(r'^assignPassengerDriver/$', views.assignPassengerDriver),
-    url(r'^removePassengerDriver/$', views.removePassengerDriver)
+    url(r'^removePassengerDriver/$', views.removePassengerDriver),
+    url(r'^processAdminLogin/$', views.processAdminLogin)
 ]

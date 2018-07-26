@@ -12,6 +12,7 @@ class User(models.Model):
     latitude=models.CharField(max_length=60, default=0)
     longitude=models.CharField(max_length=60, default=0)
     driver_id=models.IntegerField(default=-1)
+    user_level=models.IntegerField(default=1)
     # queue=models.ForeignKey(Organization, related_name="passengers")
 
 class Organization(models.Model):

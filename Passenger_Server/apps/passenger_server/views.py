@@ -3,9 +3,19 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import bcrypt
 from apps.passenger_server.models import *
+from djangounchained_flash import ErrorManager, getFromSession
 
 def index(request):
-    return JsonResponse({'result':'Set up is good!'})
+    if 'flash' not in request.session:
+        request.session['flash']=ErrorManager().addToSession()
+    e=getFromSession(request.session['flash'])
+    context={
+        'email_error':e.getMessages('email_error'),
+        'password_error':e.getMessages('password_error'),
+        'main_error':e.getMessages('main_error')
+    }
+    request.session['flash']=e.addToSession()
+    return render(request,'passenger_server/login.html', context)
 
 @csrf_exempt
 def processRegister(request):
@@ -244,3 +254,21 @@ def removePassengerDriver(request):
     passenger.driver_id=-1
     passenger.save()
     return JsonResponse({'response':'success'})
+
+def processAdminLogin(request):
+    if request.method!='POST':
+        return redirect('/')
+    e=getFromSession(request.session['flash'])
+    if len(User.objects.filter(email=request.POST['email']))==0:
+        e.addMessage("Email does not exist in server", "email_error")
+        request.session['flash']=e.addToSession()
+        return redirect('/')
+    if not bcrypt.checkpw(request.POST['password'].encode(), User.objects.get(email=request.POST['email']).password.encode()):
+        e.addMessage("Invalid password", "password_error")
+        request.session['flash']=e.addToSession()
+        return redirect('/')
+    if User.objects.get(email=request.POST['email']).user_level!=9:
+        e.addMessage("User does not have admin privileges", "main_error")
+        request.session['flash']=e.addToSession()
+        return redirect('/')
+    return HttpResponse("Login is good")

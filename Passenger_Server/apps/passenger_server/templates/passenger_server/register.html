@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clothing Dojo - Register</title>
+    {% load static %}
+    <link rel='stylesheet' type='text/css' href='{% static 'clothing_login/css/cdHeaderCSS.css' %}'>
+    <link rel='stylesheet' type='text/css' href='{% static 'clothing_login/css/cdLoginCSS.css' %}'>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href='{% static 'clothing_dojo/css/proxima_nova/fonts/fonts.css' %}'/>
+</head>
+<body>
+    <div class='wrapper'>
+        <div class='header'>
+            <img src='{% static 'clothing_admin/images/logo.png' %}'>
+            <p class='title'>Clothing Dojo</p>
+        </div>
+        <div class='body'>
+            <div class='holding_back'>
+                <a href='/login/'>BACK</a>
+            </div>
+            <form class='register' action='/login/processRegister/' method='post'>
+                {% csrf_token %}
+                <p class='big'>Registration</p>
+                {% for message in first_name_errors %}
+                    <p class='red'>{{message}}</p>
+                {% endfor %}
+                <div class='single'>
+                    <p>First Name:</p>
+                    <input type='text' name='first_name' placeholder='first name' value='{{first_name}}'>
+                </div>
+                {% for message in last_name_errors %}
+                    <p class='red'>{{message}}</p>
+                {% endfor %}
+                <div class='single'>
+                    <p>Last Name:</p>
+                    <input type='text' name='last_name' placeholder='last name' value='{{last_name}}'>
+                </div>
+                {% for message in reg_email_errors %}
+                    <p class='red'>{{message}}</p>
+                {% endfor %}
+                <div class='single'>
+                    <p>Email:</p>
+                    <input type='text' name='email' placeholder='email' value='{{email}}'>
+                </div>
+                {% for message in password_errors %}
+                    <p class='red'>{{message}}</p>
+                {% endfor %}
+                <div class='single'>
+                    <p>Password:</p>
+                    <input type='password' name='password' placeholder='password'>
+                </div>
+                {% for message in confirm_errors %}
+                    <p class='red'>{{message}}</p>
+                {% endfor %}
+                <div class='single'>
+                    <p>Confirm PW:</p>
+                    <input type='password' name='confirm' placeholder='confirm'>
+                </div>
+                <p>Location:<select name='location'>
+                        {% for location in locations %}
+                            <option value='{{location.name}}'>{{location.name}}</option>
+                        {% endfor %}
+                    </select>
+                </p>
+                
+                <input class='register login' type='submit' value='Register'>
+            </form>
+        </div>
+        <div class='footer'>
+            <p>Created by Ashwin Mahesh</p>
+            <p>*DISCLAIMER: Not a real e-commerce website*</p>
+        </div>
+    </div>
+</body>
+</html>
