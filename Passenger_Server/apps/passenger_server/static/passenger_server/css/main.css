@@ -1,5 +1,6 @@
 div.nav{
-    background:lightgray;
+    /* background:lightgray; */
+    background:rgb(241,244,248)
 }
 div.nav p.welcome{
     display:inline-block;
@@ -30,7 +31,8 @@ div.nav a:hover{
 div.group{
     text-align:left;
     border: 5px solid rgb(60,76,91);
-    background:lightgray;
+    /* background:lightgray; */
+    background:rgb(241,244,248);
     width:500px;
     border-radius:10px;
     padding-top:1px;
@@ -121,4 +123,6 @@ div.group p.info{
 div.group p.info span.tab{
     margin-left:30px;
 }
-div.wrapper{background:rgb(37,37,35)}
+div.wrapper{
+    background:rgb(37,37,35)
+}

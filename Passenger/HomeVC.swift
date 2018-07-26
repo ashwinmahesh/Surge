@@ -135,40 +135,6 @@ class HomeVC: UIViewController {
         }
         
     }
-    
-
-}
-extension HomeVC: UITableViewDataSource, UITableViewDelegate{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OrganizationCell", for: indexPath) as! OrganizationCell
-        let currentOrg=tableData[indexPath.row]
-        cell.organizationLabel.text = currentOrg["name"] as! String
-        cell.driverCountLabel.text = "Drivers: \(currentOrg["drivers"] as! Int)"
-        cell.queueLabel.text = "Queue Size: \(currentOrg["queue_count"] as! Int)"
-        cell.orgID = currentOrg["id"] as! Int
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell=tableView.cellForRow(at: indexPath) as! OrganizationCell
-        getQueueStatus(cell: cell)
-        
-        if self.queueStatus=="not in line"{
-            DispatchQueue.main.async{
-                self.performSegue(withIdentifier: "AllToOneOrgSegue", sender: cell.orgID!)
-            }
-        }
-        else if self.queueStatus=="in line"{
-            DispatchQueue.main.async{
-                self.performSegue(withIdentifier: "HomeToClientQueueSegue", sender: cell.orgID!)
-            }
-        }
-//
-    }
     func getQueueStatus(cell:OrganizationCell){
         var id:Int64?
         let fetchReq:NSFetchRequest<User> = User.fetchRequest()
@@ -222,7 +188,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
                 data, response, error in
                 do{
                     if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
-//                        print(jsonResult)
+                        //                        print(jsonResult)
                         let response = jsonResult["response"] as! String
                         if response=="success"{
                             self.drivingForId = jsonResult["drivingFor_ID"] as! Int
@@ -246,5 +212,38 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
             task.resume()
         }
     }
+}
+extension HomeVC: UITableViewDataSource, UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OrganizationCell", for: indexPath) as! OrganizationCell
+        let currentOrg=tableData[indexPath.row]
+        cell.organizationLabel.text = currentOrg["name"] as! String
+        cell.driverCountLabel.text = "Drivers: \(currentOrg["drivers"] as! Int)"
+        cell.queueLabel.text = "Queue Size: \(currentOrg["queue_count"] as! Int)"
+        cell.orgID = currentOrg["id"] as! Int
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell=tableView.cellForRow(at: indexPath) as! OrganizationCell
+        getQueueStatus(cell: cell)
+        
+        if self.queueStatus=="not in line"{
+            DispatchQueue.main.async{
+                self.performSegue(withIdentifier: "AllToOneOrgSegue", sender: cell.orgID!)
+            }
+        }
+        else if self.queueStatus=="in line"{
+            DispatchQueue.main.async{
+                self.performSegue(withIdentifier: "HomeToClientQueueSegue", sender: cell.orgID!)
+            }
+        }
+//
+    }
+    
 }
 
