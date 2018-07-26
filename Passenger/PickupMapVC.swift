@@ -72,12 +72,22 @@ class PickupMapVC: UIViewController {
     }
     
     @IBAction func confirmPushed(_ sender: UIButton) {
-        print("Pressing confirm")
+        let alert = UIAlertController(title: "Cancel Confirm", message: "Are you sure you want to cancel your pickup of this person?", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
+            self.action="pickup"
+            self.pickupComplete()
+        }
+        let no = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alert.addAction(yes)
+        alert.addAction(no)
+        DispatchQueue.main.async{
+            self.present(alert, animated: true)
+        }
     }
     
     @IBAction func cancelPushed(_ sender: UIButton) {
         
-        let alert = UIAlertController(title: "Cancel Confirm", message: "Are you sure you want to cancel your pickup of this person?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Pickup Confirm", message: "Are you sure you want to mark this person as picked up?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
             self.action="cancel"
             self.removeDriver()
@@ -157,6 +167,37 @@ class PickupMapVC: UIViewController {
                         let alert = UIAlertController(title: "Remove Succes", message: "Successfully removed this passenger from the queue.", preferredStyle: .alert)
                         let ok = UIAlertAction(title: "Ok", style: .default) { (action) in
                             self.performSegue(withIdentifier: "unwindFromMapVC", sender: "remove")
+                        }
+                        alert.addAction(ok)
+                        DispatchQueue.main.async{
+                            self.present(alert, animated: true)
+                        }
+                    }
+                }
+            }
+            catch{
+                print(error)
+            }
+        }
+        task.resume()
+    }
+    
+    func pickupComplete(){
+        let urlReq: URL = URL(string: "\(SERVER.IP)/removeFromQueue/")!
+        var request = URLRequest(url:urlReq)
+        request.httpMethod = "POST"
+        let bodyData = "userID=\(passengerID!)"
+        request.httpBody=bodyData.data(using:.utf8)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest){
+            data, response, error in
+            do{
+                if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                    let response = jsonResult["response"] as! String
+                    if response=="success"{
+                        let alert = UIAlertController(title: "Pickup Success", message: "Successfully picked up this passenger!", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "Ok", style: .default) { (action) in
+                            self.performSegue(withIdentifier: "unwindFromMapVC", sender: "pickup")
                         }
                         alert.addAction(ok)
                         DispatchQueue.main.async{

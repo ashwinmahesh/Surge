@@ -64,6 +64,12 @@ class DriveQueueVC: UIViewController {
             if source.action=="cancel"{
                 hasSelectedPassenger = false
             }
+            else if source.action=="remove"{
+                hasSelectedPassenger = false
+            }
+            else if source.action=="pickup"{
+                hasSelectedPassenger = false
+            }
         }
     }
     
