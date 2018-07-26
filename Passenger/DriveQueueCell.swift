@@ -18,6 +18,8 @@ class DriveQueueCell: UITableViewCell {
     
     var userID:Int?
     var driverID:Int64?
+    
+    var phoneNumber:String?
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!

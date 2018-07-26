@@ -226,7 +226,7 @@ def fetchQueue(request):
         driver=""
         if user.driver_id!=-1:
             driver = User.objects.get(id=user.driver_id).first_name + " " + User.objects.get(id=user.driver_id).last_name
-        info={'id':user.id, 'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':phoneNew, 'lat':user.latitude, 'long':user.longitude, 'driver_id':user.driver_id, 'location':user.location, 'driver':driver}
+        info={'id':user.id, 'first_name':user.first_name, 'last_name':user.last_name, 'email':user.email, 'phone_number':phoneNew, 'lat':user.latitude, 'long':user.longitude, 'driver_id':user.driver_id, 'location':user.location, 'driver':driver, 'phone_raw':phoneNumber}
         queue.append(info)
     return JsonResponse({'response':'Fetched your queue', 'queue':list(queue), 'name':org_name})
     

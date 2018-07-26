@@ -145,6 +145,7 @@ class DriveQueueVC: UIViewController {
 
     }
     
+    
 }
 extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -182,6 +183,7 @@ extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
             cell.pickupButton.isEnabled=true
         }
         
+        cell.phoneNumber = currentUser["phone_raw"] as! String
         cell.addressLabel.text = currentUser["location"] as! String
         cell.userID = currentUser["id"] as! Int
         cell.delegate=self
@@ -189,11 +191,42 @@ extension DriveQueueVC: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "DriveQueueToMapSegue", sender: indexPath)
+        DispatchQueue.main.async{
+            self.performSegue(withIdentifier: "DriveQueueToMapSegue", sender: indexPath)
+        }
+    }
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let call = UIContextualAction(style: .normal, title: "Call") { (action, view, finishAnimation) in
+            self.placeCall(cell: tableView.cellForRow(at: indexPath) as! DriveQueueCell)
+            finishAnimation(true)
+        }
+        call.backgroundColor = UIColor.init(red: CGFloat(79.0/255.0), green: CGFloat(143.0/255.0), blue: 0, alpha: 1)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [call])
+        return swipeConfig
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let pickup = UIContextualAction(style: .normal, title: "Pickup") { (action, view, finishAnimation) in
+
+            finishAnimation(true)
+        }
+        pickup.backgroundColor = UIColor.init(red: 114.0/255.0, green: 136.0/255.0, blue: 247.0/255.0, alpha: 1)
+        
+        let swipeConfig = UISwipeActionsConfiguration(actions:[pickup])
+        return swipeConfig
     }
 }
 
 extension DriveQueueVC:DriveQueueCellDelegate{
+    func placeCall(cell: DriveQueueCell){
+        let phoneNumber = cell.phoneNumber!
+        let url:URL = URL(string: "telprompt://\(phoneNumber)")!
+        UIApplication.shared.open(url)
+    }
+    
+//    override var prefersStatusBarHidden: Bool{
+//        return true
+//    }
+    
     func pickupPushed(cell: DriveQueueCell) {
         let pickupAlert = UIAlertController(title: "Pickup Confirm", message: "Are you sure you want to pick this person up?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
