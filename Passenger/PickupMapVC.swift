@@ -64,6 +64,13 @@ class PickupMapVC: UIViewController {
                 }
             }
         }
+        
+        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        let pickupAnnotation = PickupAnnotation(coordinate: pickupCoordinates!, title: "\(name!)", subtitle: "Pickup Here!")
+        mapView.addAnnotation(pickupAnnotation)
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(pickupCoordinates!, span)
+        mapView.setRegion(region, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -216,30 +223,34 @@ class PickupMapVC: UIViewController {
 }
 extension PickupMapVC:CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
-        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.005, 0.005)
-        let sourceLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(sourceLocation, span)
-        let driverCoordinates = manager.location?.coordinate
-        let sourcePlacemark = MKPlacemark(coordinate: driverCoordinates!)
-        let sourceItem = MKMapItem(placemark: sourcePlacemark)
-        let directionRequest = MKDirectionsRequest()
-        directionRequest.source = sourceItem
-        directionRequest.destination = destItem
-        directionRequest.transportType = .automobile
-        
-        let directions = MKDirections(request: directionRequest)
-        directions.calculate { (response, error) in
-            guard let response = response else{
-                if let error = error{
-                    print("Something went wrong")
+        if let showDirections = yourPassenger as? Bool{
+            if showDirections == true{
+                let location = locations[0]
+                let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+                let sourceLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+                let region:MKCoordinateRegion = MKCoordinateRegionMake(sourceLocation, span)
+                let driverCoordinates = manager.location?.coordinate
+                let sourcePlacemark = MKPlacemark(coordinate: driverCoordinates!)
+                let sourceItem = MKMapItem(placemark: sourcePlacemark)
+                let directionRequest = MKDirectionsRequest()
+                directionRequest.source = sourceItem
+                directionRequest.destination = destItem
+                directionRequest.transportType = .automobile
+                
+                let directions = MKDirections(request: directionRequest)
+                directions.calculate { (response, error) in
+                    guard let response = response else{
+                        if let error = error{
+                            print("Something went wrong")
+                        }
+                        return
+                    }
+                    let route = response.routes[0]
+                    self.mapView.add(route.polyline, level: .aboveLabels)
+                    self.mapView.setRegion(region, animated: true)
+                    
                 }
-                return
             }
-            let route = response.routes[0]
-            self.mapView.add(route.polyline, level: .aboveLabels)
-            self.mapView.setRegion(region, animated: true)
-            
         }
     }
     
@@ -258,5 +269,29 @@ extension PickupMapVC:MKMapViewDelegate{
         renderer.strokeColor = UIColor.blue
         renderer.lineWidth = 6.0
         return renderer
+    }
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let pickupAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as? MKMarkerAnnotationView{
+            pickupAnnotationView.animatesWhenAdded = true
+            pickupAnnotationView.titleVisibility = .adaptive
+            pickupAnnotationView.subtitleVisibility = .adaptive
+            
+            return pickupAnnotationView
+        }
+        return nil
+    }
+}
+
+class PickupAnnotation: NSObject, MKAnnotation{
+    var coordinate: CLLocationCoordinate2D
+    var title:String?
+    var subtitle: String?
+    
+    init(coordinate: CLLocationCoordinate2D, title:String, subtitle:String){
+        self.coordinate = coordinate
+        self.title = title
+        self.subtitle = subtitle
+        
+        super.init()
     }
 }
