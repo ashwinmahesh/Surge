@@ -45,6 +45,7 @@ class HomeVC: UIViewController {
         tableView.dataSource=self
         tableView.delegate=self
         tableView.rowHeight=85
+        self.hideKeyboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -236,6 +237,10 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
         cell.queueLabel.text = "Queue Size: \(currentOrg["queue_count"] as! Int)"
         cell.orgID = currentOrg["id"] as! Int
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell=tableView.cellForRow(at: indexPath) as! OrganizationCell
+        self.getQueueStatus(cell: cell)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
