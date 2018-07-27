@@ -36,6 +36,7 @@ class PickupMapVC: UIViewController {
     }
     
     @IBAction func mapPushed(_ sender: UIButton) {
+        manager.stopUpdatingLocation()
         let regionDistance:CLLocationDistance=1000
         let regionSpan = MKCoordinateRegionMakeWithDistance(pickupCoordinates!, regionDistance, regionDistance)
         let options = [MKLaunchOptionsMapCenterKey:NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey:NSValue(mkCoordinateSpan: regionSpan.span)]
@@ -59,7 +60,7 @@ class PickupMapVC: UIViewController {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
+//        manager.startUpdatingLocation()
 //        placeDest()
         
         mapView.delegate = self
@@ -96,6 +97,9 @@ class PickupMapVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        manager.startUpdatingLocation()
     }
     
     @IBAction func confirmPushed(_ sender: UIButton) {
