@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 import bcrypt
 from apps.passenger_server.models import *
 from djangounchained_flash import ErrorManager, getFromSession
+from datetime import datetime
 
 def index(request):
     if 'flash' not in request.session:
@@ -172,6 +173,7 @@ def joinQueue(request):
     user.longitude = request.POST['long']
     user.latitude = request.POST['lat']
     user.location = request.POST['address']
+    user.queued_at = datetime.now()
     user.save()
     return JsonResponse({'response':'added'})
 
@@ -234,7 +236,7 @@ def fetchQueue(request):
     print(request.POST)
     if len(Organization.objects.filter(id=int(request.POST['orgID'])))==0:
         return JsonResponse({'response':'Could not find organization'})
-    queue_raw = Organization.objects.get(id=int(request.POST['orgID'])).passengers.all()
+    queue_raw = Organization.objects.get(id=int(request.POST['orgID'])).passengers.all().order_by("-queued_at")
     org_name = Organization.objects.get(id=int(request.POST['orgID'])).name
     queue=[]
     for user in queue_raw:

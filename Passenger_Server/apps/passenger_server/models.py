@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 class User(models.Model):
     first_name=models.CharField(max_length=255)
@@ -13,6 +14,7 @@ class User(models.Model):
     longitude=models.CharField(max_length=60, default=0)
     driver_id=models.IntegerField(default=-1)
     user_level=models.IntegerField(default=1)
+    queued_at = models.DateTimeField(null=True, default=datetime.now())
     # queue=models.ForeignKey(Organization, related_name="passengers")
 
 class Organization(models.Model):
