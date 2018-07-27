@@ -34,6 +34,19 @@ class PickupMapVC: UIViewController {
     @IBAction func backPushed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func mapPushed(_ sender: UIButton) {
+        let regionDistance:CLLocationDistance=1000
+        let regionSpan = MKCoordinateRegionMakeWithDistance(pickupCoordinates!, regionDistance, regionDistance)
+        let options = [MKLaunchOptionsMapCenterKey:NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey:NSValue(mkCoordinateSpan: regionSpan.span)]
+        
+        let placemark = destPlacemark!
+        let mapItem = destItem!
+        mapItem.name="\(name!)"
+        mapItem.openInMaps(launchOptions: options)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print("Your passenger? ",yourPassenger!)
