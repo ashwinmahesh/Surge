@@ -10,5 +10,7 @@ import Foundation
 
 class SERVER{
     //CodingDojo
-    static var IP:String="http://192.168.1.228:8000"
+//    static var IP:String="http://192.168.1.228:8000"
+    //PUBLIC
+    static var IP:String="http://18.188.201.225"
 }
