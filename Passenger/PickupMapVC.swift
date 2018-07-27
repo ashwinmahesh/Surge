@@ -65,9 +65,16 @@ class PickupMapVC: UIViewController {
             }
         }
         
-        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        let pickupAnnotation = PickupAnnotation(coordinate: pickupCoordinates!, title: "\(name!)", subtitle: "Pickup Here!")
+//        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+//        let pickupAnnotation = PickupAnnotation(coordinate: pickupCoordinates!, title: "\(name!)", subtitle: "Pickup Here!")
+//        mapView.addAnnotation(pickupAnnotation)
+        
+        let pickupAnnotation = MKPointAnnotation()
+        pickupAnnotation.coordinate = pickupCoordinates!
+        pickupAnnotation.title="\(name!)"
+        pickupAnnotation.subtitle = "Pickup here!"
         mapView.addAnnotation(pickupAnnotation)
+        
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(pickupCoordinates!, span)
         mapView.setRegion(region, animated: true)
@@ -270,16 +277,16 @@ extension PickupMapVC:MKMapViewDelegate{
         renderer.lineWidth = 6.0
         return renderer
     }
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let pickupAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as? MKMarkerAnnotationView{
-            pickupAnnotationView.animatesWhenAdded = true
-            pickupAnnotationView.titleVisibility = .adaptive
-            pickupAnnotationView.subtitleVisibility = .adaptive
-            
-            return pickupAnnotationView
-        }
-        return nil
-    }
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        if let pickupAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as? MKMarkerAnnotationView{
+//            pickupAnnotationView.animatesWhenAdded = true
+//            pickupAnnotationView.titleVisibility = .adaptive
+//            pickupAnnotationView.subtitleVisibility = .adaptive
+//
+//            return pickupAnnotationView
+//        }
+//        return nil
+//    }
 }
 
 class PickupAnnotation: NSObject, MKAnnotation{
