@@ -173,7 +173,7 @@ extension OrganizationVC:UITableViewDelegate, UITableViewDataSource{
         cell.phoneNumber = currentDriver["phone_raw"] as! String
         return cell
     }
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let call = UIContextualAction(style: .normal, title: "Call") { (action, view, finishAnimation) in
             self.placeCall(cell: tableView.cellForRow(at: indexPath) as! DriverCell)
             finishAnimation(true)
@@ -182,7 +182,7 @@ extension OrganizationVC:UITableViewDelegate, UITableViewDataSource{
         let swipeConfig = UISwipeActionsConfiguration(actions: [call])
         return swipeConfig
     }
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let swipeConfig = UISwipeActionsConfiguration(actions: [])
         return swipeConfig
     }
