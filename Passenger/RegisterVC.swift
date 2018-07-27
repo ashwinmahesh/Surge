@@ -17,6 +17,7 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmField: UITextField!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBAction func cancelPushed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -117,6 +118,9 @@ class RegisterVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
-
+extension RegisterVC:UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
+    }
+}

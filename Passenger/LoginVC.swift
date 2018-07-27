@@ -14,6 +14,8 @@ class LoginVC: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var viewInsideScroll: UIView!
     var result:NSDictionary=[:]
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -145,4 +147,12 @@ extension UIViewController{
         view.endEditing(true)
     }
 }
-
+extension LoginVC:UITextFieldDelegate{
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+}
