@@ -13,6 +13,8 @@ class AdminRegisterVC: UIViewController {
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var descriptionView: UITextView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
@@ -121,6 +123,19 @@ class AdminRegisterVC: UIViewController {
                 }
             }
             task.resume()
+        }
+    }
+}
+extension AdminRegisterVC:UITextViewDelegate{
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView==descriptionView{
+            scrollView.setContentOffset(CGPoint(x: 0, y: 300), animated: true)
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView==descriptionView{
+            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            
         }
     }
 }
