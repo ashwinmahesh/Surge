@@ -100,6 +100,7 @@ class AdminRegisterVC: UIViewController {
                 data, response, error in
                 do{
                     if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                        print(jsonResult)
                         let response = jsonResult["response"] as! String
                         print(response)
                         if response == "invalid"{
