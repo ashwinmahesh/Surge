@@ -99,7 +99,7 @@ class AdminRegisterVC: UIViewController {
             let task = session.dataTask(with: request as URLRequest){
                 data, response, error in
                 do{
-                    if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary{
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary{
                         print(jsonResult)
                         let response = jsonResult["response"] as! String
                         print(response)

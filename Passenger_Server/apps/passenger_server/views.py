@@ -53,7 +53,7 @@ def processLogin(request):
 @csrf_exempt
 def processOrgRegister(request):
     if request.method!='POST':
-        return HttpResponse("You are not posting!")
+        return JsonResponse({'response':'You are not posting!'})
     print(request.POST)
     if len(Organization.objects.filter(name=request.POST['name']))==1:
         return JsonResponse({'response':'invalid'})

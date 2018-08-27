@@ -12,7 +12,7 @@ class SERVER{
     //CodingDojo
 //    static var IP:String="http://192.168.1.228:8000"
     //PUBLIC
-    static var IP:String="http://18.188.201.225"
+    static var IP:String="http://18.191.98.206"
     //Home
 //    static var IP = "http://192.168.1.23:8000"
 }
